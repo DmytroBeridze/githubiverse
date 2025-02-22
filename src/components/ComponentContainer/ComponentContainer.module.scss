@@ -1,0 +1,9 @@
+.componentContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+
+  @media (max-width: 1200px) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,27 @@
+@use "./variables.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@200..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+}
+
+// ---global
+body[data-theme="light"] {
+  background-color: $light-background-color;
+}
+body[data-theme="dark"] {
+  background-color: $dark-background-color;
+}
