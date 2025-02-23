@@ -1,11 +1,11 @@
 import styles from "./Homepage.module.scss";
 
-import { ContentContainer } from "../../components/ContentContainer";
+import { ContentContainer } from "../../organisms/ContentContainer";
 
 export const Homepage = () => {
   return (
     <div className={styles.homepage}>
-      <ContentContainer>GitHubiverse</ContentContainer>
+      {/* <ContentContainer>GitHubiverse</ContentContainer> */}
     </div>
   );
 };

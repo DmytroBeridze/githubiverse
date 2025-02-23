@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
-import { ContentContainer } from "../../components/ContentContainer";
+import { ContentContainer } from "../../organisms/ContentContainer";
 import styles from "./DevFinder.module.scss";
 import { useParams } from "react-router";
 

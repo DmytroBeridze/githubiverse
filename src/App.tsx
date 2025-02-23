@@ -1,14 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import { Homepage } from "./pages/Homepage";
-import { DevFinder } from "./pages/DevFinder";
-import { RepoFinder } from "./pages/RepoFinder";
-import { IssueFinder } from "./pages/IssueFinder";
-import { ComponentContainer } from "./components/ComponentContainer";
+import { Homepage } from "./components/pages/Homepage";
+import { DevFinder } from "./components/pages/DevFinder";
+import { RepoFinder } from "./components/pages/RepoFinder";
+import { IssueFinder } from "./components/pages/IssueFinder";
+import { ComponentContainer } from "./components/organisms/ComponentContainer";
+import { Header } from "./components/organisms/Header";
 
 function App() {
   return (
     <div className="App">
       <ComponentContainer>
+        <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="devfinder" element={<DevFinder />}></Route>
