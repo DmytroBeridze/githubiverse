@@ -1,9 +1,21 @@
 .componentContainer {
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px 0 20px;
+  padding: 0 100px 0 100px;
 
   @media (max-width: 1200px) {
-    padding: 0;
+    padding: 0 80px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 0 60px; // Добавил брейкпоинт для плавности
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 20px;
   }
 }

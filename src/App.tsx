@@ -1,18 +1,20 @@
+import { Route, Routes } from "react-router-dom";
+import { Homepage } from "./pages/Homepage";
+import { DevFinder } from "./pages/DevFinder";
+import { RepoFinder } from "./pages/RepoFinder";
+import { IssueFinder } from "./pages/IssueFinder";
 import { ComponentContainer } from "./components/ComponentContainer";
-import { DevFinder } from "./components/DevFinder";
-import { Homepage } from "./components/Homepage";
-import { IssueFinder } from "./components/IssueFinder";
-import { RepoFinder } from "./components/RepoFinder";
 
-import ReactDOM from "react-dom/client";
 function App() {
   return (
     <div className="App">
       <ComponentContainer>
-        <Homepage />
-        <DevFinder />
-        <RepoFinder />
-        <IssueFinder />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="devfinder" element={<DevFinder />}></Route>
+          <Route path="repofinder" element={<RepoFinder />}></Route>
+          <Route path="issuefinder" element={<IssueFinder />}></Route>
+        </Routes>
       </ComponentContainer>
     </div>
   );

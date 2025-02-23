@@ -1,4 +1,4 @@
-import { ContentContainer } from "../ContentContainer";
+import { ContentContainer } from "../../components/ContentContainer";
 import styles from "./RepoFinder.module.scss";
 
 export const RepoFinder = () => {
