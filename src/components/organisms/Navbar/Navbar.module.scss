@@ -1,0 +1,73 @@
+@import "../../../styles/variables.scss";
+.navbar {
+  font-family: $font-heading;
+  margin: 20px 0;
+  background-color: $module-gray-background-color;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  // @media (max-width: 768px) {
+  //   grid-template-columns: 1fr auto;
+  // }
+
+  & ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  & li {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    &:hover {
+      color: $primary-gray-text-color;
+    }
+  }
+  & li::after {
+    content: "";
+    width: 1px;
+    height: 20px;
+    position: absolute;
+    background-color: $light-background-color;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  & a {
+    color: inherit;
+    position: relative;
+    transition: color 0.2s;
+    font-size: clamp(0.5rem, 0.318rem + 0.91vw, 1rem);
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 1px;
+      background-color: $text-danger-color;
+      position: absolute;
+      bottom: -3px;
+      transition: 0.2s;
+      opacity: 0;
+    }
+  }
+  & a.active {
+    color: $text-danger-color;
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: $text-danger-color;
+      position: absolute;
+      bottom: -3px;
+      opacity: 1;
+    }
+  }
+}

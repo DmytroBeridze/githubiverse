@@ -1,0 +1,35 @@
+.burgerMenuToggle {
+  padding: 0;
+  line-height: 1;
+  max-height: 20px;
+  position: relative;
+  display: none;
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  & svg {
+    position: absolute;
+    transition: opacity 0.2s ease;
+  }
+
+  & svg:first-child {
+    opacity: 1;
+  }
+  & svg:last-child {
+    opacity: 0;
+  }
+
+  &.active svg:first-child {
+    opacity: 0;
+  }
+
+  &.active svg:last-child {
+    opacity: 1;
+  }
+}

@@ -1,4 +1,6 @@
+import styles from "./ControlThemeButton.module.scss";
 import { FC } from "react";
+import Icon from "../Icon/Icon";
 
 interface ControlThemeButtonProps {
   theme: boolean;
@@ -10,8 +12,11 @@ export const ControlThemeButton: FC<ControlThemeButtonProps> = ({
   toggleTheme,
 }) => {
   return (
-    <div onClick={toggleTheme}>
-      <span>{theme ? "dark" : "light"}</span>
+    <div onClick={toggleTheme} className={styles.button}>
+      <span>{theme ? "light" : "dark"}</span>
+      <span>
+        {theme ? <Icon name="sun" size="20" /> : <Icon name="moon" size="20" />}
+      </span>
     </div>
   );
 };

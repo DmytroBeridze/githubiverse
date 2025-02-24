@@ -5,7 +5,7 @@ export const ThemeSwitcher = () => {
   const [theme, setTheme] = useState<boolean>(false);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => !theme);
+    setTheme(!theme);
   };
 
   useEffect(() => {
