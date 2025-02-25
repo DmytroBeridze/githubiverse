@@ -1,12 +1,14 @@
 // light
 $light-background-color: #ffffff;
+// $light-transparent-background-color: #ffffff6d;
 $module-gray-background-color: #d3d9db;
 
 // dark
 $dark-background-color: #264653;
+$secondary-dark-background-color: #3c687a;
 $module-dark-background-color: #000000;
 
-// $module-dark-background-color: #1F1F1F;
+$transparent-dark-background-color: #1f1f1fd3;
 
 $accent-green-color: #2a9d8f;
 // $accent-warm-orange-brown-color: #2a9d8f;
@@ -22,3 +24,19 @@ $text-danger-color: #e76f51;
 // fonts
 $font-heading: "Unbounded", serif;
 $font-primary: "Libre Baskerville", serif;
+
+// ---------------------------
+body[data-theme="light"] {
+  --primary-background: #{$module-gray-background-color};
+  --primary-text-color: #{$primary-black-text-color};
+  --primary-icon-color: #{$primary-black-text-color};
+  --primary-icon-hover-color: #{$primary-gray-text-color};
+  --elements-background-color: #{$primary-white-text-color};
+}
+body[data-theme="dark"] {
+  --primary-background: #{$dark-background-color};
+  --primary-text-color: #{$primary-white-text-color};
+  --primary-icon-color: #{$primary-gray-text-color};
+  --primary-icon-hover-color: #{$secondary-gray-text-color};
+  --elements-background-color: #{$secondary-dark-background-color};
+}

@@ -5,12 +5,11 @@ import { Navbar } from "../Navbar";
 import { useState } from "react";
 
 export const Header = () => {
-  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(true);
+  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
   const toggleBurger = () => {
     setIsBurgerOpen((prevState) => !prevState);
   };
-  console.log(isBurgerOpen);
   return (
     <div className={styles.header}>
       <ContentContainer>

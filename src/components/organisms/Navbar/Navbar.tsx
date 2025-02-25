@@ -3,6 +3,9 @@ import styles from "./Navbar.module.scss";
 import { BurgerMenuToggle } from "../../molecules/BurgerMenuToggle";
 import { ThemeSwitcher } from "../../molecules/ThemeSwitcher";
 import { FC } from "react";
+import { BurgerMenu } from "../BurgerMenu";
+import { links } from "../../atoms/constants";
+import { NavigationLinks } from "../../molecules/NavigationLinks";
 
 export interface NavbarProps {
   isBurgerOpen: boolean;
@@ -10,27 +13,15 @@ export interface NavbarProps {
 }
 
 export const Navbar: FC<NavbarProps> = ({ isBurgerOpen, toggleBurger }) => {
-  const links = ["home", "devFinder", "repoFinder", "issueFinder"];
-
   return (
     <nav className={styles.navbar}>
-      <ul>
-        {links.map((elem, i) => (
-          <li key={i}>
-            <NavLink
-              to={`${elem === "home" ? "/" : `/${elem}`}`}
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              {elem.toUpperCase()}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      <NavigationLinks />
       <BurgerMenuToggle
         toggleBurger={toggleBurger}
         isBurgerOpen={isBurgerOpen}
       />
       <ThemeSwitcher />
+      <BurgerMenu toggleBurger={toggleBurger} isBurgerOpen={isBurgerOpen} />
     </nav>
   );
 };

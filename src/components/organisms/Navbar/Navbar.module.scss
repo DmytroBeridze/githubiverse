@@ -2,7 +2,8 @@
 .navbar {
   font-family: $font-heading;
   margin: 20px 0;
-  background-color: $module-gray-background-color;
+  background-color: var(--primary-background);
+  // background-color: $module-gray-background-color;
   padding: 14px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -25,26 +26,29 @@
     width: 100%;
     text-align: center;
     position: relative;
-    &:hover {
-      color: $primary-gray-text-color;
-    }
+    // &:hover {
+    //   color: $primary-gray-text-color;
+    // }
   }
   & li::after {
     content: "";
     width: 1px;
     height: 20px;
     position: absolute;
-    background-color: $light-background-color;
+    background-color: var(--elements-background-color);
     right: 0;
     top: 50%;
     transform: translateY(-50%);
   }
 
   & a {
-    color: inherit;
+    color: var(--primary-text-color);
     position: relative;
     transition: color 0.2s;
     font-size: clamp(0.5rem, 0.318rem + 0.91vw, 1rem);
+    &:hover {
+      color: $primary-gray-text-color;
+    }
 
     &::before {
       content: "";
@@ -55,19 +59,6 @@
       bottom: -3px;
       transition: 0.2s;
       opacity: 0;
-    }
-  }
-  & a.active {
-    color: $text-danger-color;
-
-    &::before {
-      content: "";
-      width: 100%;
-      height: 1px;
-      background-color: $text-danger-color;
-      position: absolute;
-      bottom: -3px;
-      opacity: 1;
     }
   }
 }

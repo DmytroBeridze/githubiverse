@@ -10,8 +10,8 @@ export const ThemeSwitcher = () => {
 
   useEffect(() => {
     theme
-      ? document.body.setAttribute("data-theme", "light")
-      : document.body.setAttribute("data-theme", "dark");
+      ? document.body.setAttribute("data-theme", "dark")
+      : document.body.setAttribute("data-theme", "light");
   }, [theme]);
 
   return (

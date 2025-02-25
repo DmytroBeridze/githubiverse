@@ -34,7 +34,13 @@ const Icon: FC<IconProps> = ({ name, size = "24", color = "currentcolor" }) => {
   };
 
   const IconComponent = icons[name] || DefaultIcon;
-  return <IconComponent fill={color} width={size} height={size} />;
+  return (
+    <IconComponent
+      style={{ fill: color, stroke: color }}
+      width={size}
+      height={size}
+    />
+  );
 };
 
 export default Icon;

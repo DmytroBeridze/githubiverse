@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .burgerMenuToggle {
   padding: 0;
   line-height: 1;
@@ -5,9 +7,13 @@
   position: relative;
   display: none;
   cursor: pointer;
-
   width: 20px;
   height: 20px;
+  transition: color 0.2s;
+  color: var(--primary-icon-color);
+  &:hover {
+    color: var(--primary-icon-hover-color);
+  }
 
   @media (max-width: 768px) {
     display: block;
