@@ -1,5 +1,4 @@
-import styles from "./Icon.module.scss";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { ReactComponent as DefaultIcon } from "../../../resources/icons/instagram.svg";
 import { ReactComponent as Instagram } from "../../../resources/icons/instagram.svg";
 import { ReactComponent as Twitter } from "../../../resources/icons/twitter.svg";
