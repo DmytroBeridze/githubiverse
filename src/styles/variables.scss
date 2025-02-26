@@ -1,20 +1,22 @@
 // light
-$light-background-color: #ffffff;
-// $light-transparent-background-color: #ffffff6d;
-$module-gray-background-color: #d3d9db;
+$light-background-color: #f5f4f4;
+// $light-background-color: #ffffff;
+$module-gray-background-color: rgb(120, 170, 180);
+// $module-gray-background-color: #d3d9db;
 
 // dark
 $dark-background-color: #264653;
 $secondary-dark-background-color: #3c687a;
 $module-dark-background-color: #000000;
-
+$dark-background-color-hover: #1f1f1f;
 $transparent-dark-background-color: #1f1f1fd3;
 
 $accent-green-color: #2a9d8f;
-// $accent-warm-orange-brown-color: #2a9d8f;
+$accent-green-hover-color: #1c7369;
 
 // text
-$primary-black-text-color: #000000;
+$primary-black-text-color: rgb(50, 50, 50);
+// $primary-black-text-color: #000000;
 $primary-gray-text-color: #808080;
 $secondary-gray-text-color: #a6a6a6;
 $primary-white-text-color: #ffffff;
@@ -25,6 +27,10 @@ $text-danger-color: #e76f51;
 $font-heading: "Unbounded", serif;
 $font-primary: "Libre Baskerville", serif;
 
+// shadow
+$primary-shadow: 0px 0px 20px -3px rgba(2, 3, 16, 1);
+$secondary-shadow: 0px 0px 20px -8px rgba(67, 84, 84, 0.83);
+// $secondary-shadow: 0px 0px 20px -11px rgba(67, 84, 84, 0.83);
 // ---------------------------
 body[data-theme="light"] {
   --primary-background: #{$module-gray-background-color};
@@ -32,6 +38,9 @@ body[data-theme="light"] {
   --primary-icon-color: #{$primary-black-text-color};
   --primary-icon-hover-color: #{$primary-gray-text-color};
   --elements-background-color: #{$primary-white-text-color};
+  --signUp-button-color: #{$light-background-color};
+  --signUp-button-color-hover: #{$text-warning-color};
+  --button-shaddow: #{$secondary-shadow};
 }
 body[data-theme="dark"] {
   --primary-background: #{$dark-background-color};
@@ -39,4 +48,19 @@ body[data-theme="dark"] {
   --primary-icon-color: #{$primary-gray-text-color};
   --primary-icon-hover-color: #{$secondary-gray-text-color};
   --elements-background-color: #{$secondary-dark-background-color};
+  --signUp-button-color: #{$module-dark-background-color};
+  --signUp-button-color-hover: #{$dark-background-color-hover};
+  --button-shaddow: #{$primary-shadow};
 }
+
+// @media (max-width: 992px) {
+//   padding: 0 50px;
+// }
+
+// @media (max-width: 768px) {
+//   padding: 0 40px;
+// }
+
+// @media (max-width: 480px) {
+//   padding: 0 20px;
+// }

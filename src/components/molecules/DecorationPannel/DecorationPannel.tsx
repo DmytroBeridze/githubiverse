@@ -24,7 +24,7 @@ export const DecorationPannel = () => {
 
   const { theme } = themeContext;
   return (
-    <>
+    <div className={styles.decorationPannelContainer}>
       <ContentContainer>
         <ul className={styles.decorationPannel}>
           {decorElements.map((elem, i) => (
@@ -38,6 +38,6 @@ export const DecorationPannel = () => {
           ))}
         </ul>
       </ContentContainer>
-    </>
+    </div>
   );
 };

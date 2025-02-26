@@ -3,12 +3,14 @@ import { ContentContainer } from "../ContentContainer";
 import { HeaderPhraseList } from "../../atoms/HeaderPhraseList";
 import { Navbar } from "../Navbar";
 import { useState } from "react";
+import { scrollUtils } from "../../../utils/scrollUtils";
 
 export const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
   const toggleBurger = () => {
     setIsBurgerOpen((prevState) => !prevState);
+    scrollUtils(isBurgerOpen);
   };
   return (
     <div className={styles.header}>
