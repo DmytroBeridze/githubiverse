@@ -1,0 +1,43 @@
+@import "../../../styles/variables.scss";
+.quizInfo {
+  padding: clamp(1rem, -1.227rem + 6vw, 7.125rem) 0;
+  // padding: clamp(0.625rem, 0.489rem + 0.68vw, 1rem) 0
+  //   clamp(1rem, -1.227rem + 9vw, 7.125rem);
+  background-color: var(--primary-background);
+  color: var(--primary-text-color);
+  & h2 {
+    word-wrap: break-word;
+    word-break: break-word;
+    font-weight: 700;
+    font-family: $font-heading;
+    // font-family: "Unbounded", "Unbounded Placeholder", sans-serif;
+    font-size: clamp(0.625rem, -0.239rem + 4.32vw, 3rem);
+    // font-size: 48px;
+    letter-spacing: 0em;
+    line-height: 1.2;
+  }
+  & ul {
+    list-style: none;
+    margin-top: clamp(0.625rem, -0.511rem + 5.68vw, 3.75rem);
+    display: flex;
+    gap: 154px;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0em;
+    line-height: 1.5;
+    font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  & h4 {
+    font-size: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+    margin-bottom: 10px;
+  }
+}

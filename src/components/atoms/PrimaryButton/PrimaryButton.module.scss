@@ -1,0 +1,10 @@
+@import "../../../styles/variables.scss";
+
+.primaryButton {
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: $font-primary;
+  cursor: pointer;
+}

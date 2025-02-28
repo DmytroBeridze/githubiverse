@@ -1,0 +1,71 @@
+@import "../../../styles/variables.scss";
+
+.introSectionContainer {
+  padding: clamp(1rem, -1.227rem + 6vw, 7.125rem) 0;
+  background-color: var(--primary-background);
+}
+.introSection {
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $text-warning-color;
+
+  h2 {
+    font-weight: 700;
+    font-style: normal;
+    font-family: $font-heading;
+    font-size: clamp(0.625rem, -0.239rem + 4.32vw, 3rem);
+    letter-spacing: 0em;
+    line-height: 1.2;
+  }
+  p {
+    max-width: 411px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 400;
+
+    font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+    letter-spacing: 0em;
+    line-height: 1.5;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & .start {
+    background-color: $accent-green-color;
+    margin-right: 10px;
+    color: $primary-white-text-color;
+    box-shadow: var(--button-shaddow);
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: $accent-green-hover-color;
+    }
+    @media (max-width: 480px) {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+  & .signUp {
+    background-color: var(--signUp-button-color);
+    margin-right: 10px;
+    color: var(--primary-text-color);
+    box-shadow: var(--button-shaddow);
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: var(--signUp-button-color-hover);
+    }
+    @media (max-width: 480px) {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+}

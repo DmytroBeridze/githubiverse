@@ -16,12 +16,6 @@ table {
 }
 
 body {
-}
-
-// ---global
-body[data-theme="light"] {
-  background-color: $light-background-color;
-}
-body[data-theme="dark"] {
-  background-color: $dark-background-color;
+  font-size: 16px;
+  font-family: $font-primary;
 }

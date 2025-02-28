@@ -1,0 +1,43 @@
+@import "../../../styles/variables.scss";
+.header {
+  background-color: $light-background-color;
+  padding: 100px 0 0;
+
+  & h1 {
+    font-family: $font-heading;
+    font-weight: 700;
+    color: #000000;
+    font-size: 107px;
+    letter-spacing: 0em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: center;
+    width: 100%;
+
+    @media (max-width: 1200px) {
+      font-size: clamp(1rem, -1.068rem + 10.34vw, 6.688rem);
+    }
+    @media (max-width: 992px) {
+      font-size: clamp(1rem, -1.068rem + 11.3vw, 6.688rem);
+    }
+    @media (max-width: 768px) {
+      font-size: clamp(1rem, -1.068rem + 11.7vw, 6.688rem);
+    }
+    @media (max-width: 630px) {
+      font-size: clamp(1rem, -1.068rem + 12vw, 6.688rem);
+    }
+    @media (max-width: 520px) {
+      font-size: clamp(1rem, -1.069rem + 12.2vw, 6.688rem);
+    }
+    @media (max-width: 480px) {
+      font-size: clamp(1rem, -1.068rem + 13.3vw, 6.688rem);
+    }
+
+    @media (max-width: 420px) {
+      font-size: clamp(1rem, -1.03rem + 13.7vw, 6.688rem);
+    }
+    @media (max-width: 360px) {
+      font-size: clamp(1rem, -1.03rem + 14vw, 6.9rem);
+    }
+  }
+}
