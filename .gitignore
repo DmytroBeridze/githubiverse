@@ -1,0 +1,19 @@
+# Игнорировать node_modules в папке client
+/client/node_modules
+
+# Игнорировать node_modules в папке server
+/server/node_modules
+
+# Другие игнорируемые файлы
+.DS_Store
+.env
+/server/.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Логи
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
