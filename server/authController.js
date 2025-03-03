@@ -1,7 +1,75 @@
-// registration
+const User = require("./models/userModel");
+const Role = require("./models/roleModel");
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(7);
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-const registration = (req, res) => {
-  res.json("Controller");
+const secretKey = process.env.JWT_SECRET;
+
+// registration
+const registration = async (req, res) => {
+  try {
+    const { userName, pass } = req.body;
+
+    const role = await Role.findOne({ value: "USER" });
+
+    if (!role) {
+      return res.json("No role");
+    }
+    const candidate = await User.findOne({ userName });
+    if (candidate) {
+      return res.json({ message: "Such user exist" });
+    }
+
+    const hashPass = bcrypt.hashSync(String(pass), salt);
+    const newUser = new User({
+      userName,
+      pass: hashPass,
+      role: role.value,
+    });
+
+    await newUser.save();
+    return res.json({ message: "User successfully registered" });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(error).json({ message: "Registration error" });
+  }
 };
 
-module.exports = { registration };
+// login;
+const login = async (req, res) => {
+  try {
+    const { userName, pass } = req.body;
+
+    const candidate = await User.findOne({ userName });
+    if (!candidate) {
+      return res.status(400).json({ message: `User ${userName} not found` });
+    }
+
+    const comparePass = bcrypt.compareSync(pass, candidate.pass);
+
+    if (!comparePass) {
+      return res.status(400).json({ message: "Error login" });
+    }
+
+    const token = jwt.sign({ userId: candidate._id }, secretKey, {
+      expiresIn: "1h",
+    });
+
+    return res.status(200).json({ message: "User logged", token });
+  } catch (error) {}
+};
+
+// get
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: error });
+  }
+};
+module.exports = { registration, login, getUsers };
