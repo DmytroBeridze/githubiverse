@@ -3,7 +3,17 @@ const app = express();
 const port = 5000;
 const authRouter = require("./authRouter");
 const { default: mongoose } = require("mongoose");
-// const User = require("./models/userModel");
+var cors = require("cors");
+require("dotenv").config();
+const CLIENT_URL = process.env.CLIENT_URL;
+
+app.use(
+  cors({
+    origin: CLIENT_URL,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 app.use("/auth", authRouter);

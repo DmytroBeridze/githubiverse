@@ -15,11 +15,11 @@ const registration = async (req, res) => {
     const role = await Role.findOne({ value: "USER" });
 
     if (!role) {
-      return res.json("No role");
+      return res.status(400).json({ message: "No role" });
     }
     const candidate = await User.findOne({ userName });
     if (candidate) {
-      return res.json({ message: "Such user exist" });
+      return res.status(409).json({ message: "Such user exist" });
     }
 
     const hashPass = bcrypt.hashSync(String(pass), salt);
@@ -30,7 +30,9 @@ const registration = async (req, res) => {
     });
 
     await newUser.save();
-    return res.json({ message: "User successfully registered" });
+    return res
+      .status(200)
+      .json({ message: "User successfully registered", payload: userName });
   } catch (error) {
     console.log(error);
 
