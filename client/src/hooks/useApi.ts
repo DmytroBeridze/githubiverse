@@ -37,7 +37,6 @@ export const useApi = () => {
       const data = await response.json();
       setLoading(false);
       setStatus("loaded");
-      console.log(data.payload);
 
       setMessage(`${data.payload} ${data.message}`);
 

@@ -7,8 +7,8 @@ export const useAuthServise = () => {
     const url = "http://localhost:5000/auth/register";
 
     const request = userRequest(url, "POST", {
-      userName: "q12334",
-      passWord: "1111",
+      userName: "wef12",
+      pass: "1111",
     });
     request.then((data) => console.log(data?.message));
 
