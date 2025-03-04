@@ -1,11 +1,38 @@
 const express = require("express");
+const { body, validationResult, checkSchema } = require("express-validator");
 const router = express.Router();
-const mongoose = require("mongoose");
 const verifyToken = require("./middlewares/verifyToken");
 
 const { registration, login, getUsers } = require("./authController");
 
-router.post("/register", registration);
+router.post(
+  "/register",
+  checkSchema({
+    userName: {
+      notEmpty: {
+        errorMessage: "Username is required",
+      },
+    },
+    pass: {
+      notEmpty: {
+        errorMessage: "Password is required",
+      },
+      isLength: {
+        options: { min: 3 },
+        errorMessage: "Password should be at least 3 chars",
+      },
+    },
+  }),
+  registration
+);
+
+// router.post(
+//   "/register",
+//   body("userName").notEmpty(),
+//   body("pass").notEmpty().isLength({ min: 3 }),
+//   registration
+// );
+
 router.post("/login", login);
 router.get("/users", verifyToken, getUsers);
 

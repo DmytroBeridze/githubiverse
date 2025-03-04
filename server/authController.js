@@ -4,12 +4,19 @@ const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(7);
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
 const secretKey = process.env.JWT_SECRET;
 
+const { validationResult } = require("express-validator");
 // registration
 const registration = async (req, res) => {
   try {
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+      console.log(result.array()[0].msg);
+      return res.status(400).json({ errors: result.array() });
+    }
+
     const { userName, pass } = req.body;
 
     const role = await Role.findOne({ value: "USER" });
@@ -36,7 +43,7 @@ const registration = async (req, res) => {
   } catch (error) {
     console.log(error);
 
-    return res.status(error).json({ message: "Registration error" });
+    return res.status(500).json({ message: "Registration error" });
   }
 };
 
@@ -53,7 +60,7 @@ const login = async (req, res) => {
     const comparePass = bcrypt.compareSync(pass, candidate.pass);
 
     if (!comparePass) {
-      return res.status(400).json({ message: "Error login" });
+      return res.status(400).json({ message: "Incorrect password" });
     }
 
     const token = jwt.sign({ userId: candidate._id }, secretKey, {
@@ -61,7 +68,9 @@ const login = async (req, res) => {
     });
 
     return res.status(200).json({ message: "User logged", token });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ message: "Error during login" });
+  }
 };
 
 // get
