@@ -7,11 +7,13 @@ import styles from "./RegistrationPopup.module.scss";
 export interface RegistrationPopupProps {
   burgerHandler: () => void;
   isOpenBurger: boolean;
+  formType: "signup" | "login" | "";
 }
 
 export const RegistrationPopup: FC<RegistrationPopupProps> = ({
   isOpenBurger,
   burgerHandler,
+  formType,
 }) => {
   useEffect(() => {
     if (!isOpenBurger) return;
@@ -27,7 +29,11 @@ export const RegistrationPopup: FC<RegistrationPopupProps> = ({
 
   return isOpenBurger ? (
     <div className={styles.popup} onClick={burgerHandler}>
-      <AuthForm isOpenBurger={isOpenBurger} burgerHandler={burgerHandler} />
+      <AuthForm
+        isOpenBurger={isOpenBurger}
+        burgerHandler={burgerHandler}
+        formType={formType}
+      />
     </div>
   ) : null;
 };

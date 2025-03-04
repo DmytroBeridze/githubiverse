@@ -7,7 +7,7 @@ import styles from "./AuthForm.module.scss";
 
 interface AuthFormProps extends RegistrationPopupProps {}
 
-export const AuthForm: FC<AuthFormProps> = ({ burgerHandler }) => {
+export const AuthForm: FC<AuthFormProps> = ({ burgerHandler, formType }) => {
   return (
     <form className={styles.form}>
       <span
@@ -38,12 +38,15 @@ export const AuthForm: FC<AuthFormProps> = ({ burgerHandler }) => {
       >
         Sign in
       </PrimaryButton>
-      <PrimaryButton
-        onClick={() => console.log("Sign up")}
-        className={styles.button}
-      >
-        Sign up
-      </PrimaryButton>
+
+      {formType === "signup" ? (
+        <PrimaryButton
+          onClick={() => console.log("Sign up")}
+          className={styles.button}
+        >
+          Sign up
+        </PrimaryButton>
+      ) : null}
     </form>
   );
 };

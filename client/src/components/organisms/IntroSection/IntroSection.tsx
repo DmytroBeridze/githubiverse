@@ -6,11 +6,14 @@ import { useAuthServise } from "../../../servises/useAuthServise";
 import { FC, useEffect } from "react";
 import { RegistrationPopupProps } from "../RegistrationPopup";
 
-interface IntroSectionProps extends RegistrationPopupProps {}
+interface IntroSectionProps extends Omit<RegistrationPopupProps, "formType"> {
+  setFormType: React.Dispatch<React.SetStateAction<"" | "signup" | "login">>;
+}
 
 export const IntroSection: FC<IntroSectionProps> = ({
   burgerHandler,
   isOpenBurger,
+  setFormType,
 }) => {
   const { registerUser, loading, error, status, message, clearError } =
     useAuthServise();
@@ -25,21 +28,20 @@ export const IntroSection: FC<IntroSectionProps> = ({
             GitHubiverse.
           </p>
           <div className={styles.buttonContainer}>
-            {/* {loading ? "...loading" : null} */}
-            {error}
-            {!error && message ? message : null}
             <PrimaryButton
-              onClick={burgerHandler}
-              // onClick={() => {
-              //   registerUser();
-              //   clearError();
-              // }}
+              onClick={() => {
+                burgerHandler();
+                setFormType("signup");
+              }}
               className={styles.start}
             >
               Start Exploration
             </PrimaryButton>
             <PrimaryButton
-              onClick={() => console.log("Sign Up")}
+              onClick={() => {
+                burgerHandler();
+                setFormType("login");
+              }}
               className={styles.signUp}
             >
               Sign Up

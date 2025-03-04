@@ -29,8 +29,8 @@ $font-primary: "Libre Baskerville", serif;
 
 // shadow
 $primary-shadow: 0px 0px 20px -3px rgba(2, 3, 16, 1);
-$secondary-shadow: 0px 0px 20px -8px rgba(67, 84, 84, 0.83);
-// $secondary-shadow: 0px 0px 20px -11px rgba(67, 84, 84, 0.83);
+$secondary-shadow: 0px 0px 22px -6px rgba(18, 19, 19, 0.83);
+// $secondary-shadow: 0px 0px 20px -8px rgba(67, 84, 84, 0.83);
 // ---------------------------
 body[data-theme="light"] {
   --primary-background: #{$module-gray-background-color};

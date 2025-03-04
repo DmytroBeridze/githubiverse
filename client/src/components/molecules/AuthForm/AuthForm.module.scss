@@ -16,7 +16,8 @@
   gap: 10px;
   border-radius: 10px;
   background-color: var(--primary-background);
-  // background-color: $dark-background-color-hover;
+  box-shadow: $primary-shadow;
+
   & .iconContainer {
     position: absolute;
     top: 20px;
@@ -40,10 +41,10 @@
 
   & .button {
     background-color: var(--popup-button-color);
-    // background-color: $accent-green-color;
     transition: background-color 0.3s;
     color: $primary-white-text-color;
     font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+    box-shadow: var(--button-shaddow);
     &:hover {
       background-color: var(--popup-button-hover-color);
     }

@@ -8,7 +8,7 @@ import { scrollUtils } from "../../../utils/scrollUtils";
 
 export const Homepage = () => {
   const [isOpenBurger, setIsOpenBurger] = useState<boolean>(false);
-  const [isLoginBtn, setIsLoginBtn] = useState<string>("");
+  const [formType, setFormType] = useState<"signup" | "login" | "">("");
 
   const burgerHandler = () => {
     const newState = !isOpenBurger;
@@ -19,10 +19,15 @@ export const Homepage = () => {
   return (
     <div className={styles.homepage}>
       <QuizInfo />
-      <IntroSection burgerHandler={burgerHandler} isOpenBurger={isOpenBurger} />
+      <IntroSection
+        burgerHandler={burgerHandler}
+        isOpenBurger={isOpenBurger}
+        setFormType={setFormType}
+      />
       <RegistrationPopup
         isOpenBurger={isOpenBurger}
         burgerHandler={burgerHandler}
+        formType={formType}
       />
     </div>
   );
