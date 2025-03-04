@@ -3,9 +3,15 @@ import { ContentContainer } from "../ContentContainer";
 import styles from "./IntroSection.module.scss";
 
 import { useAuthServise } from "../../../servises/useAuthServise";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
+import { RegistrationPopupProps } from "../RegistrationPopup";
 
-export const IntroSection = () => {
+interface IntroSectionProps extends RegistrationPopupProps {}
+
+export const IntroSection: FC<IntroSectionProps> = ({
+  burgerHandler,
+  isOpenBurger,
+}) => {
   const { registerUser, loading, error, status, message, clearError } =
     useAuthServise();
 
@@ -23,10 +29,11 @@ export const IntroSection = () => {
             {error}
             {!error && message ? message : null}
             <PrimaryButton
-              onClick={() => {
-                registerUser();
-                clearError();
-              }}
+              onClick={burgerHandler}
+              // onClick={() => {
+              //   registerUser();
+              //   clearError();
+              // }}
               className={styles.start}
             >
               Start Exploration

@@ -1,0 +1,51 @@
+@import "../../../styles/variables.scss";
+
+.form {
+  position: absolute;
+  max-width: 600px;
+  max-height: fit-content;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: var(--primary-background);
+  // background-color: $dark-background-color-hover;
+  & .iconContainer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: $primary-white-text-color;
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover {
+      color: var(--popup-icon-hover-color);
+    }
+  }
+  & .label {
+    color: $primary-white-text-color;
+    & span {
+      font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+    }
+  }
+  & .pass {
+    margin-bottom: 20px;
+  }
+
+  & .button {
+    background-color: var(--popup-button-color);
+    // background-color: $accent-green-color;
+    transition: background-color 0.3s;
+    color: $primary-white-text-color;
+    font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+    &:hover {
+      background-color: var(--popup-button-hover-color);
+    }
+  }
+}
