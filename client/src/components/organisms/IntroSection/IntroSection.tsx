@@ -1,9 +1,7 @@
 import { PrimaryButton } from "../../atoms/PrimaryButton";
 import { ContentContainer } from "../ContentContainer";
 import styles from "./IntroSection.module.scss";
-
-import { useAuthServise } from "../../../servises/useAuthServise";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { RegistrationPopupProps } from "../RegistrationPopup";
 
 interface IntroSectionProps extends Omit<RegistrationPopupProps, "formType"> {
@@ -15,9 +13,6 @@ export const IntroSection: FC<IntroSectionProps> = ({
   isOpenBurger,
   setFormType,
 }) => {
-  const { registerUser, loading, error, status, message, clearError } =
-    useAuthServise();
-
   return (
     <div className={styles.introSectionContainer}>
       <ContentContainer>

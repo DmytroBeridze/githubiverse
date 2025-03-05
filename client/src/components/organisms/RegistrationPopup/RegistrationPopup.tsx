@@ -28,6 +28,7 @@ export const RegistrationPopup: FC<RegistrationPopupProps> = ({
   }, [burgerHandler]);
 
   return isOpenBurger ? (
+    // <div className={styles.popup}>
     <div className={styles.popup} onClick={burgerHandler}>
       <AuthForm
         isOpenBurger={isOpenBurger}

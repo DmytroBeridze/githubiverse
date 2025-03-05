@@ -44,6 +44,7 @@ body[data-theme="light"] {
   --popup-button-color: #{$secondary-dark-background-color};
   --popup-button-hover-color: #{$dark-background-color};
   --popup-icon-hover-color: #{$dark-background-color};
+  --message-color: #{$dark-background-color};
 }
 body[data-theme="dark"] {
   --primary-background: #{$dark-background-color};
@@ -57,6 +58,7 @@ body[data-theme="dark"] {
   --popup-button-color: #{$accent-green-color};
   --popup-button-hover-color: #{$accent-green-hover-color};
   --popup-icon-hover-color: #{$accent-green-color};
+  --message-color: #{$accent-green-color};
 }
 
 // @media (max-width: 992px) {

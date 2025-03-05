@@ -38,7 +38,7 @@ export const useApi = () => {
       setLoading(false);
       setStatus("loaded");
 
-      setMessage(`${data.payload} ${data.message}`);
+      setMessage(data.message);
 
       return data;
     } catch (error) {
