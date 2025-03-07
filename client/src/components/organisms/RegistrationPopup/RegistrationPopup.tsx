@@ -5,14 +5,14 @@ import { AuthForm } from "../../molecules/AuthForm/AuthForm";
 import styles from "./RegistrationPopup.module.scss";
 
 export interface RegistrationPopupProps {
-  burgerHandler: () => void;
+  popupHandler: () => void;
   isOpenBurger: boolean;
   formType: "signup" | "login" | "";
 }
 
 export const RegistrationPopup: FC<RegistrationPopupProps> = ({
   isOpenBurger,
-  burgerHandler,
+  popupHandler,
   formType,
 }) => {
   useEffect(() => {
@@ -20,18 +20,18 @@ export const RegistrationPopup: FC<RegistrationPopupProps> = ({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        burgerHandler();
+        popupHandler();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.addEventListener("keydown", handleKeyDown);
-  }, [burgerHandler]);
+  }, [popupHandler]);
 
   return isOpenBurger ? (
-    <div className={styles.popup} onClick={burgerHandler}>
+    <div className={styles.popup} onClick={popupHandler}>
       <AuthForm
         isOpenBurger={isOpenBurger}
-        burgerHandler={burgerHandler}
+        popupHandler={popupHandler}
         formType={formType}
       />
     </div>

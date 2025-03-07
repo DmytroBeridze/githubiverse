@@ -3,31 +3,30 @@ import styles from "./Homepage.module.scss";
 import { QuizInfo } from "../../molecules/QuizInfo";
 import { IntroSection } from "../../organisms/IntroSection";
 import { RegistrationPopup } from "../../organisms/RegistrationPopup";
-import { useState } from "react";
-import { scrollUtils } from "../../../utils/scrollUtils";
+import { useContext, useState } from "react";
+import { PopupContext } from "../../../context/PopupContext";
+import { FormTypeContext } from "../../../context/FormTypeContext";
 
 export const Homepage = () => {
-  const [isOpenBurger, setIsOpenBurger] = useState<boolean>(false);
-  const [formType, setFormType] = useState<"signup" | "login" | "">("");
+  const popupContext = useContext(PopupContext);
+  const formTypeContext = useContext(FormTypeContext);
 
-  const burgerHandler = () => {
-    const newState = !isOpenBurger;
-    setIsOpenBurger(newState);
-    scrollUtils(newState);
-  };
+  if (!popupContext || !formTypeContext) {
+    console.error(
+      "ThemeContext is undefined. Make sure to wrap your app in ThemeProvider."
+    );
+    return null;
+  }
+  const { popupHandler, isOpenPopup } = popupContext;
+  const { setFormType } = formTypeContext;
 
   return (
     <div className={styles.homepage}>
       <QuizInfo />
       <IntroSection
-        burgerHandler={burgerHandler}
-        isOpenBurger={isOpenBurger}
+        popupHandler={popupHandler}
+        isOpenBurger={isOpenPopup}
         setFormType={setFormType}
-      />
-      <RegistrationPopup
-        isOpenBurger={isOpenBurger}
-        burgerHandler={burgerHandler}
-        formType={formType}
       />
     </div>
   );

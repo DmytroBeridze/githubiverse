@@ -9,7 +9,7 @@ import validationUtils from "../../../utils/validationUtils";
 
 interface AuthFormProps extends RegistrationPopupProps {}
 
-export const AuthForm: FC<AuthFormProps> = ({ burgerHandler, formType }) => {
+export const AuthForm: FC<AuthFormProps> = ({ popupHandler, formType }) => {
   const [validationErrors, setValidationErrors] = useState<{
     [key: string]: string | null;
   }>({
@@ -73,7 +73,7 @@ export const AuthForm: FC<AuthFormProps> = ({ burgerHandler, formType }) => {
         className={styles.iconContainer}
         onClick={(e) => {
           e.stopPropagation();
-          burgerHandler();
+          popupHandler();
         }}
       >
         <Icon name="close" size="20" />

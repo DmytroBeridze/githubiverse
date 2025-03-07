@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { AuthStatus } from "../../molecules/AuthStatus";
 import styles from "./HeaderPhraseList.module.scss";
+import { PopupContext } from "../../../context/PopupContext";
 
 export const HeaderPhraseList = () => {
   const headerPhrase = ["discover", "explore", "conquer", "dive in"];
+  const burgerContext = useContext(PopupContext);
 
   const today = new Date();
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -11,6 +14,9 @@ export const HeaderPhraseList = () => {
     month: "long",
     day: "numeric",
   });
+
+  if (!burgerContext) {
+  }
 
   return (
     <div className={styles.headerPhraseList}>

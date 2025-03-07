@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { useApi } from "../hooks/useApi";
 import { UserDataType } from "../types/authTypes";
 import localStorageUtils from "../utils/localStorageUtils";
+import { NickNameContext } from "../context/NickNameContext";
 
 export const useAuthService = () => {
+  const nickNameContext = useContext(NickNameContext);
+
   const {
     userRequest,
     loading,
@@ -14,6 +18,7 @@ export const useAuthService = () => {
   } = useApi();
   const URL = process.env.REACT_APP_API_URL;
   const { setData } = localStorageUtils;
+  const { setNickName } = nickNameContext;
 
   const registerUser = async (data: UserDataType) => {
     const url = `${URL}/auth/register`;
@@ -28,6 +33,7 @@ export const useAuthService = () => {
     if (response) {
       setData("token", response.token);
       setData("user", response.userName);
+      setNickName(response.userName);
     }
     return response;
   };
