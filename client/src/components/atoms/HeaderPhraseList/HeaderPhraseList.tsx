@@ -1,3 +1,4 @@
+import { AuthStatus } from "../../molecules/AuthStatus";
 import styles from "./HeaderPhraseList.module.scss";
 
 export const HeaderPhraseList = () => {
@@ -26,6 +27,7 @@ export const HeaderPhraseList = () => {
           headerPhrase[headerPhrase.length - 1].slice(1)}
       </span>
       <span>{formatter.format(today)}</span>
+      <AuthStatus />
     </div>
   );
 };

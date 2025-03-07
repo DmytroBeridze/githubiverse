@@ -6,7 +6,6 @@ import { RegistrationPopupProps } from "../../organisms/RegistrationPopup";
 import styles from "./AuthForm.module.scss";
 import useAuthForm from "../../../hooks/useAuthForm";
 import validationUtils from "../../../utils/validationUtils";
-import { useApi } from "../../../hooks/useApi";
 
 interface AuthFormProps extends RegistrationPopupProps {}
 

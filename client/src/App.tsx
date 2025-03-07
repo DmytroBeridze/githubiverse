@@ -11,7 +11,7 @@ import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);
-
+  // const [isOpenBurger, setIsOpenBurger] = useState<boolean>(false);
   return (
     <div className="App">
       <ComponentContainer>
