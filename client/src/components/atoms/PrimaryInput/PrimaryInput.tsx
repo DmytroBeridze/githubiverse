@@ -6,6 +6,7 @@ interface PrimaryInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   classLabel?: string;
   label?: string;
+  error?: boolean;
 }
 
 export const PrimaryInput: FC<PrimaryInputProps> = ({
@@ -13,13 +14,16 @@ export const PrimaryInput: FC<PrimaryInputProps> = ({
   className = "",
   classLabel = "",
   label = "",
+  error = false,
   ...props
 }) => {
   return (
     <label className={`${styles.primaryLabel} ${classLabel}`}>
       <span>{label}</span>
       <input
-        className={`${styles.primaryInput} ${className}`}
+        className={`${styles.primaryInput} ${className} ${
+          error ? styles.validError : ""
+        }`}
         onChange={onChange}
         {...props}
       />

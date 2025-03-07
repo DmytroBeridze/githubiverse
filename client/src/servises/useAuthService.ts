@@ -1,22 +1,35 @@
 import { useApi } from "../hooks/useApi";
 import { UserDataType } from "../types/authTypes";
+import localStorageUtils from "../utils/localStorageUtils";
 
 export const useAuthService = () => {
-  const { userRequest, loading, error, status, message, clearError } = useApi();
+  const {
+    userRequest,
+    loading,
+    error,
+    status,
+    message,
+    clearError,
+    clearMessage,
+  } = useApi();
   const URL = process.env.REACT_APP_API_URL;
+  const { setData } = localStorageUtils;
 
-  const registerUser = (data: UserDataType) => {
+  const registerUser = async (data: UserDataType) => {
     const url = `${URL}/auth/register`;
-    const request = userRequest(url, "POST", data);
-    // request.then((data) => console.log(data?.message));
+    const response = await userRequest(url, "POST", data);
 
-    return request;
+    return response;
   };
-  const loginUser = (data: UserDataType) => {
+  const loginUser = async (data: UserDataType) => {
     const url = `${URL}/auth/login`;
-    const request = userRequest(url, "POST", data);
+    const response = await userRequest(url, "POST", data);
 
-    return request;
+    if (response) {
+      setData("token", response.token);
+      setData("user", response.userName);
+    }
+    return response;
   };
 
   return {
@@ -27,5 +40,6 @@ export const useAuthService = () => {
     status,
     message,
     clearError,
+    clearMessage,
   };
 };

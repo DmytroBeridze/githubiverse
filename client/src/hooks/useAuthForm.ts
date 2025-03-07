@@ -14,6 +14,7 @@ const useAuthForm = () => {
     status,
     message,
     clearError,
+    clearMessage,
   } = useAuthService();
 
   const user: UserDataType = {
@@ -28,10 +29,22 @@ const useAuthForm = () => {
     setPass(e.target.value);
   };
 
+  const clearFields = (resp: UserDataType) => {
+    if (resp) {
+      setName("");
+      setPass("");
+    }
+  };
+
   const sendForm = (data: UserDataType, key: "signup" | "signin") => {
     if (key === "signup") {
-      registerUser(data);
-    } else loginUser(data).then((data) => console.log(data));
+      registerUser(data).then((resp) => {
+        clearFields(resp);
+      });
+    } else
+      loginUser(data).then((resp) => {
+        clearFields(resp);
+      });
   };
 
   return {
@@ -46,6 +59,7 @@ const useAuthForm = () => {
     status,
     message,
     clearError,
+    clearMessage,
   };
 };
 export default useAuthForm;

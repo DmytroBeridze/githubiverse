@@ -51,5 +51,15 @@ export const useApi = () => {
   };
 
   const clearError = () => setError(null);
-  return { userRequest, loading, error, status, message, clearError };
+  const clearMessage = () => setMessage(null);
+
+  return {
+    userRequest,
+    loading,
+    error,
+    status,
+    message,
+    clearError,
+    clearMessage,
+  };
 };
