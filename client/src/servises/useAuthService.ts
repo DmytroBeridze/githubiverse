@@ -20,12 +20,15 @@ export const useAuthService = () => {
   const { setData } = localStorageUtils;
   const { setNickName } = nickNameContext;
 
+  // registration
   const registerUser = async (data: UserDataType) => {
     const url = `${URL}/auth/register`;
     const response = await userRequest(url, "POST", data);
 
     return response;
   };
+
+  // login
   const loginUser = async (data: UserDataType) => {
     const url = `${URL}/auth/login`;
     const response = await userRequest(url, "POST", data);
