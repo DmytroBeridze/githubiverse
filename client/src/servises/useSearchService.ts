@@ -9,7 +9,48 @@
 
 
 */
+import { useState } from "react";
+import { useApi } from "../hooks/useApi";
+import { transformGitIssue } from "../utils/transformGitIssueUtils";
+import { GitIssues, Issues } from "../types/issueTypes";
+const useSearchService = () => {
+  const {
+    sendRequest,
+    loading,
+    error,
+    status,
+    message,
+    clearError,
+    clearMessage,
+  } = useApi();
 
-const useSearchService = () => {};
+  const [randomIssues, setRandomIssues] = useState<Issues[]>([]);
+
+  // random issue
+  const getRandomIssues = async () => {
+    const URL =
+      "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
+
+    const response = await sendRequest(URL);
+    if (response) {
+      console.log(response.items);
+      const transformData = response.items.map((elem: GitIssues) =>
+        transformGitIssue(elem)
+      );
+      setRandomIssues(transformData);
+    }
+  };
+
+  console.log(randomIssues);
+  return {
+    loading,
+    error,
+    status,
+    message,
+    clearError,
+    clearMessage,
+    getRandomIssues,
+  };
+};
 
 export default useSearchService;

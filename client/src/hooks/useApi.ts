@@ -8,7 +8,7 @@ export const useApi = () => {
   >("waiting");
   const [message, setMessage] = useState<string | null>(null);
 
-  const userRequest = async (
+  const sendRequest = async (
     url: string,
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
     body: {} | null = null,
@@ -54,7 +54,7 @@ export const useApi = () => {
   const clearMessage = () => setMessage(null);
 
   return {
-    userRequest,
+    sendRequest,
     loading,
     error,
     status,

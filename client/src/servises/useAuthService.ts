@@ -8,7 +8,7 @@ export const useAuthService = () => {
   const nickNameContext = useContext(NickNameContext);
 
   const {
-    userRequest,
+    sendRequest,
     loading,
     error,
     status,
@@ -23,7 +23,7 @@ export const useAuthService = () => {
   // registration
   const registerUser = async (data: UserDataType) => {
     const url = `${URL}/auth/register`;
-    const response = await userRequest(url, "POST", data);
+    const response = await sendRequest(url, "POST", data);
 
     return response;
   };
@@ -31,7 +31,7 @@ export const useAuthService = () => {
   // login
   const loginUser = async (data: UserDataType) => {
     const url = `${URL}/auth/login`;
-    const response = await userRequest(url, "POST", data);
+    const response = await sendRequest(url, "POST", data);
 
     if (response) {
       setData("token", response.token);
