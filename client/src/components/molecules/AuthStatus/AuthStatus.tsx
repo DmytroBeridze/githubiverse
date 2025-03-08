@@ -1,6 +1,5 @@
 import styles from "./AuthStatus.module.scss";
 
-import { useEffect, useState } from "react";
 import localStorageUtils from "../../../utils/localStorageUtils";
 import { useContext } from "react";
 import { PopupContext } from "../../../context/PopupContext";
