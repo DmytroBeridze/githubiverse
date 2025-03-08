@@ -1,3 +1,32 @@
+@import "../../../styles/variables.scss";
+
 .authStatus {
   cursor: pointer;
+  & span {
+    display: flex;
+    gap: 2px;
+    // align-items: center;
+    transition: color 0.3s;
+    &:hover {
+      color: $primary-gray-text-color;
+    }
+    & svg {
+      width: clamp(0.5rem, 0.318rem + 0.91vw, 1rem);
+      height: clamp(0.5rem, 0.318rem + 0.91vw, 1rem);
+    }
+  }
+}
+
+:global {
+  .tooltip {
+    color: white !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+    &.Logout {
+      background-color: $text-danger-color;
+    }
+    &.Login {
+      background-color: $accent-green-color;
+    }
+  }
 }
