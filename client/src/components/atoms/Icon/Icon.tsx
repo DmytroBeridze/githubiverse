@@ -7,6 +7,7 @@ import { ReactComponent as Burger } from "../../../resources/icons/burger.svg";
 import { ReactComponent as Close } from "../../../resources/icons/close.svg";
 import { ReactComponent as Sun } from "../../../resources/icons/sun.svg";
 import { ReactComponent as Moon } from "../../../resources/icons/moon.svg";
+import { ReactComponent as User } from "../../../resources/icons/user.svg";
 
 interface IconProps {
   name:
@@ -16,7 +17,8 @@ interface IconProps {
     | "burger"
     | "close"
     | "sun"
-    | "moon";
+    | "moon"
+    | "user";
   size?: string;
   color?: string;
 }
@@ -30,6 +32,7 @@ const Icon: FC<IconProps> = ({ name, size = "24", color = "currentcolor" }) => {
     close: Close,
     sun: Sun,
     moon: Moon,
+    user: User,
   };
 
   const IconComponent = icons[name] || DefaultIcon;

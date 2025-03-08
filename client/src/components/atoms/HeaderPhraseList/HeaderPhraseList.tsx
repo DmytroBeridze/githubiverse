@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { AuthStatus } from "../../molecules/AuthStatus";
 import styles from "./HeaderPhraseList.module.scss";
+import { PopupContext } from "../../../context/PopupContext";
 
 export const HeaderPhraseList = () => {
   const headerPhrase = ["discover", "explore", "conquer", "dive in"];
+  const burgerContext = useContext(PopupContext);
 
   const today = new Date();
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -10,6 +14,9 @@ export const HeaderPhraseList = () => {
     month: "long",
     day: "numeric",
   });
+
+  if (!burgerContext) {
+  }
 
   return (
     <div className={styles.headerPhraseList}>
@@ -26,6 +33,7 @@ export const HeaderPhraseList = () => {
           headerPhrase[headerPhrase.length - 1].slice(1)}
       </span>
       <span>{formatter.format(today)}</span>
+      <AuthStatus />
     </div>
   );
 };

@@ -11,17 +11,17 @@ interface IntroSectionProps extends Omit<RegistrationPopupProps, "formType"> {
 }
 
 export const IntroSection: FC<IntroSectionProps> = ({
-  burgerHandler,
-  isOpenBurger,
+  popupHandler,
   setFormType,
 }) => {
   const navigate = useNavigate();
+
   const checkAuthAndRedirect = () => {
     const token = localStorageUtils.getData("token");
     if (token) {
       navigate("/devFinder");
     } else {
-      burgerHandler();
+      popupHandler();
     }
     setFormType("signup");
   };
@@ -44,7 +44,7 @@ export const IntroSection: FC<IntroSectionProps> = ({
             </PrimaryButton>
             <PrimaryButton
               onClick={() => {
-                burgerHandler();
+                popupHandler();
                 setFormType("login");
               }}
               className={styles.signUp}

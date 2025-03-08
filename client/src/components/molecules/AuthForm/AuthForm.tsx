@@ -6,11 +6,10 @@ import { RegistrationPopupProps } from "../../organisms/RegistrationPopup";
 import styles from "./AuthForm.module.scss";
 import useAuthForm from "../../../hooks/useAuthForm";
 import validationUtils from "../../../utils/validationUtils";
-import { useApi } from "../../../hooks/useApi";
 
 interface AuthFormProps extends RegistrationPopupProps {}
 
-export const AuthForm: FC<AuthFormProps> = ({ burgerHandler, formType }) => {
+export const AuthForm: FC<AuthFormProps> = ({ popupHandler, formType }) => {
   const [validationErrors, setValidationErrors] = useState<{
     [key: string]: string | null;
   }>({
@@ -74,7 +73,7 @@ export const AuthForm: FC<AuthFormProps> = ({ burgerHandler, formType }) => {
         className={styles.iconContainer}
         onClick={(e) => {
           e.stopPropagation();
-          burgerHandler();
+          popupHandler();
         }}
       >
         <Icon name="close" size="20" />
