@@ -1,6 +1,6 @@
 export type GitIssues = {
   title: string;
-  user: { login: string };
+  user: { login: string; avatar_url: string };
   body: string;
   state: string;
   comments: number;
@@ -16,6 +16,7 @@ export type Issues = {
   comments: number;
   commentsUrl: string;
   createdAt: string;
+  avatar: string;
 };
 // export type Issues = {
 //   title: string;

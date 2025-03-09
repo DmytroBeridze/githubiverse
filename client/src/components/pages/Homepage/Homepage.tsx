@@ -7,15 +7,29 @@ import { useContext, useEffect, useState } from "react";
 import { PopupContext } from "../../../context/PopupContext";
 import { FormTypeContext } from "../../../context/FormTypeContext";
 import useSearchService from "../../../servises/useSearchService";
+import LatestIssues from "../../organisms/LatestIssues/LatestIssues";
 
 export const Homepage = () => {
   const popupContext = useContext(PopupContext);
   const formTypeContext = useContext(FormTypeContext);
-  const { getRandomIssues } = useSearchService();
+  const {
+    getRandomIssues,
+    randomIssues,
+    loading,
+    error,
+    status,
+    message,
+    clearError,
+    clearMessage,
+  } = useSearchService();
 
   useEffect(() => {
     getRandomIssues();
   }, []);
+
+  useEffect(() => {
+    console.log(randomIssues);
+  }, [randomIssues]);
 
   if (!popupContext || !formTypeContext) {
     console.error(
@@ -34,6 +48,13 @@ export const Homepage = () => {
         isOpenBurger={isOpenPopup}
         setFormType={setFormType}
       />
+      {loading}
+      {error}
+      {!loading && !error ? (
+        <LatestIssues randomIssues={randomIssues} />
+      ) : (
+        "LOADING..."
+      )}
     </div>
   );
 };

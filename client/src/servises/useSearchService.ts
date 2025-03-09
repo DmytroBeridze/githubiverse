@@ -28,12 +28,14 @@ const useSearchService = () => {
 
   // random issue
   const getRandomIssues = async () => {
+    // const URL =
+    //   "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
+
     const URL =
-      "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
+      "https://api.github.com/search/issues?q=is:unlocked+created:>2024-01-01&sort=created&order=desc&per_page=10&page=1";
 
     const response = await sendRequest(URL);
     if (response) {
-      console.log(response.items);
       const transformData = response.items.map((elem: GitIssues) =>
         transformGitIssue(elem)
       );
@@ -41,7 +43,6 @@ const useSearchService = () => {
     }
   };
 
-  console.log(randomIssues);
   return {
     loading,
     error,
@@ -49,6 +50,7 @@ const useSearchService = () => {
     message,
     clearError,
     clearMessage,
+    randomIssues,
     getRandomIssues,
   };
 };

@@ -8,4 +8,5 @@ export const transformGitIssue = (data: GitIssues): Issues => ({
   comments: data.comments,
   commentsUrl: data.comments_url,
   createdAt: data.created_at,
+  avatar: data.user.avatar_url,
 });
