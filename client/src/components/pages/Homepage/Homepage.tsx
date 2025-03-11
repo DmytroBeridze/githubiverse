@@ -8,6 +8,7 @@ import { PopupContext } from "../../../context/PopupContext";
 import { FormTypeContext } from "../../../context/FormTypeContext";
 import useSearchService from "../../../servises/useSearchService";
 import LatestIssues from "../../organisms/LatestIssues/LatestIssues";
+import Preloader from "../../atoms/Preloader/Preloader";
 
 export const Homepage = () => {
   const popupContext = useContext(PopupContext);
@@ -22,7 +23,6 @@ export const Homepage = () => {
     clearError,
     clearMessage,
   } = useSearchService();
-
   useEffect(() => {
     getRandomIssues();
   }, []);
@@ -53,7 +53,7 @@ export const Homepage = () => {
       {!loading && !error ? (
         <LatestIssues randomIssues={randomIssues} />
       ) : (
-        "LOADING..."
+        <Preloader />
       )}
     </div>
   );
