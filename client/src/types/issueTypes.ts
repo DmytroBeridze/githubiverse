@@ -6,6 +6,7 @@ export type GitIssues = {
   comments: number;
   comments_url: string;
   created_at: string;
+  html_url: string;
 };
 
 export type Issues = {
@@ -18,12 +19,14 @@ export type Issues = {
   commentsUrl: string;
   createdAt: string;
   avatar: string;
+  linkGit: string;
 };
 
 export type GitComments = {
-  user: { login: string; avatar_url: string };
+  user: { login: string; avatar_url: string; type: string };
   created_at: string;
   body: string;
+  id: string;
 };
 
 export type Comments = {
@@ -31,4 +34,6 @@ export type Comments = {
   avatar: string;
   createdAt: string;
   body: string;
+  id: string;
+  userType: string;
 };

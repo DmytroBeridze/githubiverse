@@ -12,7 +12,7 @@ const LatestIssues: FC<LatestIssuesProps> = ({ randomIssues }) => {
   return (
     <div className={styles.latestIssuesContainer}>
       <ContentContainer>
-        <h2>LatestIssues</h2>
+        {/* <h2>LatestIssues</h2> */}
         <Accordion randomIssues={randomIssues} />
       </ContentContainer>
     </div>

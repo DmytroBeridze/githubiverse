@@ -15,7 +15,7 @@ const Accordion: FC<AccordionProps> = ({ randomIssues }) => {
   };
   return (
     <div className={styles.accordion}>
-      {randomIssues.map((elem, i) => {
+      {randomIssues.slice(0, 3).map((elem, i) => {
         const { title } = elem;
         return (
           <AccordionElement

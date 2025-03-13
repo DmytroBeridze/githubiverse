@@ -56,6 +56,7 @@ const useSearchService = () => {
   // comments
   const getComments = async (URL: string) => {
     const response = await sendRequest(URL);
+
     if (response) {
       const transformData = response.map((elem: GitComments) =>
         transformGitComments(elem)

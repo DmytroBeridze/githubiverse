@@ -13,6 +13,7 @@ import { PopupContext } from "./context/PopupContext";
 import { FormTypeContext } from "./context/FormTypeContext";
 import { RegistrationPopup } from "./components/organisms/RegistrationPopup";
 import { NickNameContext } from "./context/NickNameContext";
+import "overlayscrollbars/overlayscrollbars.css";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);

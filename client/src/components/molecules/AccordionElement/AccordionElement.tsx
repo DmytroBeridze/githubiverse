@@ -1,8 +1,10 @@
 import Icon from "../../atoms/Icon/Icon";
 import styles from "./AccordionElement.module.scss";
 import { FC, memo, useEffect, useState } from "react";
-import { Comments, GitIssues, Issues } from "../../../types/issueTypes";
+import { Comments, Issues } from "../../../types/issueTypes";
 import useSearchService from "../../../servises/useSearchService";
+import CommentItem from "../CommentItem/CommentItem";
+import Preloader from "../../atoms/Preloader/Preloader";
 
 interface AccordionElementProps {
   accordionHendler: () => void;
@@ -21,17 +23,28 @@ const AccordionElement: FC<AccordionElementProps> = memo(
       fullTitle,
       commentsUrl,
       createdAt,
+      linkGit,
     } = data;
+
     const { getComments, loading, error } = useSearchService();
     const [usersComments, setusersComments] = useState([]);
 
     useEffect(() => {
-      if (isOpen && usersComments.length === 0) {
-        getComments(commentsUrl).then((data) => setusersComments(data));
-      }
-    }, [isOpen]);
+      let isMounted = true;
 
-    console.log(usersComments);
+      if (isMounted && isOpen && usersComments.length === 0) {
+        getComments(commentsUrl).then((data) => {
+          const filteredCOmments = data.filter(
+            (elem: Comments) => elem.userType === "User"
+          );
+          setusersComments(filteredCOmments.slice(0, 5));
+        });
+      }
+
+      return () => {
+        isMounted = false;
+      };
+    }, [isOpen]);
 
     return (
       <div>
@@ -44,38 +57,45 @@ const AccordionElement: FC<AccordionElementProps> = memo(
           <div className={styles.body}>
             <h4 className={styles.header}>{title}</h4>
             <ul>
-              <li className={styles.author}>Author: {user} </li>
-              <li className={styles.status}>Status: {state}</li>
-              <li className={styles.quantityComments}>Comments:{comments}</li>
+              <li className={`${styles.author} ${isOpen ? styles.active : ""}`}>
+                <span>Author:</span>
+                {user}
+              </li>
+              <li className={`${styles.status} ${isOpen ? styles.active : ""}`}>
+                <span>Status:</span>
+                {state}
+              </li>
+              <li
+                className={`${styles.quantityComments} ${
+                  isOpen ? styles.active : ""
+                }`}
+              >
+                <span>Comments:</span>
+                {comments}
+              </li>
             </ul>
           </div>
 
           <span
-            className={`${styles.imgContainer} ${isOpen ? styles.rotate : ""}`}
+            className={`${styles.iconContainer} ${isOpen ? styles.rotate : ""}`}
           >
-            <Icon name="arrowMore" size="30" onClick={accordionHendler} />
+            <Icon name="arrowMore" onClick={accordionHendler} />
           </span>
         </div>
 
         {/* content */}
-        <div className={`${styles.content}  ${isOpen ? styles.open : ""}`}>
-          <div className={styles.fullTitle}>{fullTitle}</div>
-          <div className={styles.created}>{createdAt}</div>
-          <ul>
-            {usersComments.map((elem: Comments) => {
-              const { body, avatar, userLogin, createdAt } = elem;
+        {loading ? <Preloader /> : null}
+        {error ? "error" : null}
 
-              return (
-                <li>
-                  <div className={styles.contentAvatarContainer}>
-                    <img src={avatar} alt="" />
-                  </div>
-                  {body}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        {!loading && !error && (
+          <CommentItem
+            usersComments={usersComments}
+            createdAt={createdAt}
+            fullTitle={fullTitle}
+            isOpen={isOpen}
+            linkGit={linkGit}
+          />
+        )}
       </div>
     );
   }

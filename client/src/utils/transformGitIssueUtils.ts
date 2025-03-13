@@ -10,6 +10,7 @@ export const transformGitIssue = (data: GitIssues): Issues => ({
   commentsUrl: data.comments_url,
   createdAt: data.created_at,
   avatar: data.user.avatar_url,
+  linkGit: data.html_url,
 });
 
 export const transformGitComments = (data: GitComments): Comments => ({
@@ -17,4 +18,6 @@ export const transformGitComments = (data: GitComments): Comments => ({
   avatar: data.user.avatar_url,
   createdAt: data.created_at,
   body: data.body,
+  id: data.id,
+  userType: data.user.type,
 });
