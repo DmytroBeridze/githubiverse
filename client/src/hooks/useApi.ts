@@ -7,6 +7,7 @@ export const useApi = () => {
     "waiting" | "loading" | "loaded" | "error"
   >("waiting");
   const [message, setMessage] = useState<string | null>(null);
+  const TOKEN = process.env.TOKEN;
 
   const sendRequest = async (
     url: string,
@@ -18,6 +19,7 @@ export const useApi = () => {
       method,
       body: method !== "GET" ? JSON.stringify(body) : undefined,
       headers: {
+        Authorization: `Bearer${TOKEN}`,
         "Content-type": "application/json",
         ...headers,
       },

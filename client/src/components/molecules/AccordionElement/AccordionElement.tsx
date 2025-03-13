@@ -8,12 +8,11 @@ interface AccordionElementProps {
   accordionHendler: () => void;
   isOpen: boolean;
   data: Issues;
-  getIssueComments: (URLComments: string, nameIssue: string) => void;
   issueComments: Comments[];
 }
 
 const AccordionElement: FC<AccordionElementProps> = memo(
-  ({ accordionHendler, isOpen, data, getIssueComments, issueComments }) => {
+  ({ accordionHendler, isOpen, data, issueComments }) => {
     const {
       avatar,
       user,
@@ -26,9 +25,6 @@ const AccordionElement: FC<AccordionElementProps> = memo(
     } = data;
     const { getComments, loading, error } = useSearchService();
 
-    useEffect(() => {
-      getIssueComments(commentsUrl, title);
-    }, []);
     return (
       <div>
         <div
@@ -58,11 +54,11 @@ const AccordionElement: FC<AccordionElementProps> = memo(
           <div className={styles.fullTitle}>{fullTitle}</div>
           <div className={styles.created}>{createdAt}</div>
           <ul>
-            {issueComments.map((elem: Comments) => {
+            {issueComments?.map((elem: Comments) => {
               const { body, avatar, userLogin, createdAt } = elem;
 
               return (
-                <li>
+                <li key={createdAt}>
                   <div className={styles.contentAvatarContainer}>
                     <img src={avatar} alt="" />
                   </div>
