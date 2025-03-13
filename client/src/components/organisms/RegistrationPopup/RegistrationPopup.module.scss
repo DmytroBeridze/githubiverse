@@ -12,4 +12,12 @@
 
   background-color: $transparent-dark-background-color;
   // background-color: white;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
 }

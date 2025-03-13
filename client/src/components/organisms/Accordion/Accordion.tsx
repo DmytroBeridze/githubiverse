@@ -13,6 +13,7 @@ const Accordion: FC<AccordionProps> = ({ randomIssues }) => {
   const accordionHendler = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
   return (
     <div className={styles.accordion}>
       {randomIssues.slice(0, 3).map((elem, i) => {
