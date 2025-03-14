@@ -1,11 +1,9 @@
 /*
 Это будет единый сервис, который будет включать несколько методов:
 
-    getRandomIssues(): Для получения случайных issues.
     getUserByName(username: string): Для поиска пользователя по имени.
     getRepoByName(repoName: string): Для поиска репозитория по названию.
     getIssuesForRepo(repoName: string): Для поиска issues в конкретном репозитории.
-    getIssuesByLabel(label: string): Для поиска issues по метке, если это нужно.
 
 
 */
@@ -14,8 +12,10 @@ import { useApi } from "../hooks/useApi";
 import {
   transformGitComments,
   transformGitIssue,
-} from "../utils/transformGitIssueUtils";
+  transformUsers,
+} from "../utils/dataTransformers";
 import { Comments, GitComments, GitIssues, Issues } from "../types/issueTypes";
+import { User } from "../types/userTypes";
 
 const useSearchService = () => {
   const {
@@ -29,9 +29,8 @@ const useSearchService = () => {
   } = useApi();
 
   const [randomIssues, setRandomIssues] = useState<Issues[]>([]);
-  // const [usersComments, setUsersComments] = useState<Comments[]>([]);
-
-  // random issue
+  const [authors, setAuthors] = useState<User[]>([]);
+  //------- random issue
   const getRandomIssues = async () => {
     const URL =
       "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
@@ -53,7 +52,7 @@ const useSearchService = () => {
     }
   };
 
-  // comments
+  // --------comments
   const getComments = async (URL: string) => {
     const response = await sendRequest(URL);
 
@@ -67,6 +66,62 @@ const useSearchService = () => {
     return [];
   };
 
+  // ---------random users
+  // const getUsers = async () => {
+  //   const URL =
+  //     "https://api.github.com/search/users?q=followers:>10&per_page=5";
+
+  //   const response = await sendRequest(URL);
+
+  //   if (!response || !response.items) {
+  //     console.error("Error after get userlist");
+  //   }
+
+  //   try {
+  //     const detailed = await Promise.all(
+  //       response.items.map((user: { url: string }) => {
+  //         const userData = sendRequest(user.url);
+  //         return userData ?? null; // Если `sendRequest` вернёт undefined, заменяем на `null`
+  //       })
+  //     );
+  //     const validUsers = detailed.filter((user) => user !== null);
+  //     setAuthors(validUsers);
+  //   } catch (error) {
+  //     console.error("Error after get userlist");
+  //   }
+  // };
+
+  const getUsers = async () => {
+    const URL =
+      "https://api.github.com/search/users?q=followers:>10&per_page=5";
+
+    try {
+      const response = await sendRequest(URL);
+
+      if (!response || !response.items) {
+        console.log("No such users");
+        return;
+      }
+
+      const usersPromises = response.items.map((elem: { url: string }) =>
+        sendRequest(elem.url)
+      );
+
+      const usersExtended = await Promise.all(usersPromises);
+
+      // Перевірка якщо API поверне некоректні дані
+      const validUsers = usersExtended.filter(
+        (user) => user !== null && user !== undefined
+      );
+
+      const transformData = validUsers.map((elem) => transformUsers(elem));
+
+      setAuthors(transformData);
+    } catch (error) {
+      console.log("Fecth error ");
+    }
+  };
+
   return {
     loading,
     error,
@@ -77,7 +132,8 @@ const useSearchService = () => {
     randomIssues,
     getRandomIssues,
     getComments,
-    // usersComments,
+    getUsers,
+    authors,
   };
 };
 

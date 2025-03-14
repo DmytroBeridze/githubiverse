@@ -1,0 +1,11 @@
+.randomUserCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.avatar {
+  width: 480px;
+  height: 480px;
+  border-radius: 10%;
+}

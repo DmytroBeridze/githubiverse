@@ -1,21 +1,33 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Accordion from "../Accordion/Accordion";
 import { ContentContainer } from "../ContentContainer";
 import styles from "./LatestIssues.module.scss";
-import { Issues } from "../../../types/issueTypes";
+import useSearchService from "../../../servises/useSearchService";
+import Preloader from "../../atoms/Preloader/Preloader";
+import Error from "../../atoms/Error/Error";
 
-interface LatestIssuesProps {
-  randomIssues: Issues[];
-}
+const LatestIssues = () => {
+  const { error, clearError, loading, getRandomIssues, randomIssues } =
+    useSearchService();
 
-const LatestIssues: FC<LatestIssuesProps> = ({ randomIssues }) => {
+  useEffect(() => {
+    clearError();
+    getRandomIssues();
+  }, []);
+
   return (
-    <div className={styles.latestIssuesContainer}>
-      <ContentContainer>
-        {/* <h2>LatestIssues</h2> */}
-        <Accordion randomIssues={randomIssues} />
-      </ContentContainer>
-    </div>
+    <>
+      {error && <Error child={error} className={styles.errorContent} />}
+      {!loading && !error ? (
+        <div className={styles.latestIssuesContainer}>
+          <ContentContainer>
+            <Accordion randomIssues={randomIssues} />
+          </ContentContainer>
+        </div>
+      ) : (
+        <Preloader />
+      )}
+    </>
   );
 };
 

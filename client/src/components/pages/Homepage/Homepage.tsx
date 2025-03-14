@@ -9,27 +9,11 @@ import { FormTypeContext } from "../../../context/FormTypeContext";
 import useSearchService from "../../../servises/useSearchService";
 import LatestIssues from "../../organisms/LatestIssues/LatestIssues";
 import Preloader from "../../atoms/Preloader/Preloader";
+import RandomAuthors from "../../organisms/RandomAuthors/RandomAuthors";
 
 export const Homepage = () => {
   const popupContext = useContext(PopupContext);
   const formTypeContext = useContext(FormTypeContext);
-  const {
-    getRandomIssues,
-    randomIssues,
-    loading,
-    error,
-    status,
-    message,
-    clearError,
-    clearMessage,
-  } = useSearchService();
-  useEffect(() => {
-    getRandomIssues();
-  }, []);
-
-  useEffect(() => {
-    console.log(randomIssues);
-  }, [randomIssues]);
 
   if (!popupContext || !formTypeContext) {
     console.error(
@@ -48,13 +32,9 @@ export const Homepage = () => {
         isOpenBurger={isOpenPopup}
         setFormType={setFormType}
       />
-      {loading}
-      {error}
-      {!loading && !error ? (
-        <LatestIssues randomIssues={randomIssues} />
-      ) : (
-        <Preloader />
-      )}
+
+      {/* <LatestIssues /> */}
+      <RandomAuthors />
     </div>
   );
 };
