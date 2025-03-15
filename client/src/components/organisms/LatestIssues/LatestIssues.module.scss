@@ -1,0 +1,10 @@
+@import "../../../styles/variables.scss";
+
+.latestIssuesContainer {
+  background-color: $light-background-color;
+  padding: clamp(1rem, -1.227rem + 7vw, 7.125rem) 0;
+}
+.errorContent {
+  display: block;
+  margin-left: 8% !important;
+}

@@ -27,13 +27,16 @@ export const RegistrationPopup: FC<RegistrationPopupProps> = ({
     return () => document.addEventListener("keydown", handleKeyDown);
   }, [popupHandler]);
 
-  return isOpenBurger ? (
-    <div className={styles.popup} onClick={popupHandler}>
+  return (
+    <div
+      className={`${styles.popup} ${isOpenBurger ? styles.open : ""}`}
+      onClick={popupHandler}
+    >
       <AuthForm
         isOpenBurger={isOpenBurger}
         popupHandler={popupHandler}
         formType={formType}
       />
     </div>
-  ) : null;
+  );
 };

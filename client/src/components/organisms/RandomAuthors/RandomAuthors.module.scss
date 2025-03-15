@@ -1,0 +1,21 @@
+@import "../../../styles/variables.scss";
+
+.randomAuthorsContainer {
+  background-color: var(--secondary-background);
+}
+.randomAuthors {
+  width: 100%;
+  padding: clamp(1rem, -1.227rem + 7vw, 7.125rem) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  & > div:last-child {
+    flex-direction: row-reverse;
+  }
+}
+
+.errorContent {
+  display: block;
+  margin-left: 8% !important;
+}

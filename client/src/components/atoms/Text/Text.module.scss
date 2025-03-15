@@ -1,0 +1,32 @@
+.title {
+  word-wrap: break-word;
+  word-break: break-word;
+  font-weight: 700;
+  font-family: $font-heading;
+  font-size: clamp(0.625rem, -0.239rem + 4.32vw, 3rem);
+  letter-spacing: 0em;
+  line-height: 1.2;
+}
+.subtitle {
+  word-wrap: break-word;
+  word-break: break-word;
+  font-family: $font-primary;
+  font-size: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+  margin-bottom: 10px;
+}
+.body {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+}
+.litle {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: clamp(0.5rem, 0.364rem + 0.68vw, 0.875rem);
+  word-wrap: break-word;
+}

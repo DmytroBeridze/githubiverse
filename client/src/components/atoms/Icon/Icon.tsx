@@ -21,9 +21,15 @@ interface IconProps {
     | "user";
   size?: string;
   color?: string;
+  onClick?: () => void;
 }
 
-const Icon: FC<IconProps> = ({ name, size = "24", color = "currentcolor" }) => {
+const Icon: FC<IconProps> = ({
+  name,
+  size = "24",
+  color = "currentcolor",
+  onClick,
+}) => {
   const icons = {
     instagram: Instagram,
     twitter: Twitter,
@@ -41,6 +47,7 @@ const Icon: FC<IconProps> = ({ name, size = "24", color = "currentcolor" }) => {
       style={{ fill: color, stroke: color }}
       width={size}
       height={size}
+      onClick={onClick}
     />
   );
 };

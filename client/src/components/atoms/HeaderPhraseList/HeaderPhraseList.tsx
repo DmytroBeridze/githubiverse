@@ -2,18 +2,18 @@ import { useContext } from "react";
 import { AuthStatus } from "../../molecules/AuthStatus";
 import styles from "./HeaderPhraseList.module.scss";
 import { PopupContext } from "../../../context/PopupContext";
+import { dateFormatter } from "../../../utils/dateFormatter";
 
 export const HeaderPhraseList = () => {
   const headerPhrase = ["discover", "explore", "conquer", "dive in"];
   const burgerContext = useContext(PopupContext);
 
-  const today = new Date();
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  // const formatter = new Intl.DateTimeFormat("en-US", {
+  //   weekday: "long",
+  //   year: "numeric",
+  //   month: "long",
+  //   day: "numeric",
+  // });
 
   if (!burgerContext) {
   }
@@ -32,7 +32,15 @@ export const HeaderPhraseList = () => {
         {headerPhrase[headerPhrase.length - 1].charAt(0).toUpperCase() +
           headerPhrase[headerPhrase.length - 1].slice(1)}
       </span>
-      <span>{formatter.format(today)}</span>
+      <span>
+        {dateFormatter(new Date(), "en-US", {
+          day: "numeric",
+          month: "long",
+          weekday: "long",
+          year: "numeric",
+        })}
+      </span>
+      {/* <span>{formatter.format(today)}</span> */}
       <AuthStatus />
     </div>
   );

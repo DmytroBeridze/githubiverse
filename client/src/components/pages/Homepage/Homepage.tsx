@@ -3,9 +3,13 @@ import styles from "./Homepage.module.scss";
 import { QuizInfo } from "../../molecules/QuizInfo";
 import { IntroSection } from "../../organisms/IntroSection";
 import { RegistrationPopup } from "../../organisms/RegistrationPopup";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PopupContext } from "../../../context/PopupContext";
 import { FormTypeContext } from "../../../context/FormTypeContext";
+import useSearchService from "../../../servises/useSearchService";
+import LatestIssues from "../../organisms/LatestIssues/LatestIssues";
+import Preloader from "../../atoms/Preloader/Preloader";
+import RandomAuthors from "../../organisms/RandomAuthors/RandomAuthors";
 
 export const Homepage = () => {
   const popupContext = useContext(PopupContext);
@@ -28,6 +32,9 @@ export const Homepage = () => {
         isOpenBurger={isOpenPopup}
         setFormType={setFormType}
       />
+
+      {/* <LatestIssues /> */}
+      <RandomAuthors />
     </div>
   );
 };
