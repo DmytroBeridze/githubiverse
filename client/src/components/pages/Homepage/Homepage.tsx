@@ -33,7 +33,7 @@ export const Homepage = () => {
         setFormType={setFormType}
       />
 
-      {/* <LatestIssues /> */}
+      <LatestIssues />
       <RandomAuthors />
     </div>
   );

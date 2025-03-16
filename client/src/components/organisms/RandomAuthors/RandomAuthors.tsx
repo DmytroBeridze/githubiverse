@@ -4,12 +4,14 @@ import useSearchService from "../../../servises/useSearchService";
 import { useEffect, useState } from "react";
 import Preloader from "../../atoms/Preloader/Preloader";
 import Error from "../../atoms/Error/Error";
-import RandomUserCard from "../../molecules/RandomUserCard/RandomUserCard";
+import RandomUserCard, {
+  NewUser,
+} from "../../molecules/RandomUserCard/RandomUserCard";
 import { randomShuffledArray } from "../../../utils/randomShuffledArray";
-import { User } from "../../../types/userTypes";
+import { prepareAuthors } from "../../../utils/prepareAuthors";
 const RandomAuthors = () => {
   const { getUsers, authors, error, clearError, loading } = useSearchService();
-  const [shuffled, setShuffled] = useState<User[]>([]);
+  const [shuffledWithTitles, setShuffledWithTitles] = useState<NewUser[]>([]);
 
   useEffect(() => {
     clearError();
@@ -18,7 +20,7 @@ const RandomAuthors = () => {
 
   useEffect(() => {
     if (authors.length > 0) {
-      setShuffled(randomShuffledArray(authors));
+      setShuffledWithTitles(prepareAuthors(authors));
     }
   }, [authors]);
 
@@ -30,7 +32,7 @@ const RandomAuthors = () => {
         <div className={styles.randomAuthorsContainer}>
           <ContentContainer>
             <div className={styles.randomAuthors}>
-              {shuffled.map((author) => (
+              {shuffledWithTitles.map((author) => (
                 <RandomUserCard author={author} key={author.login} />
               ))}
             </div>

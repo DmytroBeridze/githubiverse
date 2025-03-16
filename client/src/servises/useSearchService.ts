@@ -93,7 +93,7 @@ const useSearchService = () => {
 
   const getUsers = async () => {
     const URL =
-      "https://api.github.com/search/users?q=followers:>10&per_page=5";
+      "https://api.github.com/search/users?q=followers:>10&per_page=10";
 
     try {
       const response = await sendRequest(URL);
