@@ -3,9 +3,9 @@ import styles from "./Text.module.scss";
 
 interface TextProps {
   children: ReactNode;
-  variant: "body" | "title" | "litle" | "subtitle";
+  variant?: "body" | "title" | "litle" | "subtitle";
   as: "p" | "span" | "h1" | "h2" | "h3" | "h4";
-  className: string;
+  className?: string;
 }
 
 const Text: FC<TextProps> = ({

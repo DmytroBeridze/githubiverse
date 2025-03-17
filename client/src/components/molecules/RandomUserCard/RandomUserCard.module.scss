@@ -1,11 +1,65 @@
+@import "../../../styles/variables.scss";
+
 .randomUserCard {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: clamp(1.25rem, 0.341rem + 4.55vw, 3.75rem);
+
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+  }
 }
 .avatar {
+  aspect-ratio: 1/1;
   width: 480px;
-  height: 480px;
+  height: 100%;
   border-radius: 10%;
+  flex: 1;
+  box-shadow: $primary-shadow;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+    flex-direction: column-reverse;
+  }
+}
+
+.info {
+  flex-basis: 50%;
+  & h2 {
+    margin-bottom: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+  }
+
+  & ul {
+    list-style: none;
+    color: $text-danger-color;
+    margin-bottom: 20px;
+    & span {
+      color: $text-warning-color;
+      margin-right: 10px;
+    }
+    & p {
+      display: inline-block;
+    }
+  }
+
+  & button {
+    padding: 10px;
+    transition: background 0.3s ease;
+    background: $text-warning-color;
+    box-shadow: $primary-shadow;
+    &:hover {
+      background: $light-background-color;
+    }
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+}
+.title {
+  flex: 1;
+  // flex-basis: 50%;
+  font-size: clamp(1rem, 0.636rem + 1.82vw, 2rem) !important;
+  color: $text-danger-color;
 }
