@@ -1,0 +1,15 @@
+@import "../../../styles/variables.scss";
+
+.logo {
+  & h4 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    &:first-child {
+      font-weight: 600;
+      font-size: 24px;
+      margin-right: 3px;
+      color: $text-danger-color;
+    }
+  }
+}

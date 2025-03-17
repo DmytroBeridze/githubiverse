@@ -1,0 +1,15 @@
+@import "../../../styles/variables.scss";
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & a {
+    text-decoration: none;
+    color: $primary-black-text-color;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $text-warning-color;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.footer {
+  background-color: var(--primary-background);
+  padding: clamp(1rem, -1.227rem + 7vw, 7.125rem);
+}
+.footerContainer {
+  display: flex;
+  //   justify-content: space-between;
+}
+.logoContainer {
+  flex-basis: 50%;
+}
+.date {
+  margin-top: 10px;
+  font-size: 14px;
+}

@@ -1,0 +1,13 @@
+.scrollUp {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: opacity 0.3s, visibility 0.3s ease;
+}
+.visible {
+  opacity: 1;
+  visibility: visible;
+}

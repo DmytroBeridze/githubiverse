@@ -18,6 +18,8 @@ import {
   decorElements,
   footerDecorElements,
 } from "./components/atoms/constants";
+import Footer from "./components/organisms/Footer/Footer";
+import ScrollUp from "./components/molecules/ScrollUp/ScrollUp";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);
@@ -63,6 +65,8 @@ function App() {
                   popupHandler={popupHandler}
                   formType={formType}
                 />
+                <Footer />
+                <ScrollUp />
               </FormTypeContext.Provider>
             </NickNameContext.Provider>
           </PopupContext.Provider>
