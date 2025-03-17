@@ -4,29 +4,37 @@ import { ThemeContext } from "../../../context/ThemeContext";
 import Decor from "../../atoms/Decor/Decor";
 import { ContentContainer } from "../../organisms/ContentContainer";
 
-export const DecorationPannel = () => {
-  const decorElements = [
-    "fourCircle",
-    "fourTriangles",
-    "twoTriangles",
-    "fourCircle",
-    "twoTriangles",
-    "bigCircle",
-    "twoTriangles",
-    "fourCircle",
-    "twoTriangles",
-    "twoRectangles",
-  ] as const;
+type DecorName =
+  | "bigCircle"
+  | "fourTriangles"
+  | "twoRectangles"
+  | "twoTriangles"
+  | "fourCircle"
+  | "quadrant"
+  | "fourCircleFooter"
+  | "semicircles";
 
+interface DecorationPannelProps {
+  decorElements: readonly DecorName[];
+  // decorElements: string[];
+  type?: string;
+}
+
+export const DecorationPannel = ({
+  decorElements,
+  type = "header",
+}: DecorationPannelProps) => {
   const themeContext = useContext(ThemeContext);
   if (!themeContext)
     throw new Error("DecorationPannel must be used within a ThemeProvider");
 
   const { theme } = themeContext;
   return (
-    <div className={styles.decorationPannelContainer}>
+    <div className={` ${styles.decorationPannelContainer} ${styles[type]}`}>
+      {/* <div className={` ${styles.decorationPannelContainer}`}> */}
       <ContentContainer>
         <ul className={styles.decorationPannel}>
+          {/* <ul className={` ${styles[type]}`}> */}
           {decorElements.map((elem, i) => (
             <li key={i}>
               <Decor

@@ -14,6 +14,10 @@ import { PopupContext } from "./context/PopupContext";
 import { FormTypeContext } from "./context/FormTypeContext";
 import { RegistrationPopup } from "./components/organisms/RegistrationPopup";
 import { NickNameContext } from "./context/NickNameContext";
+import {
+  decorElements,
+  footerDecorElements,
+} from "./components/atoms/constants";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);
@@ -42,13 +46,18 @@ function App() {
             <NickNameContext.Provider value={{ setNickName, nickName }}>
               <FormTypeContext.Provider value={{ setFormType, formType }}>
                 <Header />
-                <DecorationPannel />
+                <DecorationPannel decorElements={decorElements} />
                 <Routes>
                   <Route path="/" element={<Homepage />} />
                   <Route path="devfinder" element={<DevFinder />}></Route>
                   <Route path="repofinder" element={<RepoFinder />}></Route>
                   <Route path="issuefinder" element={<IssueFinder />}></Route>
                 </Routes>
+                <DecorationPannel
+                  decorElements={footerDecorElements}
+                  type="footer"
+                  // type="footerDecorationPannel"
+                />
                 <RegistrationPopup
                   isOpenBurger={isOpenPopup}
                   popupHandler={popupHandler}

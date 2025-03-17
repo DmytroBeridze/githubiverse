@@ -7,10 +7,12 @@ type DecorName =
   | "twoTriangles"
   | "fourCircle"
   | "quadrant"
+  | "fourCircleFooter"
   | "semicircles";
 
 interface DecorProps {
   name: DecorName;
+  // name: string;
   size?: string;
   className?: string;
   isDarkTheme: boolean;
@@ -51,6 +53,24 @@ const Decor: FC<DecorProps> = ({ name, size, className, isDarkTheme }) => {
             await import("../../../resources/decor/darkTheme/fourCircle.svg")
           ).ReactComponent;
           break;
+        // --------------
+        case "quadrant":
+          component = (
+            await import("../../../resources/decor/darkTheme/quadrant.svg")
+          ).ReactComponent;
+          break;
+        case "fourCircleFooter":
+          component = (
+            await import(
+              "../../../resources/decor/darkTheme/fourCircleFooter.svg"
+            )
+          ).ReactComponent;
+          break;
+        case "semicircles":
+          component = (
+            await import("../../../resources/decor/darkTheme/semicircles.svg")
+          ).ReactComponent;
+          break;
         default:
           break;
       }
@@ -85,6 +105,26 @@ const Decor: FC<DecorProps> = ({ name, size, className, isDarkTheme }) => {
             await import("../../../resources/decor/lightTheme/fourCircle.svg")
           ).ReactComponent;
           break;
+
+        // --------------
+        case "quadrant":
+          component = (
+            await import("../../../resources/decor/lightTheme/quadrant.svg")
+          ).ReactComponent;
+          break;
+        case "fourCircleFooter":
+          component = (
+            await import(
+              "../../../resources/decor/lightTheme/fourCircleFooter.svg"
+            )
+          ).ReactComponent;
+          break;
+        case "semicircles":
+          component = (
+            await import("../../../resources/decor/lightTheme/semicircles.svg")
+          ).ReactComponent;
+          break;
+
         default:
           break;
       }

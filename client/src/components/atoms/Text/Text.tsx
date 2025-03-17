@@ -14,7 +14,9 @@ const Text: FC<TextProps> = ({
   as: Tag = "p",
   className = "",
 }) => {
-  return <Tag className={`${styles[variant]} ${className}`}>{children}</Tag>;
+  return (
+    <Tag className={`${styles[variant] || ""} ${className}`}>{children}</Tag>
+  );
 };
 
 export default Text;
