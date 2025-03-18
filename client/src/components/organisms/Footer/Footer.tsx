@@ -4,9 +4,10 @@ import { ContentContainer } from "../ContentContainer";
 import { dateFormatter } from "../../../utils/dateFormatter";
 import Logo from "../../atoms/Logo/Logo";
 import FooterNavigation from "../../molecules/FooterNavigation/FooterNavigation";
+import SocialLinks from "../../molecules/SocialLinks/SocialLinks";
 
 const Footer = () => {
-  const date = new Date();
+  const date = new Date("2025-03-18");
 
   return (
     <div className={styles.footer}>
@@ -26,6 +27,7 @@ const Footer = () => {
             </Text>
           </div>
           <FooterNavigation />
+          <SocialLinks />
         </div>
       </ContentContainer>
     </div>

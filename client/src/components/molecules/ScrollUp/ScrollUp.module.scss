@@ -1,7 +1,7 @@
 .scrollUp {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem);
+  right: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem);
   opacity: 0;
   visibility: hidden;
   cursor: pointer;

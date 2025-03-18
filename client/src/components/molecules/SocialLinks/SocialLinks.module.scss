@@ -1,0 +1,22 @@
+@import "../../../styles/variables.scss";
+
+.social {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  align-self: flex-end;
+  @media (max-width: 768px) {
+    align-self: auto;
+  }
+  & li {
+    width: clamp(1.125rem, 0.966rem + 0.8vw, 1.563rem);
+    height: clamp(1.125rem, 0.966rem + 0.8vw, 1.563rem);
+    & a {
+      color: $module-dark-background-color;
+    }
+    & svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

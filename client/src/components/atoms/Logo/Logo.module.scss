@@ -1,6 +1,10 @@
 @import "../../../styles/variables.scss";
 
 .logo {
+  @media (max-width: 768px) {
+    order: 1;
+  }
+
   & h4 {
     display: inline-block;
     font-size: 18px;
