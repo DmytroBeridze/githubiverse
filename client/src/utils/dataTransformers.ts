@@ -1,5 +1,11 @@
 import { Comments, GitComments, GitIssues, Issues } from "../types/issueTypes";
-import { GitUser, User } from "../types/userTypes";
+import { GitRepoType, RepoType } from "../types/repoTypes";
+import {
+  GitUser,
+  GitUserWithRepo,
+  User,
+  UserWithRepo,
+} from "../types/userTypes";
 
 export const transformGitIssue = (data: GitIssues): Issues => ({
   title: data.title,
@@ -35,4 +41,32 @@ export const transformUsers = (data: GitUser): User => ({
   followers: data.followers,
   location: data.location,
   createdAt: data.created_at,
+});
+
+export const transformUserWithRepo = (data: GitUserWithRepo): UserWithRepo => ({
+  avatar: data.avatar_url,
+  name: data.name,
+  login: data.login,
+  company: data.company,
+  type: data.type,
+  github: data.html_url,
+  bio: data.bio,
+  publicRepos: data.public_repos,
+  followers: data.followers,
+  location: data.location,
+  createdAt: data.created_at,
+  reposUrl: data.repos_url,
+  following: data.following,
+});
+
+export const transformRepo = (data: GitRepoType): RepoType => ({
+  id: data.id,
+  createdAt: data.created_at,
+  description: data.description,
+  name: data.name,
+  htmlUrl: data.html_url,
+  language: data.language,
+  openIssues: data.open_issues,
+  watchers: data.watchers,
+  issuesUrl: data.issues_url,
 });
