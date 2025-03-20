@@ -10,6 +10,7 @@ import { ReactComponent as User } from "../../../resources/icons/user.svg";
 import { ReactComponent as Twitter } from "../../../resources/icons/twitter.svg";
 import { ReactComponent as GitHub } from "../../../resources/icons/github.svg";
 import { ReactComponent as Linkedin } from "../../../resources/icons/linkedin.svg";
+import { ReactComponent as Search } from "../../../resources/icons/search.svg";
 
 interface IconProps {
   name:
@@ -22,6 +23,7 @@ interface IconProps {
     | "close"
     | "sun"
     | "moon"
+    | "search"
     | "user";
   size?: string;
   color?: string;
@@ -45,6 +47,7 @@ const Icon: FC<IconProps> = ({
     sun: Sun,
     moon: Moon,
     user: User,
+    search: Search,
   };
 
   const IconComponent = icons[name] || DefaultIcon;

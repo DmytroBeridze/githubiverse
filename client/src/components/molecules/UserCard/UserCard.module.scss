@@ -1,0 +1,42 @@
+.userCard {
+  width: 100%;
+  min-height: 600px;
+  background-color: var(--primary-background);
+  border-radius: 10px;
+  padding: 20px clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+
+  & .userSummary {
+    flex-basis: 35%;
+    position: relative;
+    // border: 1px solid red;
+    padding: 0 20px 0 0;
+    &::before {
+      content: "";
+      position: absolute;
+      max-width: 260px;
+      max-height: 400px;
+      background-color: var(--primary-background-shade);
+      top: 80px;
+      left: -30px;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+    }
+  }
+
+  & .avatar {
+    max-width: 200px;
+    border-radius: 10%;
+    display: flex;
+
+    position: relative;
+    z-index: 2;
+  }
+  & .UserDetails {
+    flex-basis: 65%;
+    border: 1px solid red;
+  }
+}

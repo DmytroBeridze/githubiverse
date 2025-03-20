@@ -57,6 +57,7 @@ export const transformUserWithRepo = (data: GitUserWithRepo): UserWithRepo => ({
   createdAt: data.created_at,
   reposUrl: data.repos_url,
   following: data.following,
+  email: data.email,
 });
 
 export const transformRepo = (data: GitRepoType): RepoType => ({

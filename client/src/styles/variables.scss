@@ -2,10 +2,12 @@
 $light-background-color: #f5f4f4;
 // $light-background-color: #ffffff;
 $module-gray-background-color: rgb(120, 170, 180);
+$module-gray-shade-background-color: rgb(100, 146, 156);
 // $module-gray-background-color: #d3d9db;
 
 // dark
 $dark-background-color: #264653;
+$dark-background-shade-color: #1c3844;
 $secondary-dark-background-color: #3c687a;
 $module-dark-background-color: #000000;
 $general-dark-background-color: #0d181d;
@@ -13,7 +15,6 @@ $dark-background-color-hover: #1f1f1f;
 $transparent-dark-background-color: #1f1f1fd3;
 
 $accent-green-color: #2a9d8f;
-$ac: rgb(142, 186, 195);
 $accent-green-hover-color: #1c7369;
 $primary-gray-color: #e8e4e4;
 
@@ -38,6 +39,7 @@ $secondary-shadow: 0px 0px 22px -6px rgba(18, 19, 19, 0.83);
 body[data-theme="light"] {
   --general-bacground: #{$primary-gray-color};
   --primary-background: #{$module-gray-background-color};
+  --primary-background-shade: #{$module-gray-shade-background-color};
   --secondary-background: #{$dark-background-color-hover};
   --primary-text-color: #{$primary-black-text-color};
   --primary-icon-color: #{$primary-black-text-color};
@@ -54,6 +56,7 @@ body[data-theme="light"] {
 body[data-theme="dark"] {
   --general-bacground: #{$general-dark-background-color};
   --primary-background: #{$dark-background-color};
+  --primary-background-shade: #{$dark-background-shade-color};
   --secondary-background: #{$module-dark-background-color};
   --primary-text-color: #{$primary-white-text-color};
   --primary-icon-color: #{$primary-gray-text-color};

@@ -31,8 +31,10 @@ export type User = {
 export type GitUserWithRepo = GitUser & {
   repos_url: string;
   following: number;
+  email: string;
 };
 export type UserWithRepo = User & {
   reposUrl: string;
   following: number;
+  email: string;
 };

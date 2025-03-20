@@ -25,7 +25,7 @@ export const useApi = () => {
     try {
       setLoading(true);
       setStatus("loading");
-
+      setError(null);
       const response = await fetch(url, options);
 
       if (!response.ok) {
@@ -46,6 +46,8 @@ export const useApi = () => {
         setError(error.message);
         setLoading(false);
         setStatus("error");
+
+        throw error;
       }
     }
   };
@@ -61,5 +63,6 @@ export const useApi = () => {
     message,
     clearError,
     clearMessage,
+    setError,
   };
 };
