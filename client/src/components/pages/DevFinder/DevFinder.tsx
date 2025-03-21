@@ -17,8 +17,15 @@ export const DevFinder = () => {
 
   const { author, loading, userError, setUserError, getUserByName } =
     useUserSearch();
-  const { issue, issuesQuantity, pullReq, pullRequest } = useIssueService();
-  const { getRepositories, repos } = useRepositoriesService();
+  const {
+    issue,
+    issuesQuantity,
+    pullReq,
+    pullRequest,
+    issueError,
+    pullRequestsError,
+  } = useIssueService();
+  const { getRepositories, repos, repoError } = useRepositoriesService();
   const [validationError, setvalidationError] = useState<{
     [key: string]: string | null;
   }>({ name: null });
@@ -34,16 +41,21 @@ export const DevFinder = () => {
     return isValid;
   };
 
+  console.log("render");
+
   const onSubmit = async (name: string) => {
     setUserError(null);
     const isVal = await validation(name);
+
     if (isVal) {
       const res = await getUserByName(name);
       if (!res) return;
 
-      getRepositories(name);
-      pullRequest(name);
-      issuesQuantity(name);
+      await Promise.all([
+        getRepositories(name),
+        pullRequest(name),
+        issuesQuantity(name),
+      ]);
     }
     // issuesQuantity("karpathy");
   };

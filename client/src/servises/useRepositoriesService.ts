@@ -6,6 +6,7 @@ import { transformRepo } from "../utils/dataTransformers";
 const useRepositoriesService = () => {
   const token = process.env.REACT_APP_TOKEN;
   const [repos, setRepos] = useState<RepoType[]>([]);
+  const [repoError, setRepoError] = useState<string | null>(null);
 
   const {
     sendRequest,
@@ -22,29 +23,33 @@ const useRepositoriesService = () => {
     let allRepositories: RepoType[] = [];
     setRepos([]);
 
-    while (true) {
-      const repoUrl = `https://api.github.com/users/${user}/repos?per_page=10&page=${page}`;
+    try {
+      while (true) {
+        const repoUrl = `https://api.github.com/users/${user}/repos?per_page=10&page=${page}`;
 
-      // !------------видалити Authorization: `token ${token}`
-      const repositories = await sendRequest(repoUrl, "GET", null, {
-        Authorization: `token ${token}`,
-      });
+        // !------------видалити Authorization: `token ${token}`
+        const repositories = await sendRequest(repoUrl, "GET", null, {
+          Authorization: `token ${token}`,
+        });
 
-      if (!repositories || repositories.length === 0) break;
+        if (!repositories || repositories.length === 0) break;
 
-      const transformRepositories = Array.isArray(repositories)
-        ? repositories.map((elem: GitRepoType) => transformRepo(elem))
-        : [];
-      allRepositories.push(...transformRepositories);
-      if (repositories.length < 10) break;
+        const transformRepositories = Array.isArray(repositories)
+          ? repositories.map((elem: GitRepoType) => transformRepo(elem))
+          : [];
+        allRepositories.push(...transformRepositories);
+        if (repositories.length < 10) break;
 
-      page++;
-      if (page > 2) break;
+        page++;
+        if (page > 2) break;
+      }
+    } catch (error) {
+      setRepoError("Error loading repositories");
     }
     setRepos(allRepositories);
   };
 
-  return { repos, getRepositories };
+  return { repos, getRepositories, repoError };
 };
 
 export default useRepositoriesService;

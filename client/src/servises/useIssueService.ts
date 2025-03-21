@@ -7,6 +7,11 @@ const useIssueService = () => {
   const token = process.env.REACT_APP_TOKEN;
   const [issue, setIssue] = useState<Issues[]>([]);
   const [pullReq, setPullReq] = useState<Issues[]>([]);
+  const [issueError, setIssueError] = useState<string | null>(null);
+  const [pullRequestsError, setpullRequestsError] = useState<string | null>(
+    null
+  );
+
   const {
     sendRequest,
     loading,
@@ -23,23 +28,28 @@ const useIssueService = () => {
     let issuesArr: Issues[] = [];
     setIssue([]);
 
-    while (true) {
-      const issuesUrl = `https://api.github.com/search/issues?q=author:${user}+type:issue&per_page=100&page=${page}`;
+    try {
+      while (true) {
+        const issuesUrl = `https://api.github.com/search/issues?q=author:${user}+type:issue&per_page=100&page=${page}`;
 
-      // !------------видалити Authorization: `token ${token}`
-      const issues = await sendRequest(issuesUrl, "GET", null, {
-        Authorization: `token ${token}`,
-      });
-      if (!issues || !issues.items || issues.items.length === 0) break;
+        // !------------видалити Authorization: `token ${token}`
 
-      const transform = Array.isArray(issues.items)
-        ? issues.items.map((data: GitIssues) => transformGitIssue(data))
-        : [];
+        const issues = await sendRequest(issuesUrl, "GET", null, {
+          Authorization: `token ${token}`,
+        });
+        if (!issues || !issues.items || issues.items.length === 0) break;
 
-      issuesArr.push(...transform);
+        const transform = Array.isArray(issues.items)
+          ? issues.items.map((data: GitIssues) => transformGitIssue(data))
+          : [];
 
-      page++;
-      if (page > 2) break;
+        issuesArr.push(...transform);
+
+        page++;
+        if (page > 2) break;
+      }
+    } catch (error) {
+      setIssueError("Error loading issues");
     }
     setIssue(issuesArr);
   };
@@ -49,27 +59,31 @@ const useIssueService = () => {
     let page = 1;
     const request: Issues[] = [];
 
-    while (true) {
-      const pullRequestsUrl = `https://api.github.com/search/issues?q=author:${user}+type:pr&per_page=100&page=${page}`;
-      // !------------видалити Authorization: `token ${token}`
-      const pullRequests = await sendRequest(pullRequestsUrl, "GET", null, {
-        Authorization: `token ${token}`,
-      });
-      if (
-        !pullRequests ||
-        !pullRequests.items ||
-        pullRequests.items.length === 0
-      )
-        break;
+    try {
+      while (true) {
+        const pullRequestsUrl = `https://api.github.com/search/issues?q=author:${user}+type:pr&per_page=100&page=${page}`;
+        // !------------видалити Authorization: `token ${token}`
+        const pullRequests = await sendRequest(pullRequestsUrl, "GET", null, {
+          Authorization: `token ${token}`,
+        });
+        if (
+          !pullRequests ||
+          !pullRequests.items ||
+          pullRequests.items.length === 0
+        )
+          break;
 
-      const transform = Array.isArray(pullRequests.items)
-        ? pullRequests.items.map((data: GitIssues) => transformGitIssue(data))
-        : [];
+        const transform = Array.isArray(pullRequests.items)
+          ? pullRequests.items.map((data: GitIssues) => transformGitIssue(data))
+          : [];
 
-      request.push(...transform);
+        request.push(...transform);
 
-      page++;
-      if (page > 2) break;
+        page++;
+        if (page > 2) break;
+      }
+    } catch (error) {
+      setpullRequestsError("Error loading pull requests");
     }
     setPullReq(request);
   };
@@ -79,6 +93,8 @@ const useIssueService = () => {
     issue,
     pullRequest,
     pullReq,
+    issueError,
+    pullRequestsError,
   };
 };
 
