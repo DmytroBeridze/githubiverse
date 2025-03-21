@@ -1,0 +1,14 @@
+.scrollUp {
+  position: fixed;
+  bottom: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem);
+  right: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: opacity 0.3s, visibility 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}/*# sourceMappingURL=ScrollUp.module.css.map */

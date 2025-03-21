@@ -11,6 +11,7 @@ import { validationAuthor } from "../../../utils/validationUtils";
 import { boolean, string } from "yup";
 import { useApi } from "../../../hooks/useApi";
 import UserCard from "../../molecules/UserCard/UserCard";
+import AuthorSearch from "../../organisms/AuthorSearch/AuthorSearch";
 
 export const DevFinder = () => {
   // const { loading, status, clearError } = useSearchService();
@@ -63,13 +64,15 @@ export const DevFinder = () => {
   return (
     <div className={styles.devFinder}>
       <ContentContainer>
-        <SearchPanel
-          onSubmit={onSubmit}
-          validationError={validationError}
-          userError={userError}
+        <AuthorSearch
+          author={author}
+          issue={issue}
           loading={loading}
+          onSubmit={onSubmit}
+          pullReq={pullReq}
+          userError={userError}
+          validationError={validationError}
         />
-        <UserCard author={author} />
       </ContentContainer>
     </div>
   );
