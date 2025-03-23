@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Issues } from "../../../types/issueTypes";
 import Chart from "../../atoms/Chart/Chart";
 import styles from "./Charts.module.scss";
+import useRensponsiveRadius from "../../../hooks/useRensponsiveRadius";
 
 interface ChartsProps {
   followers: number;
@@ -9,6 +10,7 @@ interface ChartsProps {
   publicRepos: number;
   pullReq: Issues[];
   issue: Issues[];
+  className?: string;
 }
 
 const Charts: FC<ChartsProps> = ({
@@ -17,6 +19,7 @@ const Charts: FC<ChartsProps> = ({
   pullReq,
   issue,
   publicRepos,
+  className,
 }) => {
   const chartData = [
     { name: "followers", value: followers },
@@ -28,10 +31,25 @@ const Charts: FC<ChartsProps> = ({
     { name: "repositories", value: publicRepos },
   ];
 
+  const { innerRadius, outerRadius, fontSize, containerHeight } =
+    useRensponsiveRadius();
+
   return (
-    <div className={styles.chart}>
-      <Chart data={chartData} />
-      <Chart data={chartData2} />
+    <div className={`${styles.charts} ${className}`}>
+      <Chart
+        data={chartData}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        fontSize={fontSize}
+        containerHeight={containerHeight}
+      />
+      <Chart
+        data={chartData2}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        fontSize={fontSize}
+        containerHeight={containerHeight}
+      />
     </div>
   );
 };

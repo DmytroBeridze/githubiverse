@@ -1,3 +1,10 @@
-.chart {
+@import "../../../styles/variables.scss";
+
+.charts {
   display: flex;
+  background-color: var(--primary-background-shade);
+  border-radius: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+  @media (max-width: 620px) {
+    flex-direction: column;
+  }
 }

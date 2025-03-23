@@ -42,8 +42,6 @@ export const DevFinder = () => {
     return isValid;
   };
 
-  console.log("render");
-
   const onSubmit = async (name: string) => {
     setUserError(null);
     const isVal = await validation(name);

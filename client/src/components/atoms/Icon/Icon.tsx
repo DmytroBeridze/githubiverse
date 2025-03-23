@@ -11,6 +11,8 @@ import { ReactComponent as Twitter } from "../../../resources/icons/twitter.svg"
 import { ReactComponent as GitHub } from "../../../resources/icons/github.svg";
 import { ReactComponent as Linkedin } from "../../../resources/icons/linkedin.svg";
 import { ReactComponent as Search } from "../../../resources/icons/search.svg";
+import { ReactComponent as Mail } from "../../../resources/icons/email.svg";
+import { ReactComponent as Location } from "../../../resources/icons/location.svg";
 
 interface IconProps {
   name:
@@ -24,7 +26,10 @@ interface IconProps {
     | "sun"
     | "moon"
     | "search"
+    | "mail"
+    | "location"
     | "user";
+
   size?: string;
   color?: string;
   onClick?: () => void;
@@ -48,6 +53,8 @@ const Icon: FC<IconProps> = ({
     moon: Moon,
     user: User,
     search: Search,
+    mail: Mail,
+    location: Location,
   };
 
   const IconComponent = icons[name] || DefaultIcon;
