@@ -1,9 +1,9 @@
 import "overlayscrollbars/overlayscrollbars.css";
 import { Route, Routes } from "react-router-dom";
-import { Homepage } from "./components/pages/Homepage/index";
-import { DevFinder } from "./components/pages/DevFinder";
-import { RepoFinder } from "./components/pages/RepoFinder";
-import { IssueFinder } from "./components/pages/IssueFinder";
+import { Homepage } from "./pages/Homepage";
+import { DevFinder } from "./pages/DevFinder";
+import { RepoFinder } from "./pages/RepoFinder";
+import { IssueFinder } from "./pages/IssueFinder";
 import { ComponentContainer } from "./components/organisms/ComponentContainer";
 import { Header } from "./components/organisms/Header";
 import { DecorationPannel } from "./components/molecules/DecorationPannel";

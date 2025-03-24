@@ -1,4 +1,4 @@
-import { ContentContainer } from "../../organisms/ContentContainer";
+import { ContentContainer } from "../../components/organisms/ContentContainer";
 import styles from "./IssueFinder.scss";
 
 export const IssueFinder = () => {

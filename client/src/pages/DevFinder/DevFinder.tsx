@@ -1,35 +1,29 @@
 import styles from "./DevFinder.module.scss";
 import { useEffect, useState } from "react";
-import { ContentContainer } from "../../organisms/ContentContainer";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
-import useSearchService from "../../../servises/useSearchService";
-import useIssueService from "../../../servises/useIssueService";
-import useRepositoriesService from "../../../servises/useRepositoriesService";
-import useUserSearch from "../../../servises/useUserSearch";
-import SearchPanel from "../../molecules/SearchPanel/SearchPanel";
-import { validationAuthor } from "../../../utils/validationUtils";
-import { boolean, string } from "yup";
-import { useApi } from "../../../hooks/useApi";
-import UserCard from "../../molecules/UserCard/UserCard";
-import AuthorSearch from "../../organisms/AuthorSearch/AuthorSearch";
+import { ContentContainer } from "../../components/organisms/ContentContainer";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
+import useIssueService from "../../servises/useIssueService";
+import useRepositoriesService from "../../servises/useRepositoriesService";
+import useUserSearch from "../../servises/useUserSearch";
+import { validationAuthor } from "../../utils/validationUtils";
+import AuthorSearch from "../../components/organisms/AuthorSearch/AuthorSearch";
 
 export const DevFinder = () => {
   // const { loading, status, clearError } = useSearchService();
 
   const { author, loading, userError, setUserError, getUserByName } =
     useUserSearch();
+  const { issue, issuesQuantity, pullReq, pullRequest } = useIssueService();
   const {
-    issue,
-    issuesQuantity,
-    pullReq,
-    pullRequest,
-    issueError,
-    pullRequestsError,
-  } = useIssueService();
-  const { getRepositories, repos, repoError } = useRepositoriesService();
+    getRepositories,
+    repos,
+    repoError,
+    loading: repoLoading,
+  } = useRepositoriesService();
   const [validationError, setvalidationError] = useState<{
     [key: string]: string | null;
   }>({ name: null });
+  console.log(repoError);
 
   useScrollToTop();
 
@@ -56,7 +50,6 @@ export const DevFinder = () => {
         issuesQuantity(name),
       ]);
     }
-    // issuesQuantity("karpathy");
   };
 
   return (
@@ -71,6 +64,8 @@ export const DevFinder = () => {
           userError={userError}
           validationError={validationError}
           repos={repos}
+          repoError={repoError}
+          repoLoading={repoLoading}
         />
       </ContentContainer>
     </div>

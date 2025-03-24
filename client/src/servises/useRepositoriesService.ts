@@ -22,7 +22,7 @@ const useRepositoriesService = () => {
     let page = 1;
     let allRepositories: RepoType[] = [];
     setRepos([]);
-
+    setRepoError(null);
     try {
       while (true) {
         const repoUrl = `https://api.github.com/users/${user}/repos?per_page=10&page=${page}`;
@@ -49,7 +49,7 @@ const useRepositoriesService = () => {
     setRepos(allRepositories);
   };
 
-  return { repos, getRepositories, repoError };
+  return { repos, getRepositories, repoError, loading };
 };
 
 export default useRepositoriesService;

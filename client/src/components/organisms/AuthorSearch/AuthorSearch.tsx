@@ -6,6 +6,8 @@ import SearchPanel from "../../molecules/SearchPanel/SearchPanel";
 import UserCard from "../../molecules/UserCard/UserCard";
 import RepositoriesList from "../../molecules/RepositoriesList/RepositoriesList";
 import { RepoType } from "../../../types/repoTypes";
+import Preloader from "../../atoms/Preloader/Preloader";
+import Error from "../../atoms/Error/Error";
 
 interface AuthorSearchProps {
   onSubmit: (name: string) => void;
@@ -16,6 +18,8 @@ interface AuthorSearchProps {
   issue: Issues[];
   pullReq: Issues[];
   repos: RepoType[];
+  repoError: string | null;
+  repoLoading: boolean;
 }
 
 const AuthorSearch = ({
@@ -27,7 +31,10 @@ const AuthorSearch = ({
   pullReq,
   issue,
   repos,
+  repoError,
+  repoLoading,
 }: AuthorSearchProps) => {
+  console.log(repos);
   return (
     <div>
       <SearchPanel
@@ -37,7 +44,12 @@ const AuthorSearch = ({
         loading={loading}
       />
       <UserCard author={author} pullReq={pullReq} issue={issue} />
-      <RepositoriesList author={author} repos={repos} />
+
+      {repoLoading && <Preloader />}
+      {repoError && <Error child={"Error loading repositories"} />}
+      {!repoError && !repoLoading && repos.length > 0 && (
+        <RepositoriesList author={author} repos={repos} />
+      )}
     </div>
   );
 };
