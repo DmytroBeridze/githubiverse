@@ -5,6 +5,7 @@ import { FC } from "react";
 import Charts from "../Charts/Charts";
 import { Issues } from "../../../types/issueTypes";
 import { dateFormatter } from "../../../utils/dateFormatter";
+import { PrimaryButton } from "../../atoms/PrimaryButton";
 
 interface UserDetails {
   author: UserWithRepo;
@@ -26,61 +27,62 @@ const UserDetails: FC<UserDetails> = ({ author, issue, pullReq }) => {
       <Text as="h3" variant="subtitle" className={styles.name}>
         {name}
       </Text>
-
-      <ul>
-        <li className={styles.created}>
-          <Text as="span" variant="litle" className={styles.label}>
-            createdAt:
-          </Text>
-          <Text as="span" variant="body" className={styles.data}>
-            {formattedDate}
-          </Text>
-        </li>
-        {bio && (
-          <li>
+      <div className="">
+        <ul>
+          <li className={styles.created}>
             <Text as="span" variant="litle" className={styles.label}>
-              bio:
+              createdAt:
             </Text>
             <Text as="span" variant="body" className={styles.data}>
-              {bio}
+              {formattedDate}
             </Text>
           </li>
-        )}
-        {company && (
-          <li className={styles.company}>
+          {bio && (
+            <li>
+              <Text as="span" variant="litle" className={styles.label}>
+                bio:
+              </Text>
+              <Text as="span" variant="body" className={styles.data}>
+                {bio}
+              </Text>
+            </li>
+          )}
+          {company && (
+            <li className={styles.company}>
+              <Text as="span" variant="litle" className={styles.label}>
+                company:
+              </Text>
+              <Text as="span" variant="body" className={styles.data}>
+                {company}
+              </Text>
+            </li>
+          )}
+          <li className={styles.publicRepos}>
             <Text as="span" variant="litle" className={styles.label}>
-              company:
+              repositories:
             </Text>
             <Text as="span" variant="body" className={styles.data}>
-              {company}
+              {publicRepos}
             </Text>
           </li>
-        )}
-        <li className={styles.publicRepos}>
-          <Text as="span" variant="litle" className={styles.label}>
-            repositories:
-          </Text>
-          <Text as="span" variant="body" className={styles.data}>
-            {publicRepos}
-          </Text>
-        </li>
-        <li className={styles.followers}>
-          <Text as="span" variant="litle" className={styles.label}>
-            followers:
-          </Text>
-          <Text as="span" variant="body" className={styles.data}>
-            {followers}
-          </Text>
-        </li>
-        <li className={styles.following}>
-          <Text as="span" variant="litle" className={styles.label}>
-            following:
-          </Text>
-          <Text as="span" variant="body" className={styles.data}>
-            {following}
-          </Text>
-        </li>
-      </ul>
+          <li className={styles.followers}>
+            <Text as="span" variant="litle" className={styles.label}>
+              followers:
+            </Text>
+            <Text as="span" variant="body" className={styles.data}>
+              {followers}
+            </Text>
+          </li>
+          <li className={styles.following}>
+            <Text as="span" variant="litle" className={styles.label}>
+              following:
+            </Text>
+            <Text as="span" variant="body" className={styles.data}>
+              {following}
+            </Text>
+          </li>
+        </ul>
+      </div>
 
       {/* chart */}
       <Charts

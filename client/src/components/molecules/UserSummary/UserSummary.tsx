@@ -4,13 +4,14 @@ import Text from "../../atoms/Text/Text";
 import UserAvatar from "../../atoms/UserAvatar/UserAvatar";
 import { UserWithRepo } from "../../../types/userTypes";
 import Icon from "../../atoms/Icon/Icon";
+import { PrimaryButton } from "../../atoms/PrimaryButton";
 
 interface UserSummaryProps {
   author: UserWithRepo;
 }
 
 const UserSummary: FC<UserSummaryProps> = ({ author }) => {
-  const { avatar, login, email, location } = author;
+  const { avatar, login, email, location, github } = author;
   return (
     <div className={styles.userSummary}>
       <div className={styles.avatarContainer}>

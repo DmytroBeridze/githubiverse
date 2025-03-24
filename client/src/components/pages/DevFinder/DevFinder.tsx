@@ -70,6 +70,7 @@ export const DevFinder = () => {
           pullReq={pullReq}
           userError={userError}
           validationError={validationError}
+          repos={repos}
         />
       </ContentContainer>
     </div>

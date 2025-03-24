@@ -1,0 +1,55 @@
+@import "../../../styles/variables.scss";
+
+.repositoriesListElement {
+  display: flex;
+  gap: 5px;
+
+  @media (max-width: 620px) {
+    flex-direction: column;
+  }
+
+  & .button {
+    height: 100%;
+    background-color: var(--popup-button-color);
+    transition: background-color 0.3s ease;
+    color: $primary-white-text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: var(--popup-button-hover-color);
+    }
+
+    @media (max-width: 620px) {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}
+
+.list {
+  background-color: $primary-gray-color;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+
+  & h3 {
+    line-height: 1.1;
+    font-family: $font-heading;
+  }
+
+  & li {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+  }
+  & .label {
+    font-family: $font-heading;
+    // font-weight: 600;
+  }
+}

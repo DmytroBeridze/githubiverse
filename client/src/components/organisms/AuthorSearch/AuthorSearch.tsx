@@ -4,6 +4,8 @@ import { Issues } from "../../../types/issueTypes";
 import { UserWithRepo } from "../../../types/userTypes";
 import SearchPanel from "../../molecules/SearchPanel/SearchPanel";
 import UserCard from "../../molecules/UserCard/UserCard";
+import RepositoriesList from "../../molecules/RepositoriesList/RepositoriesList";
+import { RepoType } from "../../../types/repoTypes";
 
 interface AuthorSearchProps {
   onSubmit: (name: string) => void;
@@ -13,6 +15,7 @@ interface AuthorSearchProps {
   author: UserWithRepo | null;
   issue: Issues[];
   pullReq: Issues[];
+  repos: RepoType[];
 }
 
 const AuthorSearch = ({
@@ -23,6 +26,7 @@ const AuthorSearch = ({
   author,
   pullReq,
   issue,
+  repos,
 }: AuthorSearchProps) => {
   return (
     <div>
@@ -33,6 +37,7 @@ const AuthorSearch = ({
         loading={loading}
       />
       <UserCard author={author} pullReq={pullReq} issue={issue} />
+      <RepositoriesList author={author} repos={repos} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { Issues } from "../../../types/issueTypes";
 import { UserWithRepo } from "../../../types/userTypes";
 import Chart from "../../atoms/Chart/Chart";
+import { PrimaryButton } from "../../atoms/PrimaryButton";
 import Text from "../../atoms/Text/Text";
 import UserAvatar from "../../atoms/UserAvatar/UserAvatar";
 import UserDetails from "../UserDetails/UserDetails";
@@ -18,8 +19,13 @@ const UserCard = ({ author, pullReq, issue }: UserCardProps) => {
 
   return (
     <div className={styles.userCard}>
-      <UserSummary author={author} />
-      <UserDetails author={author} issue={issue} pullReq={pullReq} />
+      <div className={styles.userCardContainer}>
+        <UserSummary author={author} />
+        <UserDetails author={author} issue={issue} pullReq={pullReq} />
+      </div>
+      <a href={author.github}>
+        <PrimaryButton className={styles.button}>Github</PrimaryButton>
+      </a>
     </div>
   );
 };

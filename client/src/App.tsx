@@ -1,6 +1,6 @@
 import "overlayscrollbars/overlayscrollbars.css";
 import { Route, Routes } from "react-router-dom";
-import { Homepage } from "./components/pages/Homepage";
+import { Homepage } from "./components/pages/Homepage/index";
 import { DevFinder } from "./components/pages/DevFinder";
 import { RepoFinder } from "./components/pages/RepoFinder";
 import { IssueFinder } from "./components/pages/IssueFinder";
