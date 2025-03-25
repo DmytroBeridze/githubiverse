@@ -23,7 +23,6 @@ export const DevFinder = () => {
   const [validationError, setvalidationError] = useState<{
     [key: string]: string | null;
   }>({ name: null });
-  console.log(repoError);
 
   useScrollToTop();
 

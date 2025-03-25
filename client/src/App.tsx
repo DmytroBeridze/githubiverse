@@ -20,6 +20,7 @@ import {
 } from "./components/atoms/constants";
 import Footer from "./components/organisms/Footer/Footer";
 import ScrollUp from "./components/molecules/ScrollUp/ScrollUp";
+import AppRoutes from "./Routes/Routes";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);
@@ -49,16 +50,10 @@ function App() {
               <FormTypeContext.Provider value={{ setFormType, formType }}>
                 <Header />
                 <DecorationPannel decorElements={decorElements} />
-                <Routes>
-                  <Route path="/" element={<Homepage />} />
-                  <Route path="devfinder" element={<DevFinder />}></Route>
-                  <Route path="repofinder" element={<RepoFinder />}></Route>
-                  <Route path="issuefinder" element={<IssueFinder />}></Route>
-                </Routes>
+                <AppRoutes />
                 <DecorationPannel
                   decorElements={footerDecorElements}
                   type="footer"
-                  // type="footerDecorationPannel"
                 />
                 <RegistrationPopup
                   isOpenBurger={isOpenPopup}

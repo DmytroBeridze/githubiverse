@@ -95,9 +95,10 @@ const useSearchService = () => {
   //     console.error("Error after get userlist");
   //   }
   // };
+
   const getRandomUsers = async () => {
     const URL =
-      "https://api.github.com/search/users?q=followers:>100&per_page=5";
+      "https://api.github.com/search/users?q=followers:>100&per_page=10";
 
     try {
       const response = await sendRequest(URL);

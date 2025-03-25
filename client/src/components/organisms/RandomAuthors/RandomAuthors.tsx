@@ -7,8 +7,8 @@ import Error from "../../atoms/Error/Error";
 import RandomUserCard, {
   NewUser,
 } from "../../molecules/RandomUserCard/RandomUserCard";
-import { randomShuffledArray } from "../../../utils/randomShuffledArray";
 import { prepareAuthors } from "../../../utils/prepareAuthors";
+
 const RandomAuthors = () => {
   const { getRandomUsers, authors, error, clearError, loading } =
     useSearchService();

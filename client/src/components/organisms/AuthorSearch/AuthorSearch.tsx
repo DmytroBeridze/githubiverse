@@ -34,7 +34,6 @@ const AuthorSearch = ({
   repoError,
   repoLoading,
 }: AuthorSearchProps) => {
-  console.log(repos);
   return (
     <div>
       <SearchPanel
