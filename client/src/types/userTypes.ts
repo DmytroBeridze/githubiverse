@@ -1,3 +1,5 @@
+import { string } from "yup";
+
 export type GitUser = {
   avatar_url: string;
   name: string;
@@ -24,4 +26,15 @@ export type User = {
   followers: number;
   location: string;
   createdAt: string;
+};
+
+export type GitUserWithRepo = GitUser & {
+  repos_url: string;
+  following: number;
+  email: string;
+};
+export type UserWithRepo = User & {
+  reposUrl: string;
+  following: number;
+  email: string;
 };

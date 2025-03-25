@@ -1,0 +1,25 @@
+@import "../../../styles/variables.scss";
+
+.UserDetails {
+  flex-basis: 65%;
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  & .name {
+    font-family: $font-heading;
+    font-size: 24px;
+  }
+
+  & ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    // margin-bottom: 30px;
+  }
+  & .label {
+    color: var(--label-text-color-hover);
+    margin-right: 5px;
+  }
+}

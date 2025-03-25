@@ -1,0 +1,85 @@
+@import "../../../styles/variables.scss";
+
+.searchPanel {
+  width: 100%;
+  background-color: var(--primary-background);
+  border-radius: 10px;
+  padding: 20px clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & .form {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  & svg {
+    transform: rotate(90deg);
+    color: var(--popup-button-color);
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  & .input {
+    background-color: var(--primary-background-shade);
+    color: var(--primary-text-color);
+    width: 100%;
+    height: clamp(1.875rem, 1.42rem + 2.27vw, 3.125rem);
+    margin: 0;
+    font-size: clamp(0.875rem, 0.739rem + 0.68vw, 1.25rem);
+    caret-color: var(--primary-text-color);
+    // @media (max-width: 600px) {
+    //   height: 40px;
+    // }
+
+    &::placeholder {
+      color: $primary-white-text-color;
+    }
+  }
+  & button {
+    padding: clamp(0.5rem, 0.364rem + 0.68vw, 0.875rem) 20px;
+    background-color: var(--popup-button-color);
+    color: $primary-white-text-color;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: var(--popup-button-hover-color);
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+      padding: 12px 20px;
+    }
+  }
+  & .loader {
+    // justify-content: start;
+    // margin-left: 24px;
+    @media (max-width: 600px) {
+      justify-content: center;
+    }
+  }
+
+  & .error {
+    width: 100%;
+    display: inline-block;
+    color: $text-danger-color;
+    margin-top: 10px;
+    margin-left: 32px;
+    font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
+}

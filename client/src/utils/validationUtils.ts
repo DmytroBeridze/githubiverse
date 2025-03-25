@@ -9,13 +9,20 @@ let userSchema = object({
     .min(3, "Password must be at least 3 characters long"),
 });
 
-const validationUtils = async (name: string, pass: string) => {
+let authorSchema = object({
+  name: string().required("Name is required"),
+});
+
+// ----validation registration
+export const validationUtils = async (name: string, pass: string) => {
   try {
     await userSchema.validate({ name, pass }, { abortEarly: false });
     return { isValid: true, errors: {} };
   } catch (err) {
     if (err instanceof yup.ValidationError) {
       const errors: { [key: string]: string } = {};
+      // .inner в yup.ValidationError — это массив всех ошибок валидации,
+      //  возникающих при использовании { abortEarly: false }.
       err.inner.forEach((error) => {
         if (error.path) {
           errors[error.path] = error.message;
@@ -26,4 +33,20 @@ const validationUtils = async (name: string, pass: string) => {
   }
   return { isValid: false, errors: {} };
 };
-export default validationUtils;
+
+// ----validation author name
+export const validationAuthor = async (name: string) => {
+  try {
+    await authorSchema.validate({ name });
+    return { isValid: true, error: {} };
+  } catch (err) {
+    if (err instanceof yup.ValidationError) {
+      const error: { [key: string]: string } = {};
+      if (err.path) {
+        error[err.path] = err.message;
+      }
+      return { isValid: false, error: error };
+    }
+  }
+  return { isValid: false, error: {} };
+};

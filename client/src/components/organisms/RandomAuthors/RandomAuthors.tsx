@@ -10,12 +10,13 @@ import RandomUserCard, {
 import { randomShuffledArray } from "../../../utils/randomShuffledArray";
 import { prepareAuthors } from "../../../utils/prepareAuthors";
 const RandomAuthors = () => {
-  const { getUsers, authors, error, clearError, loading } = useSearchService();
+  const { getRandomUsers, authors, error, clearError, loading } =
+    useSearchService();
   const [shuffledWithTitles, setShuffledWithTitles] = useState<NewUser[]>([]);
 
   useEffect(() => {
     clearError();
-    getUsers();
+    getRandomUsers();
   }, []);
 
   useEffect(() => {

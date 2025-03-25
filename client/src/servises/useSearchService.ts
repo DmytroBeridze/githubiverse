@@ -1,7 +1,6 @@
 /*
 Это будет единый сервис, который будет включать несколько методов:
 
-    getUserByName(username: string): Для поиска пользователя по имени.
     getRepoByName(repoName: string): Для поиска репозитория по названию.
     getIssuesForRepo(repoName: string): Для поиска issues в конкретном репозитории.
 
@@ -12,12 +11,17 @@ import { useApi } from "../hooks/useApi";
 import {
   transformGitComments,
   transformGitIssue,
+  transformRepo,
   transformUsers,
+  transformUserWithRepo,
 } from "../utils/dataTransformers";
-import { Comments, GitComments, GitIssues, Issues } from "../types/issueTypes";
-import { User } from "../types/userTypes";
+import { GitComments, GitIssues, Issues } from "../types/issueTypes";
+import { User, UserWithRepo } from "../types/userTypes";
+import { RepoType, GitRepoType } from "../types/repoTypes";
 
 const useSearchService = () => {
+  const token = process.env.REACT_APP_TOKEN;
+
   const {
     sendRequest,
     loading,
@@ -30,7 +34,8 @@ const useSearchService = () => {
 
   const [randomIssues, setRandomIssues] = useState<Issues[]>([]);
   const [authors, setAuthors] = useState<User[]>([]);
-  //------- random issue
+
+  //--------------------------------------- random issue
   const getRandomIssues = async () => {
     const URL =
       "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
@@ -52,7 +57,7 @@ const useSearchService = () => {
     }
   };
 
-  // --------comments
+  // -----------------------------------------comments
   const getComments = async (URL: string) => {
     const response = await sendRequest(URL);
 
@@ -66,7 +71,7 @@ const useSearchService = () => {
     return [];
   };
 
-  // ---------random users
+  // ---------------------------------------random users
   // const getUsers = async () => {
   //   const URL =
   //     "https://api.github.com/search/users?q=followers:>10&per_page=5";
@@ -90,10 +95,9 @@ const useSearchService = () => {
   //     console.error("Error after get userlist");
   //   }
   // };
-
-  const getUsers = async () => {
+  const getRandomUsers = async () => {
     const URL =
-      "https://api.github.com/search/users?q=followers:>10&per_page=5";
+      "https://api.github.com/search/users?q=followers:>100&per_page=5";
 
     try {
       const response = await sendRequest(URL);
@@ -132,7 +136,7 @@ const useSearchService = () => {
     randomIssues,
     getRandomIssues,
     getComments,
-    getUsers,
+    getRandomUsers,
     authors,
   };
 };

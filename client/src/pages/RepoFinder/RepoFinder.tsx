@@ -1,4 +1,4 @@
-import { ContentContainer } from "../../organisms/ContentContainer";
+import { ContentContainer } from "../../components/organisms/ContentContainer";
 import styles from "./RepoFinder.module.scss";
 
 export const RepoFinder = () => {

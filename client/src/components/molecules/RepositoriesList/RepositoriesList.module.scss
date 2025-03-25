@@ -1,0 +1,32 @@
+.repositoriesList {
+  width: 100%;
+  // height: 200px;
+  background-color: var(--primary-background);
+  border-radius: 10px;
+  padding: 20px clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & .repositoriesListWrapper {
+    transition: height 0.3s ease;
+    height: clamp(3.125rem, 2.784rem + 1.7vw, 4.063rem);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    &.open {
+      height: 600px;
+      overflow-y: auto;
+    }
+  }
+  & .iconWrapper {
+    transform: rotate(90deg);
+    cursor: pointer;
+    &.open {
+      transform: rotate(270deg);
+    }
+  }
+}
