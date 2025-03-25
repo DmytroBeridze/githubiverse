@@ -62,8 +62,8 @@
     }
   }
   & .loader {
-    justify-content: start;
-    margin-left: 24px;
+    // justify-content: start;
+    // margin-left: 24px;
     @media (max-width: 600px) {
       justify-content: center;
     }
