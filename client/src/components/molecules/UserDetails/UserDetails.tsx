@@ -27,7 +27,7 @@ const UserDetails: FC<UserDetails> = ({ author, issue, pullReq }) => {
       <Text as="h3" variant="subtitle" className={styles.name}>
         {name}
       </Text>
-      <div className="">
+      <div>
         <ul>
           <li className={styles.created}>
             <Text as="span" variant="litle" className={styles.label}>

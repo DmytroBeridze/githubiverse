@@ -1,0 +1,31 @@
+.sliderWrapper {
+  position: relative;
+
+  & svg {
+    width: clamp(0.875rem, 0.648rem + 1.14vw, 1.5rem);
+    height: clamp(0.875rem, 0.648rem + 1.14vw, 1.5rem);
+    // @media (max-width: 600px) {
+    //   width: 16px;
+    //   height: 16px;
+    // }
+  }
+}
+
+.customPrev {
+  position: absolute;
+  top: clamp(7.5rem, 5.682rem + 9.09vw, 12.5rem);
+  transform: rotate(180deg);
+  display: flex;
+  cursor: pointer;
+}
+
+.customNext {
+  display: flex;
+  position: absolute;
+  top: clamp(7.5rem, 5.682rem + 9.09vw, 12.5rem);
+  left: 30px;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    left: 22px;
+  }
+}

@@ -36,6 +36,7 @@ const SearchPanel: FC<SearchPanelProps> = ({
         onSubmit={(e) => {
           e.preventDefault();
           hendleSubmit();
+          // console.log(e.currentTarget.user.value);
         }}
       >
         <Icon name="search" size="30" />
@@ -51,7 +52,6 @@ const SearchPanel: FC<SearchPanelProps> = ({
 
         <PrimaryButton type="submit">Search</PrimaryButton>
       </form>
-
       {loading && <Preloader className={styles.loader} />}
       {validationError.name && (
         <span className={styles.error}>{validationError.name}</span>

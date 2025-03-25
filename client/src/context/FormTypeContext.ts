@@ -9,5 +9,6 @@ const defaultContext: FormTypeContextType = {
   formType: "login",
   setFormType: () => {},
 };
+
 export const FormTypeContext =
   createContext<FormTypeContextType>(defaultContext);
