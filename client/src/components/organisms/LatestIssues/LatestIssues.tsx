@@ -21,7 +21,7 @@ const LatestIssues = () => {
       {!loading && !error ? (
         <div className={styles.latestIssuesContainer}>
           <ContentContainer>
-            <Accordion randomIssues={randomIssues} />
+            <Accordion issues={randomIssues} slice={3} />
           </ContentContainer>
         </div>
       ) : (

@@ -35,7 +35,7 @@ export const validationUtils = async (name: string, pass: string) => {
 };
 
 // ----validation author name
-export const validationAuthor = async (name: string) => {
+export const validationName = async (name: string) => {
   try {
     await authorSchema.validate({ name });
     return { isValid: true, error: {} };
@@ -50,3 +50,18 @@ export const validationAuthor = async (name: string) => {
   }
   return { isValid: false, error: {} };
 };
+// export const validationAuthor = async (name: string) => {
+//   try {
+//     await authorSchema.validate({ name });
+//     return { isValid: true, error: {} };
+//   } catch (err) {
+//     if (err instanceof yup.ValidationError) {
+//       const error: { [key: string]: string } = {};
+//       if (err.path) {
+//         error[err.path] = err.message;
+//       }
+//       return { isValid: false, error: error };
+//     }
+//   }
+//   return { isValid: false, error: {} };
+// };

@@ -5,7 +5,7 @@ import { useScrollToTop } from "../../hooks/useScrollToTop";
 import useIssueService from "../../servises/useIssueService";
 import useRepositoriesService from "../../servises/useRepositoriesService";
 import useUserSearch from "../../servises/useUserSearch";
-import { validationAuthor } from "../../utils/validationUtils";
+import { validationName } from "../../utils/validationUtils";
 import AuthorSearch from "../../components/organisms/AuthorSearch/AuthorSearch";
 import { RandomAuthorsContext } from "../../context/RandomAuthorsContext";
 import Slider from "../../components/organisms/Slider/Slider";
@@ -34,7 +34,7 @@ export const DevFinder = () => {
   useScrollToTop();
 
   const validation = async (name: string) => {
-    const { isValid, error } = await validationAuthor(name);
+    const { isValid, error } = await validationName(name);
     if (!isValid) {
       setvalidationError(error);
     } else setvalidationError({ name: null });

@@ -39,8 +39,9 @@ const AuthorSearch = ({
       <SearchPanel
         onSubmit={onSubmit}
         validationError={validationError}
-        userError={userError}
+        error={userError}
         loading={loading}
+        placeholder="Author name..."
       />
       <UserCard author={author} pullReq={pullReq} issue={issue} />
 

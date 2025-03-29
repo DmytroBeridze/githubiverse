@@ -4,10 +4,11 @@ import { FC, useState } from "react";
 import { Issues } from "../../../types/issueTypes";
 
 interface AccordionProps {
-  randomIssues: Issues[];
+  issues: Issues[];
+  slice?: number;
 }
 
-const Accordion: FC<AccordionProps> = ({ randomIssues }) => {
+const Accordion: FC<AccordionProps> = ({ issues, slice }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const accordionHendler = (index: number) => {
@@ -16,11 +17,10 @@ const Accordion: FC<AccordionProps> = ({ randomIssues }) => {
 
   return (
     <div className={styles.accordion}>
-      {randomIssues.slice(0, 3).map((elem, i) => {
-        const { title } = elem;
+      {issues.slice(0, slice).map((elem, i) => {
         return (
           <AccordionElement
-            key={title}
+            key={elem.id}
             accordionHendler={() => accordionHendler(i)}
             isOpen={openIndex === i}
             data={elem}

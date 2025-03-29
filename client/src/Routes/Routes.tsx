@@ -4,6 +4,7 @@ import { Homepage } from "../pages/Homepage";
 import { DevFinder } from "../pages/DevFinder";
 import { RepoFinder } from "../pages/RepoFinder";
 import { IssueFinder } from "../pages/IssueFinder";
+import IssuesPage from "../pages/RepoFinder/IssuesPage/IssuesPage";
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
       <Route path="devfinder" element={<DevFinder />}></Route>
       <Route path="repofinder" element={<RepoFinder />}></Route>
       <Route path="issuefinder" element={<IssueFinder />}></Route>
+      <Route path="issuesPage" element={<IssuesPage />}></Route>
     </Routes>
   );
 };

@@ -1,5 +1,10 @@
 import { Comments, GitComments, GitIssues, Issues } from "../types/issueTypes";
-import { GitRepoType, RepoType } from "../types/repoTypes";
+import {
+  ExtendedGitRepoType,
+  ExtendedRepoType,
+  GitRepoType,
+  RepoType,
+} from "../types/repoTypes";
 import {
   GitUser,
   GitUserWithRepo,
@@ -18,6 +23,7 @@ export const transformGitIssue = (data: GitIssues): Issues => ({
   createdAt: data.created_at,
   avatar: data.user.avatar_url,
   linkGit: data.html_url,
+  id: data.id,
 });
 
 export const transformGitComments = (data: GitComments): Comments => ({
@@ -70,4 +76,22 @@ export const transformRepo = (data: GitRepoType): RepoType => ({
   openIssues: data.open_issues,
   watchers: data.watchers,
   issuesUrl: data.issues_url,
+});
+
+export const transformExtendedRepo = (
+  data: ExtendedGitRepoType
+): ExtendedRepoType => ({
+  id: data.id,
+  createdAt: data.created_at,
+  description: data.description,
+  name: data.name,
+  htmlUrl: data.html_url,
+  language: data.language,
+  watchers: data.watchers,
+  issuesUrl: data.issues_url,
+  ownerId: data.owner.id,
+  ownerLogin: data.owner.login,
+  ownerAwatar: data.owner.avatar_url,
+  ownerGithub: data.owner.html_url,
+  ownerType: data.owner.type,
 });
