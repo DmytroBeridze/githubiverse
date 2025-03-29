@@ -1,0 +1,32 @@
+.searchRepositoryCard {
+  background-color: var(--primary-background-shade);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+}
+// user
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex: 1 1 150px;
+
+  & .avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    aspect-ratio: 1/1;
+  }
+  & a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+  }
+}
+
+// repo
+.repoInfo {
+  flex: 1 1 70%;
+  min-width: 0;
+}

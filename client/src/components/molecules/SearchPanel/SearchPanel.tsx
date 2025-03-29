@@ -12,15 +12,17 @@ interface SearchPanelProps {
   validationError: {
     [key: string]: string | null;
   };
-  userError: string | null;
+  error: string | null;
   loading: boolean;
+  placeholder?: string;
 }
 
 const SearchPanel: FC<SearchPanelProps> = ({
   onSubmit,
   validationError,
-  userError,
+  error,
   loading,
+  placeholder,
 }) => {
   // const loading = true;
   const { handleNameChange, name } = useAuthForm();
@@ -36,6 +38,7 @@ const SearchPanel: FC<SearchPanelProps> = ({
         onSubmit={(e) => {
           e.preventDefault();
           hendleSubmit();
+          // console.log(e.currentTarget.user.value);
         }}
       >
         <Icon name="search" size="30" />
@@ -43,7 +46,8 @@ const SearchPanel: FC<SearchPanelProps> = ({
         <PrimaryInput
           name="user"
           className={styles.input}
-          placeholder="author name..."
+          placeholder={placeholder || "name..."}
+          // placeholder="author name..."
           onChange={(e) => handleNameChange(e)}
           error={!!validationError.name}
           autoComplete="off"
@@ -51,13 +55,12 @@ const SearchPanel: FC<SearchPanelProps> = ({
 
         <PrimaryButton type="submit">Search</PrimaryButton>
       </form>
-
       {loading && <Preloader className={styles.loader} />}
       {validationError.name && (
         <span className={styles.error}>{validationError.name}</span>
       )}
 
-      {userError && <span className={styles.error}>{userError}</span>}
+      {error && <span className={styles.error}>{error}</span>}
     </div>
   );
 };

@@ -34,14 +34,14 @@ const AuthorSearch = ({
   repoError,
   repoLoading,
 }: AuthorSearchProps) => {
-  console.log(repos);
   return (
     <div>
       <SearchPanel
         onSubmit={onSubmit}
         validationError={validationError}
-        userError={userError}
+        error={userError}
         loading={loading}
+        placeholder="Author name..."
       />
       <UserCard author={author} pullReq={pullReq} issue={issue} />
 

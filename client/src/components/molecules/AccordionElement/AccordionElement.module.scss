@@ -31,7 +31,9 @@
     margin-bottom: 10px;
     font-size: clamp(0.625rem, 0.443rem + 0.91vw, 1.125rem);
     font-weight: 500;
-    // font-size: 18px;
+    white-space: norm;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   & ul {
     list-style: none;

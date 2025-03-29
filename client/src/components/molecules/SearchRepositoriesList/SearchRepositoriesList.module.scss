@@ -1,0 +1,12 @@
+@import "../../../styles/variables.scss";
+
+.repositoriesList {
+  width: 100%;
+  background-color: var(--primary-background);
+  border-radius: 10px;
+  padding: clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

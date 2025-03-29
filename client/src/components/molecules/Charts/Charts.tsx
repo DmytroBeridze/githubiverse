@@ -36,20 +36,25 @@ const Charts: FC<ChartsProps> = ({
 
   return (
     <div className={`${styles.charts} ${className}`}>
-      <Chart
-        data={chartData}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        fontSize={fontSize}
-        containerHeight={containerHeight}
-      />
-      <Chart
-        data={chartData2}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        fontSize={fontSize}
-        containerHeight={containerHeight}
-      />
+      {followers || following ? (
+        <Chart
+          data={chartData}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          fontSize={fontSize}
+          containerHeight={containerHeight}
+        />
+      ) : null}
+
+      {pullReq.length > 0 || issue.length > 0 || publicRepos ? (
+        <Chart
+          data={chartData2}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          fontSize={fontSize}
+          containerHeight={containerHeight}
+        />
+      ) : null}
     </div>
   );
 };

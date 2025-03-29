@@ -42,8 +42,10 @@ const useSearchService = () => {
 
     // const URL =
     // "https://api.github.com/search/issues?q=is:unlocked+created:>2024-01-01&sort=created&order=desc&per_page=20&page=1";
-
-    const response = await sendRequest(URL);
+    // !------------видалити Authorization: `token ${token}`
+    const response = await sendRequest(URL, "GET", null, {
+      Authorization: `token ${token}`,
+    });
     if (response) {
       const filtaredData = response.items.filter(
         (elem: GitIssues) =>
@@ -95,12 +97,15 @@ const useSearchService = () => {
   //     console.error("Error after get userlist");
   //   }
   // };
+
   const getRandomUsers = async () => {
     const URL =
       "https://api.github.com/search/users?q=followers:>100&per_page=5";
-
+    // !------------видалити Authorization: `token ${token}`
     try {
-      const response = await sendRequest(URL);
+      const response = await sendRequest(URL, "GET", null, {
+        Authorization: `token ${token}`,
+      });
 
       if (!response || !response.items) {
         console.log("No such users");

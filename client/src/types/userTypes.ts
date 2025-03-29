@@ -1,5 +1,3 @@
-import { string } from "yup";
-
 export type GitUser = {
   avatar_url: string;
   name: string;

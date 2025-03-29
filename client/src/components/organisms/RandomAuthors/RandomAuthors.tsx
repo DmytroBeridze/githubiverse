@@ -1,23 +1,17 @@
 import styles from "./RandomAuthors.module.scss";
 import { ContentContainer } from "../ContentContainer";
-import useSearchService from "../../../servises/useSearchService";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Preloader from "../../atoms/Preloader/Preloader";
 import Error from "../../atoms/Error/Error";
 import RandomUserCard, {
   NewUser,
 } from "../../molecules/RandomUserCard/RandomUserCard";
-import { randomShuffledArray } from "../../../utils/randomShuffledArray";
 import { prepareAuthors } from "../../../utils/prepareAuthors";
-const RandomAuthors = () => {
-  const { getRandomUsers, authors, error, clearError, loading } =
-    useSearchService();
-  const [shuffledWithTitles, setShuffledWithTitles] = useState<NewUser[]>([]);
+import { RandomAuthorsContext } from "../../../context/RandomAuthorsContext";
 
-  useEffect(() => {
-    clearError();
-    getRandomUsers();
-  }, []);
+const RandomAuthors = () => {
+  const [shuffledWithTitles, setShuffledWithTitles] = useState<NewUser[]>([]);
+  const { authors, error, loading } = useContext(RandomAuthorsContext);
 
   useEffect(() => {
     if (authors.length > 0) {

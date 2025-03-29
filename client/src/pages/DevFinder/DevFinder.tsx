@@ -1,15 +1,22 @@
 import styles from "./DevFinder.module.scss";
-import { useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { ContentContainer } from "../../components/organisms/ContentContainer";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
 import useIssueService from "../../servises/useIssueService";
 import useRepositoriesService from "../../servises/useRepositoriesService";
 import useUserSearch from "../../servises/useUserSearch";
-import { validationAuthor } from "../../utils/validationUtils";
+import { validationName } from "../../utils/validationUtils";
 import AuthorSearch from "../../components/organisms/AuthorSearch/AuthorSearch";
+import { RandomAuthorsContext } from "../../context/RandomAuthorsContext";
+import Slider from "../../components/organisms/Slider/Slider";
+import UserSlide from "../../components/molecules/UserSlide/UserSlide";
 
 export const DevFinder = () => {
-  // const { loading, status, clearError } = useSearchService();
+  const {
+    authors,
+    error,
+    loading: authorLoading,
+  } = useContext(RandomAuthorsContext);
 
   const { author, loading, userError, setUserError, getUserByName } =
     useUserSearch();
@@ -23,12 +30,11 @@ export const DevFinder = () => {
   const [validationError, setvalidationError] = useState<{
     [key: string]: string | null;
   }>({ name: null });
-  console.log(repoError);
 
   useScrollToTop();
 
   const validation = async (name: string) => {
-    const { isValid, error } = await validationAuthor(name);
+    const { isValid, error } = await validationName(name);
     if (!isValid) {
       setvalidationError(error);
     } else setvalidationError({ name: null });
@@ -68,6 +74,12 @@ export const DevFinder = () => {
           repoLoading={repoLoading}
         />
       </ContentContainer>
+      <Slider
+        data={authors}
+        renderItem={(author) => <UserSlide user={author} />}
+        perView={2}
+        className={styles.slider}
+      />
     </div>
   );
 };

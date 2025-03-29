@@ -6,8 +6,12 @@ import { transformGitIssue } from "../utils/dataTransformers";
 const useIssueService = () => {
   const token = process.env.REACT_APP_TOKEN;
   const [issue, setIssue] = useState<Issues[]>([]);
-  const [pullReq, setPullReq] = useState<Issues[]>([]);
   const [issueError, setIssueError] = useState<string | null>(null);
+  const [repoIssues, setRepoIssues] = useState<Issues[]>([]);
+  const [repoIssuesError, setrepoIssuesErrorError] = useState<string | null>(
+    null
+  );
+  const [pullReq, setPullReq] = useState<Issues[]>([]);
   const [pullRequestsError, setpullRequestsError] = useState<string | null>(
     null
   );
@@ -88,6 +92,25 @@ const useIssueService = () => {
     setPullReq(request);
   };
 
+  // ----------all issues from repo
+  const issuesByRepo = async (url: string) => {
+    // !------------видалити Authorization: `token ${token}`
+    const response = await sendRequest(url, "GET", null, {
+      Authorization: `token ${token}`,
+    });
+
+    if (response.length === 0) {
+      setrepoIssuesErrorError("No such issues");
+    }
+
+    const transform = Array.isArray(response)
+      ? response.map((elem: GitIssues) => {
+          return transformGitIssue(elem);
+        })
+      : [];
+    setRepoIssues(transform);
+  };
+
   return {
     issuesQuantity,
     issue,
@@ -95,6 +118,11 @@ const useIssueService = () => {
     pullReq,
     issueError,
     pullRequestsError,
+    issuesByRepo,
+    repoIssues,
+    repoIssuesError,
+    loading,
+    error,
   };
 };
 

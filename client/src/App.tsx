@@ -20,12 +20,23 @@ import {
 } from "./components/atoms/constants";
 import Footer from "./components/organisms/Footer/Footer";
 import ScrollUp from "./components/molecules/ScrollUp/ScrollUp";
+import AppRoutes from "./Routes/Routes";
+import useSearchService from "./servises/useSearchService";
+import { RandomAuthorsContext } from "./context/RandomAuthorsContext";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(false);
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const [formType, setFormType] = useState<"signup" | "login" | "">("");
   const [nickName, setNickName] = useState<string | null>("");
+
+  const { getRandomUsers, authors, error, clearError, loading } =
+    useSearchService();
+
+  useEffect(() => {
+    clearError();
+    getRandomUsers();
+  }, []);
 
   const popupHandler = () => {
     const newState = !isOpenPopup;
@@ -47,25 +58,23 @@ function App() {
           <PopupContext.Provider value={{ isOpenPopup, popupHandler }}>
             <NickNameContext.Provider value={{ setNickName, nickName }}>
               <FormTypeContext.Provider value={{ setFormType, formType }}>
-                <Header />
-                <DecorationPannel decorElements={decorElements} />
-                <Routes>
-                  <Route path="/" element={<Homepage />} />
-                  <Route path="devfinder" element={<DevFinder />}></Route>
-                  <Route path="repofinder" element={<RepoFinder />}></Route>
-                  <Route path="issuefinder" element={<IssueFinder />}></Route>
-                </Routes>
-                <DecorationPannel
-                  decorElements={footerDecorElements}
-                  type="footer"
-                  // type="footerDecorationPannel"
-                />
-                <RegistrationPopup
-                  isOpenBurger={isOpenPopup}
-                  popupHandler={popupHandler}
-                  formType={formType}
-                />
-                <Footer />
+                <RandomAuthorsContext.Provider
+                  value={{ authors, error, loading }}
+                >
+                  <Header />
+                  <DecorationPannel decorElements={decorElements} />
+                  <AppRoutes />
+                  <DecorationPannel
+                    decorElements={footerDecorElements}
+                    type="footer"
+                  />
+                  <RegistrationPopup
+                    isOpenBurger={isOpenPopup}
+                    popupHandler={popupHandler}
+                    formType={formType}
+                  />
+                  <Footer />
+                </RandomAuthorsContext.Provider>
                 <ScrollUp />
               </FormTypeContext.Provider>
             </NickNameContext.Provider>

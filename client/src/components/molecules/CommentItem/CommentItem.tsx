@@ -41,10 +41,23 @@ const CommentItem: FC<CommentItemProps> = ({
     >
       {/* issue info */}
       <div className={styles.issueInfo}>
-        <div>
-          <div className={styles.fullTitle}>
-            {fullTitle ? fullTitle[0].toUpperCase() + fullTitle.slice(1) : null}
-          </div>
+        <div className={styles.titleWrapper}>
+          <OverlayScrollbarsComponent
+            className={`os-theme-round-dark ${styles.titleScroll}`}
+            options={{
+              scrollbars: {
+                autoHide: "leave",
+              },
+            }}
+            style={{ maxHeight: "120px", overflow: "auto" }}
+          >
+            <div className={styles.fullTitle}>
+              {fullTitle
+                ? fullTitle[0].toUpperCase() + fullTitle.slice(1)
+                : null}
+            </div>
+          </OverlayScrollbarsComponent>
+
           <div className={styles.created}>
             {dateFormatter(createdAt, "en-US", {
               day: "numeric",
