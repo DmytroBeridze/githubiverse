@@ -1,11 +1,13 @@
+import styles from "./RepoFinder.module.scss";
+
 import { useEffect, useState } from "react";
 import { ContentContainer } from "../../components/organisms/ContentContainer";
 import RepoSearch from "../../components/organisms/RepoSearch/RepoSearch";
-import styles from "./RepoFinder.module.scss";
 import { useRepoByName } from "../../servises/useRepoByName";
 import { validationName } from "../../utils/validationUtils";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
-import { Outlet } from "react-router-dom";
+import sessionStorageUtils from "../../utils/sessionStorageUtils";
+import { ExtendedRepoType } from "../../types/repoTypes";
 
 export const RepoFinder = () => {
   const {
@@ -19,6 +21,9 @@ export const RepoFinder = () => {
     repoError,
     setRepoError,
   } = useRepoByName();
+  const [localLoading, setLocalLoading] = useState<boolean>(false);
+  const [repos, setRepos] = useState<ExtendedRepoType[]>([]);
+
   const [validationError, setValidationError] = useState<{
     [key: string]: string | null;
   }>({ name: null });
@@ -32,12 +37,29 @@ export const RepoFinder = () => {
   };
 
   const onSubmit = async (name: string) => {
+    setLocalLoading(true);
     setRepoError(null);
     const valid = await validation(name);
     if (valid) {
       getRepoByName(name);
     }
   };
+
+  useEffect(() => {
+    const data = sessionStorageUtils.getData("repositories");
+    if (Array.isArray(data)) {
+      setRepos(data);
+    } else setRepos([]);
+  }, []);
+
+  useEffect(() => {
+    if (repo) {
+      sessionStorageUtils.setData("repositories", repo);
+      setRepos(repo);
+      setLocalLoading(false);
+    }
+  }, [repo]);
+
   useScrollToTop();
 
   return (
@@ -48,10 +70,9 @@ export const RepoFinder = () => {
             validationError={validationError}
             onSubmit={onSubmit}
             error={repoError}
-            loading={loading}
-            repo={repo}
+            loading={loading || localLoading}
+            repo={repos}
           />
-          <Outlet />
         </div>
       </ContentContainer>
     </div>

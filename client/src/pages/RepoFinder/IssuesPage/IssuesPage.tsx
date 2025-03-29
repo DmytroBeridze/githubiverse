@@ -7,6 +7,7 @@ import Accordion from "../../../components/organisms/Accordion/Accordion";
 import { ContentContainer } from "../../../components/organisms/ContentContainer";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import { PrimaryButton } from "../../../components/atoms/PrimaryButton";
+import { useParams } from "react-router";
 
 const IssuesPage = () => {
   const location = useLocation();
@@ -20,6 +21,10 @@ const IssuesPage = () => {
         : issues.filter((elem: Issues) => elem.state === key);
     setFilteredIssues(res);
   };
+
+  useEffect(() => {
+    setFilteredIssues(issues);
+  }, [issues]);
 
   useScrollToTop();
   return (
