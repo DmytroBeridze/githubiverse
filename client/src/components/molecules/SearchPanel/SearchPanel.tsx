@@ -24,7 +24,6 @@ const SearchPanel: FC<SearchPanelProps> = ({
   loading,
   placeholder,
 }) => {
-  // const loading = true;
   const { handleNameChange, name } = useAuthForm();
 
   const hendleSubmit = () => {
@@ -38,7 +37,6 @@ const SearchPanel: FC<SearchPanelProps> = ({
         onSubmit={(e) => {
           e.preventDefault();
           hendleSubmit();
-          // console.log(e.currentTarget.user.value);
         }}
       >
         <Icon name="search" size="30" />

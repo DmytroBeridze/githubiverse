@@ -10,6 +10,7 @@ import AuthorSearch from "../../components/organisms/AuthorSearch/AuthorSearch";
 import { RandomAuthorsContext } from "../../context/RandomAuthorsContext";
 import Slider from "../../components/organisms/Slider/Slider";
 import UserSlide from "../../components/molecules/UserSlide/UserSlide";
+import Preloader from "../../components/atoms/Preloader/Preloader";
 
 export const DevFinder = () => {
   const {
@@ -74,12 +75,17 @@ export const DevFinder = () => {
           repoLoading={repoLoading}
         />
       </ContentContainer>
-      <Slider
-        data={authors}
-        renderItem={(author) => <UserSlide user={author} />}
-        perView={2}
-        className={styles.slider}
-      />
+
+      {authors.length >= 2 ? (
+        <Slider
+          data={authors}
+          renderItem={(author) => <UserSlide user={author} />}
+          perView={2}
+          className={styles.slider}
+        />
+      ) : (
+        <Preloader />
+      )}
     </div>
   );
 };

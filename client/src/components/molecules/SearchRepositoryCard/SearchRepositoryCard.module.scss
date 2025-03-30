@@ -1,16 +1,22 @@
+@import "../../../styles/variables.scss";
+
 .searchRepositoryCard {
   background-color: var(--primary-background-shade);
   padding: 10px;
   border-radius: 10px;
   display: flex;
   gap: 20px;
+  color: var(--primary-text-color);
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 }
 // user
 .userInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  gap: 10px;
   flex: 1 1 150px;
 
   & .avatar {
@@ -18,6 +24,7 @@
     height: auto;
     border-radius: 20px;
     aspect-ratio: 1/1;
+    box-shadow: var(--button-shaddow);
   }
   & a {
     text-decoration: none;
@@ -29,4 +36,35 @@
 .repoInfo {
   flex: 1 1 70%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & .label {
+    // color: var(--title-highlighted-color);
+    margin-right: 10px;
+    font-style: italic;
+  }
+
+  & .name {
+    font-family: $font-heading;
+    color: var(--title-highlighted-color);
+  }
+
+  & a,
+  & .redirect {
+    text-decoration: none;
+    color: var(--popup-button-color);
+    cursor: pointer;
+    transition: 0.3s;
+    max-width: fit-content;
+    border-radius: 10px;
+    border: 1px solid var(--popup-button-color);
+    padding: 5px;
+
+    &:hover {
+      color: var(--popup-button-hover-color);
+      border: 1px solid var(--popup-button-hover-color);
+    }
+  }
 }

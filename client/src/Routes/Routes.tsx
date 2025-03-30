@@ -14,7 +14,6 @@ const AppRoutes = () => {
       <Route path="repofinder" element={<RepoFinder />}></Route>
       <Route path="issuefinder" element={<IssueFinder />}></Route>
       <Route path="issuesPage" element={<IssuesPage />}></Route>
-      {/* <Route path="issuesPage" element={<IssuesPage />}></Route> */}
     </Routes>
   );
 };

@@ -1,6 +1,12 @@
 import styles from "./Slider.module.scss";
 
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -51,7 +57,7 @@ const Slider = <T,>({
 
       <Swiper
         ref={swiperRef}
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={20}
         // slidesPerView={perView}
         // navigation={{ enabled: false }}
