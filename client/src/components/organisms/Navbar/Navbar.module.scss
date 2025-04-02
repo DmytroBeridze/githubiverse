@@ -3,15 +3,11 @@
   font-family: $font-heading;
   margin: 20px 0 0;
   background-color: var(--primary-background);
-  // background-color: $module-gray-background-color;
   padding: 14px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;
   align-items: center;
-  // @media (max-width: 768px) {
-  //   grid-template-columns: 1fr auto;
-  // }
 
   & ul {
     list-style: none;
@@ -26,9 +22,6 @@
     width: 100%;
     text-align: center;
     position: relative;
-    // &:hover {
-    //   color: $primary-gray-text-color;
-    // }
   }
   & li::after {
     content: "";

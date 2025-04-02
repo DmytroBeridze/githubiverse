@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ContentContainer } from "../../components/organisms/ContentContainer";
 import useOpenSourceRepo from "../../servises/useOpenSourceRepo";
 import SearchRepositoriesList from "../../components/molecules/SearchRepositoriesList/SearchRepositoriesList";
-import LanguageDropdown from "../../components/molecules/LanguageDropdown/LanguageDropdown";
+import LanguageDropdown from "../../components/molecules/Dropdown/Dropdown";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
 
 export const IssueFinder = () => {

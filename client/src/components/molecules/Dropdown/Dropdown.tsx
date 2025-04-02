@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Text from "../../atoms/Text/Text";
-import styles from "./LanguageDropdown.module.scss";
+import styles from "./Dropdown.module.scss";
 import Icon from "../../atoms/Icon/Icon";
 
 interface LanguageDropdownProps<T extends string | number> {
