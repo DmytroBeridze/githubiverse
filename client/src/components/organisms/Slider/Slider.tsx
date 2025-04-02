@@ -13,20 +13,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import React, { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import Icon from "../../atoms/Icon/Icon";
+
+type PerViewType = {
+  small?: number;
+  medium?: number;
+  large?: number;
+};
 
 interface SliderProps<T> {
   data: T[];
   renderItem: (data: T) => ReactNode;
-  perView?: number;
+  perView?: PerViewType;
   className?: string;
 }
 
 const Slider = <T,>({
   data,
   renderItem,
-  perView,
+  perView = { small: 1 },
   className,
 }: SliderProps<T>) => {
   // ---custom arrows
@@ -63,7 +69,10 @@ const Slider = <T,>({
         // navigation={{ enabled: false }}
         breakpoints={{
           600: {
-            slidesPerView: 2,
+            slidesPerView: perView.medium,
+          },
+          800: {
+            slidesPerView: perView.large,
           },
         }}
         loop={true}

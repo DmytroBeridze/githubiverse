@@ -8,6 +8,13 @@ import { validationName } from "../../utils/validationUtils";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
 import sessionStorageUtils from "../../utils/sessionStorageUtils";
 import { ExtendedRepoType } from "../../types/repoTypes";
+import useRepositoriesService from "../../servises/useRepositoriesService";
+import usePopularRepo from "../../servises/usePopularRepos";
+import Slider from "../../components/organisms/Slider/Slider";
+import UserSlide from "../../components/molecules/UserSlide/UserSlide";
+import Preloader from "../../components/atoms/Preloader/Preloader";
+import RepoSlide from "../../components/molecules/RepoSlide/RepoSlide";
+import Error from "../../components/atoms/Error/Error";
 
 export const RepoFinder = () => {
   const {
@@ -21,6 +28,14 @@ export const RepoFinder = () => {
     repoError,
     setRepoError,
   } = useRepoByName();
+
+  const {
+    getPopularRepos,
+    popularRepos,
+    popularReposError,
+    setPopularReposRepoError,
+  } = usePopularRepo();
+
   const [localLoading, setLocalLoading] = useState<boolean>(false);
   const [repos, setRepos] = useState<ExtendedRepoType[]>([]);
 
@@ -60,6 +75,11 @@ export const RepoFinder = () => {
     }
   }, [repo]);
 
+  useEffect(() => {
+    setPopularReposRepoError(null);
+    getPopularRepos();
+  }, []);
+
   useScrollToTop();
 
   return (
@@ -74,6 +94,18 @@ export const RepoFinder = () => {
             repo={repos}
           />
         </div>
+        {popularReposError && <Error child={popularReposError}></Error>}
+        {popularRepos.length >= 2 ? (
+          <Slider
+            data={popularRepos}
+            renderItem={(repo) => <RepoSlide repo={repo} />}
+            // renderItem={(author) => <UserSlide user={author} />}
+            perView={{ small: 1, medium: 2, large: 3 }}
+            className={styles.slider}
+          />
+        ) : (
+          <Preloader />
+        )}
       </ContentContainer>
     </div>
   );

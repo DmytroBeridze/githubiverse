@@ -11,11 +11,12 @@ import { RandomAuthorsContext } from "../../context/RandomAuthorsContext";
 import Slider from "../../components/organisms/Slider/Slider";
 import UserSlide from "../../components/molecules/UserSlide/UserSlide";
 import Preloader from "../../components/atoms/Preloader/Preloader";
+import Error from "../../components/atoms/Error/Error";
 
 export const DevFinder = () => {
   const {
     authors,
-    error,
+    randomIssuesError,
     loading: authorLoading,
   } = useContext(RandomAuthorsContext);
 
@@ -74,18 +75,22 @@ export const DevFinder = () => {
           repoError={repoError}
           repoLoading={repoLoading}
         />
-      </ContentContainer>
 
-      {authors.length >= 2 ? (
-        <Slider
-          data={authors}
-          renderItem={(author) => <UserSlide user={author} />}
-          perView={2}
-          className={styles.slider}
-        />
-      ) : (
-        <Preloader />
-      )}
+        {randomIssuesError && (
+          <Error child={randomIssuesError} className={styles.errorContent} />
+        )}
+
+        {authors.length >= 2 ? (
+          <Slider
+            data={authors}
+            renderItem={(author) => <UserSlide user={author} />}
+            perView={{ medium: 2, large: 2 }}
+            className={styles.slider}
+          />
+        ) : (
+          <Preloader />
+        )}
+      </ContentContainer>
     </div>
   );
 };

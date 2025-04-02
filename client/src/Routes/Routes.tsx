@@ -13,7 +13,8 @@ const AppRoutes = () => {
       <Route path="devfinder" element={<DevFinder />}></Route>
       <Route path="repofinder" element={<RepoFinder />}></Route>
       <Route path="issuefinder" element={<IssueFinder />}></Route>
-      <Route path="issuesPage" element={<IssuesPage />}></Route>
+      <Route path="repofinder/issuesPage" element={<IssuesPage />}></Route>
+      {/* <Route path="issuesPage" element={<IssuesPage />}></Route> */}
     </Routes>
   );
 };

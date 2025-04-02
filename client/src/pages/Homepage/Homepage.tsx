@@ -7,10 +7,12 @@ import { PopupContext } from "../../context/PopupContext";
 import { FormTypeContext } from "../../context/FormTypeContext";
 import LatestIssues from "../../components/organisms/LatestIssues/LatestIssues";
 import RandomAuthors from "../../components/organisms/RandomAuthors/RandomAuthors";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
 
 export const Homepage = () => {
   const popupContext = useContext(PopupContext);
   const formTypeContext = useContext(FormTypeContext);
+  useScrollToTop();
 
   if (!popupContext || !formTypeContext) {
     console.error(
@@ -20,7 +22,6 @@ export const Homepage = () => {
   }
   const { popupHandler, isOpenPopup } = popupContext;
   const { setFormType } = formTypeContext;
-
   return (
     <div className={styles.homepage}>
       <QuizInfo />

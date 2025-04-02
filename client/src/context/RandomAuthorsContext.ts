@@ -3,13 +3,13 @@ import { User } from "../types/userTypes";
 
 interface RandomAuthorsContextType {
   authors: User[];
-  error: string | null;
+  randomIssuesError: string | null;
   loading: boolean;
 }
 
 const defaultContext: RandomAuthorsContextType = {
   authors: [],
-  error: null,
+  randomIssuesError: null,
   loading: false,
 };
 

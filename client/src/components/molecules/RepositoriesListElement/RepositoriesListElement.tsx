@@ -41,7 +41,7 @@ const RepositoriesListElement: FC<RepositoriesListElementProps> = ({
 
   useEffect(() => {
     if (repoIssues.length > 0) {
-      navigate("/issuesPage", { state: { repoIssues: repoIssues } });
+      navigate("/repofinder/issuesPage", { state: { repoIssues: repoIssues } });
     }
   }, [repoIssues]);
 

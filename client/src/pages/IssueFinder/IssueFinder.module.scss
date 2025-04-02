@@ -1,8 +1,4 @@
-.repoFinder {
+.issueFinder {
   padding: clamp(1rem, -1.227rem + 7vw, 7.125rem) 0;
   background-color: var(--secondary-background);
-
-  & .slider {
-    margin-top: 30px;
-  }
 }

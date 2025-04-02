@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useIssueService from "../../../servises/useIssueService";
 import styles from "./IssuesPage.module.scss";
 import { useLocation } from "react-router";
@@ -10,6 +10,7 @@ import { PrimaryButton } from "../../../components/atoms/PrimaryButton";
 import { useParams } from "react-router";
 
 const IssuesPage = () => {
+  const issueRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const issues = location.state.repoIssues;
   const [filteredIssues, setFilteredIssues] = useState<Issues[]>(issues);
@@ -23,12 +24,14 @@ const IssuesPage = () => {
   };
 
   useEffect(() => {
-    setFilteredIssues(issues);
-  }, [issues]);
+    if (issueRef.current) {
+      issueRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
-  useScrollToTop();
+  // useScrollToTop();
   return (
-    <div className={styles.issuesPage}>
+    <div className={styles.issuesPage} ref={issueRef}>
       <ContentContainer>
         <div className={styles.buttonsWrapper}>
           <PrimaryButton

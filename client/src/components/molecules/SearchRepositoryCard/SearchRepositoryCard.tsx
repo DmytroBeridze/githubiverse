@@ -40,10 +40,15 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
   }, []);
 
   const redirect = () => {
-    navigate(`/issuesPage`, {
+    navigate(`/repofinder/issuesPage`, {
       state: { repoIssues: repoIssues },
     });
   };
+  // const redirect = () => {
+  //   navigate(`/issuesPage`, {
+  //     state: { repoIssues: repoIssues },
+  //   });
+  // };
 
   return (
     <div className={styles.searchRepositoryCard}>
