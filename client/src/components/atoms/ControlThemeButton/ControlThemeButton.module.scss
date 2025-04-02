@@ -11,14 +11,14 @@
   &:hover {
     span,
     span svg {
-      color: $secondary-gray-text-color;
+      color: var(--primary-icon-hover-color);
     }
   }
 
   & span,
   & span svg {
     transition: 0.2s;
-    color: $primary-gray-text-color;
+    color: var(--primary-text-color);
   }
 
   & span {

@@ -11,7 +11,8 @@ import { RandomAuthorsContext } from "../../../context/RandomAuthorsContext";
 
 const RandomAuthors = () => {
   const [shuffledWithTitles, setShuffledWithTitles] = useState<NewUser[]>([]);
-  const { authors, error, loading } = useContext(RandomAuthorsContext);
+  const { authors, randomIssuesError, loading } =
+    useContext(RandomAuthorsContext);
 
   useEffect(() => {
     if (authors.length > 0) {
@@ -21,9 +22,11 @@ const RandomAuthors = () => {
 
   return (
     <div>
-      {error && <Error child={error} className={styles.errorContent} />}
+      {randomIssuesError && (
+        <Error child={randomIssuesError} className={styles.errorContent} />
+      )}
 
-      {!error && !loading ? (
+      {!randomIssuesError && !loading ? (
         <div className={styles.randomAuthorsContainer}>
           <ContentContainer>
             <div className={styles.randomAuthors}>

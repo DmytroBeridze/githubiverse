@@ -33,6 +33,9 @@ const useSearchService = () => {
   } = useApi();
 
   const [randomIssues, setRandomIssues] = useState<Issues[]>([]);
+  const [randomIssuesError, setRandomIssuesError] = useState<string | null>(
+    null
+  );
   const [authors, setAuthors] = useState<User[]>([]);
 
   //--------------------------------------- random issue
@@ -127,6 +130,10 @@ const useSearchService = () => {
 
       setAuthors(transformData);
     } catch (error) {
+      if (error instanceof Error) {
+        setRandomIssuesError(error.message);
+      }
+
       console.log("Fecth error ");
     }
   };
@@ -143,6 +150,8 @@ const useSearchService = () => {
     getComments,
     getRandomUsers,
     authors,
+    randomIssuesError,
+    setRandomIssuesError,
   };
 };
 

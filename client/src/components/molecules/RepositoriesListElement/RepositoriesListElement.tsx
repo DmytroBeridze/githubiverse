@@ -1,9 +1,11 @@
 import styles from "./RepositoriesListElement.module.scss";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { RepoType } from "../../../types/repoTypes";
 import Text from "../../atoms/Text/Text";
 import { dateFormatter } from "../../../utils/dateFormatter";
 import { PrimaryButton } from "../../atoms/PrimaryButton";
+import { useNavigate } from "react-router-dom";
+import useIssueService from "../../../servises/useIssueService";
 
 interface RepositoriesListElementProps {
   repo: RepoType;
@@ -12,6 +14,8 @@ interface RepositoriesListElementProps {
 const RepositoriesListElement: FC<RepositoriesListElementProps> = ({
   repo,
 }) => {
+  const navigate = useNavigate();
+  const { issuesByRepo, repoIssues } = useIssueService();
   const {
     name,
     description,
@@ -29,6 +33,17 @@ const RepositoriesListElement: FC<RepositoriesListElementProps> = ({
     month: "2-digit",
     year: "numeric",
   });
+
+  const url = issuesUrl.replace(/{.*}/, "?state=all");
+  const redirect = async () => {
+    await issuesByRepo(url);
+  };
+
+  useEffect(() => {
+    if (repoIssues.length > 0) {
+      navigate("/repofinder/issuesPage", { state: { repoIssues: repoIssues } });
+    }
+  }, [repoIssues]);
 
   return (
     <div className={styles.repositoriesListElement}>
@@ -70,6 +85,16 @@ const RepositoriesListElement: FC<RepositoriesListElementProps> = ({
             {openIssues}
           </Text>
         </li>
+
+        {openIssues > 0 ? (
+          <li>
+            <PrimaryButton onClick={redirect} className={styles.issueShowBtn}>
+              <Text as="span" variant={"litle"}>
+                Show issues
+              </Text>
+            </PrimaryButton>
+          </li>
+        ) : null}
       </ul>
 
       <a href={htmlUrl}>

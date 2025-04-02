@@ -2,7 +2,7 @@
 
 .issuesPage {
   //   background-color: var(--primary-background);
-  padding: clamp(1rem, -1.227rem + 7vw, 7.125rem);
+  padding: clamp(1rem, -1.227rem + 7vw, 7.125rem) 0;
   background-color: var(--secondary-background);
 
   & .buttonsWrapper {

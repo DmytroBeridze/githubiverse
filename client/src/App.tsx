@@ -25,16 +25,24 @@ import useSearchService from "./servises/useSearchService";
 import { RandomAuthorsContext } from "./context/RandomAuthorsContext";
 
 function App() {
-  const [theme, setTheme] = useState<boolean>(false);
+  const [theme, setTheme] = useState<boolean>(true);
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const [formType, setFormType] = useState<"signup" | "login" | "">("");
   const [nickName, setNickName] = useState<string | null>("");
 
-  const { getRandomUsers, authors, error, clearError, loading } =
-    useSearchService();
+  const {
+    getRandomUsers,
+    authors,
+    error,
+    clearError,
+    loading,
+    randomIssuesError,
+    setRandomIssuesError,
+  } = useSearchService();
 
   useEffect(() => {
     clearError();
+    setRandomIssuesError(null);
     getRandomUsers();
   }, []);
 
@@ -59,7 +67,7 @@ function App() {
             <NickNameContext.Provider value={{ setNickName, nickName }}>
               <FormTypeContext.Provider value={{ setFormType, formType }}>
                 <RandomAuthorsContext.Provider
-                  value={{ authors, error, loading }}
+                  value={{ authors, randomIssuesError, loading }}
                 >
                   <Header />
                   <DecorationPannel decorElements={decorElements} />

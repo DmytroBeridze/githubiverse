@@ -1,0 +1,42 @@
+@import "../../../styles/variables.scss";
+
+.repoSlide {
+  background-color: var(--general-bacground);
+  height: clamp(7.5rem, 5.682rem + 9.09vw, 12.5rem);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  user-select: none;
+  color: var(--primary-text-color);
+  padding: 10px;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  & .slideWrapper {
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    // user-select: none;
+    // color: var(--primary-text-color);
+    // &:focus,
+    // &:active {
+    //   outline: none;
+    // }
+
+    & .name,
+    & .desc {
+      text-align: center;
+      font-family: $font-heading;
+      white-space: norm;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    & .desc {
+      font-family: $font-primary;
+    }
+  }
+}

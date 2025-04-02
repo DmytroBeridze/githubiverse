@@ -8,6 +8,16 @@
     flex-direction: column;
   }
 
+  & .issueShowBtn {
+    padding: 8px 10px;
+    background-color: var(--popup-button-color);
+    color: $primary-white-text-color;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: var(--popup-button-hover-color);
+    }
+  }
+
   & .button {
     height: 100%;
     background-color: var(--popup-button-color);

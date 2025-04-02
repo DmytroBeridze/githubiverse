@@ -5,6 +5,7 @@ import { FC, useEffect } from "react";
 import Text from "../../atoms/Text/Text";
 import { useNavigate } from "react-router";
 import useIssueService from "../../../servises/useIssueService";
+import { dateFormatter } from "../../../utils/dateFormatter";
 
 interface SearchRepositoryCardProps {
   data: ExtendedRepoType;
@@ -28,14 +29,26 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
 
   const { issuesByRepo, repoIssues, repoIssuesError, error, loading } =
     useIssueService();
+  const dateFormatted = dateFormatter(createdAt, "en-US", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   useEffect(() => {
     issuesByRepo(allIssuesUrl);
   }, []);
 
   const redirect = () => {
-    navigate("/issuesPage", { state: { repoIssues: repoIssues } });
+    navigate(`/repofinder/issuesPage`, {
+      state: { repoIssues: repoIssues },
+    });
   };
+  // const redirect = () => {
+  //   navigate(`/issuesPage`, {
+  //     state: { repoIssues: repoIssues },
+  //   });
+  // };
 
   return (
     <div className={styles.searchRepositoryCard}>
@@ -56,17 +69,21 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
 
       {/* repo */}
       <div className={styles.repoInfo}>
-        <Text as="h4" variant="subtitle">
+        <Text as="h4" variant="subtitle" className={styles.name}>
           {name}
         </Text>
-        <Text as="span" variant="body">
-          {createdAt}
+        <Text as="span" variant="litle">
+          {dateFormatted}
         </Text>
-        <Text as="p" variant="body">
-          {description}
-        </Text>
+
+        {description && (
+          <Text as="p" variant="body">
+            {description}
+          </Text>
+        )}
+
         <div className={styles.language}>
-          <Text as="span" variant="body">
+          <Text as="span" variant="litle" className={styles.label}>
             language:
           </Text>
           <Text as="span" variant="body">
@@ -74,7 +91,7 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
           </Text>
         </div>
         <div className={styles.watchers}>
-          <Text as="span" variant="body">
+          <Text as="span" variant="litle" className={styles.label}>
             watchers:
           </Text>
           <Text as="span" variant="body">
@@ -82,13 +99,13 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
           </Text>
         </div>
         <a href={htmlUrl}>
-          <Text as="p" variant="subtitle">
+          <Text as="p" variant="body">
             GitHub
           </Text>
         </a>
         {repoIssues.length > 0 ? (
-          <div onClick={redirect}>
-            <Text as="p" variant="subtitle">
+          <div onClick={redirect} className={styles.redirect}>
+            <Text as="p" variant="body">
               Watch Issues
             </Text>
           </div>
