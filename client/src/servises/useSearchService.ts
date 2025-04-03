@@ -1,23 +1,12 @@
-/*
-Это будет единый сервис, который будет включать несколько методов:
-
-    getRepoByName(repoName: string): Для поиска репозитория по названию.
-    getIssuesForRepo(repoName: string): Для поиска issues в конкретном репозитории.
-
-
-*/
 import { useState } from "react";
 import { useApi } from "../hooks/useApi";
 import {
   transformGitComments,
   transformGitIssue,
-  transformRepo,
   transformUsers,
-  transformUserWithRepo,
 } from "../utils/dataTransformers";
 import { GitComments, GitIssues, Issues } from "../types/issueTypes";
-import { User, UserWithRepo } from "../types/userTypes";
-import { RepoType, GitRepoType } from "../types/repoTypes";
+import { User } from "../types/userTypes";
 
 const useSearchService = () => {
   const token = process.env.REACT_APP_TOKEN;
@@ -43,72 +32,48 @@ const useSearchService = () => {
     const URL =
       "https://api.github.com/search/issues?q=is:unlocked&sort=comments&order=desc&per_page=10&page=1";
 
-    // const URL =
-    // "https://api.github.com/search/issues?q=is:unlocked+created:>2024-01-01&sort=created&order=desc&per_page=20&page=1";
-    // !------------видалити Authorization: `token ${token}`
-    const response = await sendRequest(URL, "GET", null, {
-      Authorization: `token ${token}`,
-    });
-    if (response) {
-      const filtaredData = response.items.filter(
-        (elem: GitIssues) =>
-          elem.user.type === "User" &&
-          !["dependabot", "github-actions"].includes(elem.user.login)
-      );
-      const transformData = filtaredData.map((elem: GitIssues) =>
-        transformGitIssue(elem)
-      );
-      setRandomIssues(transformData);
+    try {
+      const response = await sendRequest(URL);
+      if (response) {
+        const filtaredData = response.items.filter(
+          (elem: GitIssues) =>
+            elem.user.type === "User" &&
+            !["dependabot", "github-actions"].includes(elem.user.login)
+        );
+        const transformData = filtaredData.map((elem: GitIssues) =>
+          transformGitIssue(elem)
+        );
+        setRandomIssues(transformData);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
   // -----------------------------------------comments
   const getComments = async (URL: string) => {
-    const response = await sendRequest(URL);
+    try {
+      const response = await sendRequest(URL);
 
-    if (response) {
-      const transformData = response.map((elem: GitComments) =>
-        transformGitComments(elem)
-      );
+      if (response) {
+        const transformData = response.map((elem: GitComments) =>
+          transformGitComments(elem)
+        );
 
-      return transformData;
+        return transformData;
+      }
+    } catch (error) {
+      console.error(error);
     }
     return [];
   };
 
   // ---------------------------------------random users
-  // const getUsers = async () => {
-  //   const URL =
-  //     "https://api.github.com/search/users?q=followers:>10&per_page=5";
-
-  //   const response = await sendRequest(URL);
-
-  //   if (!response || !response.items) {
-  //     console.error("Error after get userlist");
-  //   }
-
-  //   try {
-  //     const detailed = await Promise.all(
-  //       response.items.map((user: { url: string }) => {
-  //         const userData = sendRequest(user.url);
-  //         return userData ?? null; // Если `sendRequest` вернёт undefined, заменяем на `null`
-  //       })
-  //     );
-  //     const validUsers = detailed.filter((user) => user !== null);
-  //     setAuthors(validUsers);
-  //   } catch (error) {
-  //     console.error("Error after get userlist");
-  //   }
-  // };
-
   const getRandomUsers = async () => {
     const URL =
       "https://api.github.com/search/users?q=followers:>100&per_page=5";
-    // !------------видалити Authorization: `token ${token}`
     try {
-      const response = await sendRequest(URL, "GET", null, {
-        Authorization: `token ${token}`,
-      });
+      const response = await sendRequest(URL);
 
       if (!response || !response.items) {
         console.log("No such users");
@@ -121,7 +86,6 @@ const useSearchService = () => {
 
       const usersExtended = await Promise.all(usersPromises);
 
-      // Перевірка якщо API поверне некоректні дані
       const validUsers = usersExtended.filter(
         (user) => user !== null && user !== undefined
       );

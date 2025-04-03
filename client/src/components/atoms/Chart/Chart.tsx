@@ -25,20 +25,12 @@ const Chart: FC<ChartProps> = ({
 
   const style = {
     top: "60%",
-    // top: "63%",
     lineHeight: "20px",
     fontSize: `${fontSize}px`,
   };
 
-  // const CustomLabel = ({ name, value, percent, x, y }: any) => (
-  //   <text x={x} y={y} textAnchor="middle" fontSize="12" fill="#000">
-  //     {name}: {value} ({(percent * 100).toFixed(0)}%)
-  //   </text>
-  // );
-
   return (
     <ResponsiveContainer width="100%" height={containerHeight}>
-      {/* <ResponsiveContainer width="100%" height={285}> */}
       <PieChart width={250} height={180}>
         <Pie
           data={data}
@@ -47,9 +39,7 @@ const Chart: FC<ChartProps> = ({
           outerRadius={outerRadius}
           innerRadius={innerRadius}
           dataKey="value"
-          // label={CustomLabel}
           label={outerRadius > 38 ? { fontSize: "10" } : undefined}
-          //   labelLine={false}
           stroke="none"
         >
           {data.map((entry, index) => (

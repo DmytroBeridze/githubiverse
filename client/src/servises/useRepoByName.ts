@@ -13,13 +13,9 @@ export const useRepoByName = () => {
 
   const getRepoByName = async (name: string) => {
     const URL = `https://api.github.com/search/repositories?q=${name}&per_page=5`;
-    // const URL = `https://api.github.com/search/repositories?q=githubiverse&per_page=5`;
 
-    // !------------видалити Authorization: `token ${token}`
     try {
-      const response = await sendRequest(URL, "GET", null, {
-        Authorization: `token ${token}`,
-      });
+      const response = await sendRequest(URL);
 
       if (!response || !response.items || response.items.length === 0) {
         throw new Error("No such this repo");

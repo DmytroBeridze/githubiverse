@@ -1,9 +1,6 @@
 import { Issues } from "../../../types/issueTypes";
 import { UserWithRepo } from "../../../types/userTypes";
-import Chart from "../../atoms/Chart/Chart";
 import { PrimaryButton } from "../../atoms/PrimaryButton";
-import Text from "../../atoms/Text/Text";
-import UserAvatar from "../../atoms/UserAvatar/UserAvatar";
 import UserDetails from "../UserDetails/UserDetails";
 import UserSummary from "../UserSummary/UserSummary";
 import styles from "./UserCard.module.scss";

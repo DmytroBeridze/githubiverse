@@ -23,9 +23,9 @@
   height: 100vh;
   background-color: var(--primary-background);
   position: relative;
+  overflow-y: auto;
 
   & > ul {
-    // width: 400px;
     position: absolute;
     top: 20%;
     left: 0;

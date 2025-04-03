@@ -19,7 +19,6 @@ const RepositoriesListElement: FC<RepositoriesListElementProps> = ({
   const {
     name,
     description,
-    id,
     createdAt,
     htmlUrl,
     language,

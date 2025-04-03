@@ -9,13 +9,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-
   background-color: $transparent-dark-background-color;
-  // background-color: white;
-
   visibility: hidden;
   opacity: 0;
   transition: 0.3s;
+  z-index: 999;
   &.open {
     opacity: 1;
     visibility: visible;

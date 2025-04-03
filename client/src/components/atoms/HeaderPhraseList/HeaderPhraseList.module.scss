@@ -9,7 +9,6 @@
     margin-top: 14px;
   }
   @media (max-width: 480px) {
-    // margin-top: 10px;
     display: none;
   }
 
@@ -18,9 +17,5 @@
     justify-content: space-between;
     gap: 5px;
     list-style: none;
-
-    // @media (max-width: 480px) {
-    //   flex-direction: column;
-    // }
   }
 }

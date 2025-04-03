@@ -16,7 +16,6 @@ type DecorName =
 
 interface DecorationPannelProps {
   decorElements: readonly DecorName[];
-  // decorElements: string[];
   type?: string;
 }
 
@@ -31,10 +30,8 @@ export const DecorationPannel = ({
   const { theme } = themeContext;
   return (
     <div className={` ${styles.decorationPannelContainer} ${styles[type]}`}>
-      {/* <div className={` ${styles.decorationPannelContainer}`}> */}
       <ContentContainer>
         <ul className={styles.decorationPannel}>
-          {/* <ul className={` ${styles[type]}`}> */}
           {decorElements.map((elem, i) => (
             <li key={i}>
               <Decor

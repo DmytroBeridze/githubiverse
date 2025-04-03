@@ -4,7 +4,6 @@
   background-color: $primary-gray-color;
   padding: 0 10px;
   overflow: hidden;
-  // transition: height 0.3s, padding 0.3s ease-out;
   font-family: $font-primary;
   font-size: 14px;
   &.open {
@@ -25,11 +24,6 @@
     }
   }
 
-  // & .titleWrapper {
-  //   border: 1px solid red;
-  //   max-width: 1000px;
-  // }
-
   & .titleScroll {
     margin-bottom: 10px;
     padding: 0 30px 0 0;
@@ -40,19 +34,13 @@
     font-weight: 700;
     max-width: 1000px;
     max-height: 120px;
-    // overflow-y: auto;
     white-space: normal;
     word-break: break-word;
     overflow-wrap: break-word;
-    // padding: 10px 10px 10px 0;
   }
   & .created {
     font-size: clamp(0.625rem, 0.534rem + 0.45vw, 0.875rem);
   }
-
-  // & a {
-  //   flex: 1 1 20%;
-  // }
 
   & .button {
     font-size: clamp(0.625rem, 0.534rem + 0.45vw, 0.875rem);
@@ -64,7 +52,6 @@
     &:hover {
       background-color: $secondary-gray-text-color;
       background-color: var(--primary-background);
-      // background-color: $text-warning-color;
     }
   }
 

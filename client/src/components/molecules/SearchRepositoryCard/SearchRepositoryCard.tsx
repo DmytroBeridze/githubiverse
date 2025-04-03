@@ -27,8 +27,7 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
   } = data;
   const allIssuesUrl = issuesUrl.replace(/{.*}/, "?state=all");
 
-  const { issuesByRepo, repoIssues, repoIssuesError, error, loading } =
-    useIssueService();
+  const { issuesByRepo, repoIssues } = useIssueService();
   const dateFormatted = dateFormatter(createdAt, "en-US", {
     day: "2-digit",
     month: "2-digit",
@@ -44,11 +43,6 @@ const SearchRepositoryCard: FC<SearchRepositoryCardProps> = ({ data }) => {
       state: { repoIssues: repoIssues },
     });
   };
-  // const redirect = () => {
-  //   navigate(`/issuesPage`, {
-  //     state: { repoIssues: repoIssues },
-  //   });
-  // };
 
   return (
     <div className={styles.searchRepositoryCard}>

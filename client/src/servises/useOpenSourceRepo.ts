@@ -4,7 +4,6 @@ import { transformExtendedRepo } from "../utils/dataTransformers";
 import { ExtendedGitRepoType, ExtendedRepoType } from "../types/repoTypes";
 
 const useOpenSourceRepo = () => {
-  const token = process.env.REACT_APP_TOKEN;
   const { sendRequest, loading } = useApi();
   const [extendedRepo, setExtendedRepo] = useState<ExtendedRepoType[]>([]);
   const [extendedRepoError, setExtendedRepoError] = useState<string | null>(
@@ -12,14 +11,9 @@ const useOpenSourceRepo = () => {
   );
 
   const getOpenSourceRepo = async (language: string) => {
-    console.log(language);
-
     const URL = `https://api.github.com/search/repositories?q=language:${language}+is:public&sort=stars`;
-    // !------------видалити Authorization: `token ${token}`
     try {
-      const response = await sendRequest(URL, "GET", null, {
-        Authorization: `token ${token}`,
-      });
+      const response = await sendRequest(URL);
 
       if (!response || response.items === 0)
         setExtendedRepoError("No such repo");

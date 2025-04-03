@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import useIssueService from "../../../servises/useIssueService";
 import styles from "./IssuesPage.module.scss";
 import { useLocation } from "react-router";
 import { Issues } from "../../../types/issueTypes";
 import Accordion from "../../../components/organisms/Accordion/Accordion";
 import { ContentContainer } from "../../../components/organisms/ContentContainer";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import { PrimaryButton } from "../../../components/atoms/PrimaryButton";
-import { useParams } from "react-router";
 
 const IssuesPage = () => {
   const issueRef = useRef<HTMLDivElement | null>(null);
@@ -29,7 +26,6 @@ const IssuesPage = () => {
     }
   }, []);
 
-  // useScrollToTop();
   return (
     <div className={styles.issuesPage} ref={issueRef}>
       <ContentContainer>

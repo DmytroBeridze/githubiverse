@@ -2,16 +2,10 @@
 
 .userCard {
   width: 100%;
-  // min-height: 600px;
   background-color: var(--primary-background);
   border-radius: 10px;
   padding: clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
   margin-top: 20px;
-  // display: flex;
-  // gap: 20px;
-  // @media (max-width: 768px) {
-  //   flex-direction: column;
-  // }
 }
 
 .userCardContainer {

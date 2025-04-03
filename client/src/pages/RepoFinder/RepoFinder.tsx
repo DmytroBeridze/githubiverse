@@ -17,17 +17,8 @@ import RepoSlide from "../../components/molecules/RepoSlide/RepoSlide";
 import Error from "../../components/atoms/Error/Error";
 
 export const RepoFinder = () => {
-  const {
-    clearError,
-    clearMessage,
-    error,
-    getRepoByName,
-    loading,
-    message,
-    repo,
-    repoError,
-    setRepoError,
-  } = useRepoByName();
+  const { getRepoByName, loading, repo, repoError, setRepoError } =
+    useRepoByName();
 
   const {
     getPopularRepos,
@@ -90,16 +81,16 @@ export const RepoFinder = () => {
             validationError={validationError}
             onSubmit={onSubmit}
             error={repoError}
-            loading={loading || localLoading}
+            loading={loading}
             repo={repos}
           />
         </div>
         {popularReposError && <Error child={popularReposError}></Error>}
+
         {popularRepos.length >= 2 ? (
           <Slider
             data={popularRepos}
             renderItem={(repo) => <RepoSlide repo={repo} />}
-            // renderItem={(author) => <UserSlide user={author} />}
             perView={{ small: 1, medium: 2, large: 3 }}
             className={styles.slider}
           />

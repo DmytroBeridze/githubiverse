@@ -1,5 +1,5 @@
 import styles from "./DevFinder.module.scss";
-import { FC, useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ContentContainer } from "../../components/organisms/ContentContainer";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
 import useIssueService from "../../servises/useIssueService";

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import useAuthForm from "../../../hooks/useAuthForm";
 import Icon from "../../atoms/Icon/Icon";
 import { PrimaryButton } from "../../atoms/PrimaryButton";
@@ -6,6 +6,9 @@ import { PrimaryInput } from "../../atoms/PrimaryInput";
 import styles from "./SearchPanel.module.scss";
 import useUserSearch from "../../../servises/useUserSearch";
 import Preloader from "../../atoms/Preloader/Preloader";
+import { PopupContext } from "../../../context/PopupContext";
+import localStorageUtils from "../../../utils/localStorageUtils";
+import { FormTypeContext } from "../../../context/FormTypeContext";
 
 interface SearchPanelProps {
   onSubmit: (name: string) => void;
@@ -24,9 +27,20 @@ const SearchPanel: FC<SearchPanelProps> = ({
   loading,
   placeholder,
 }) => {
+  const popupContext = useContext(PopupContext);
+  const { popupHandler, isOpenPopup } = popupContext;
+
   const { handleNameChange, name } = useAuthForm();
+  const formTypeContext = useContext(FormTypeContext);
+  const { setFormType } = formTypeContext;
 
   const hendleSubmit = () => {
+    if (!localStorageUtils.getData("token")) {
+      popupHandler();
+      setFormType("signup");
+      return;
+    }
+
     onSubmit(name);
   };
 
@@ -45,7 +59,6 @@ const SearchPanel: FC<SearchPanelProps> = ({
           name="user"
           className={styles.input}
           placeholder={placeholder || "name..."}
-          // placeholder="author name..."
           onChange={(e) => handleNameChange(e)}
           error={!!validationError.name}
           autoComplete="off"

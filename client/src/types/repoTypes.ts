@@ -29,12 +29,10 @@ type Owner = {
   type: string;
   id: number;
 };
+
 export type ExtendedGitRepoType = Omit<GitRepoType, "open_issues"> & {
   owner: Owner;
 };
-// export type ExtendedGitRepoType = Omit<RepoType, "open_issues"> & {
-//   owner: Owner;
-// };
 
 export type ExtendedRepoType = {
   id: number;

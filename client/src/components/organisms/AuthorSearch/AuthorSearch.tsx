@@ -1,5 +1,3 @@
-import styles from "./AuthorSearch.module.scss";
-
 import { Issues } from "../../../types/issueTypes";
 import { UserWithRepo } from "../../../types/userTypes";
 import SearchPanel from "../../molecules/SearchPanel/SearchPanel";

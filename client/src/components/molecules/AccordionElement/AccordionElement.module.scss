@@ -40,7 +40,6 @@
     display: flex;
     gap: 10px;
     font-size: clamp(0.5rem, 0.364rem + 0.68vw, 0.875rem);
-    // font-size: 14px;
     @media (max-width: 650px) {
       flex-direction: column;
     }

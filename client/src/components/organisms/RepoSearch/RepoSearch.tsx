@@ -1,7 +1,5 @@
-import styles from "./RepoSearch.scss";
 import SearchPanel from "../../molecules/SearchPanel/SearchPanel";
-import { useRepoByName } from "../../../servises/useRepoByName";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import SearchRepositoriesList from "../../molecules/SearchRepositoriesList/SearchRepositoriesList";
 import { ExtendedRepoType } from "../../../types/repoTypes";
 

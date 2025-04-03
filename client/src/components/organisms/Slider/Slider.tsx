@@ -50,7 +50,6 @@ const Slider = <T,>({
       }
     }
   }, []);
-  // -----custom arrows---//
 
   return (
     <div className={`${styles.sliderWrapper} ${className}`}>

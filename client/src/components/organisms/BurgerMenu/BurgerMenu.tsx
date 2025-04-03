@@ -1,5 +1,4 @@
 import styles from "./BurgerMenu.module.scss";
-import { links } from "../../atoms/constants";
 import { BurgerMenuToggle } from "../../molecules/BurgerMenuToggle";
 import { NavbarProps } from "../Navbar";
 import { FC } from "react";

@@ -24,9 +24,6 @@ const RandomUserCard: FC<RandomUserCardProps> = ({ author }) => {
     followers,
     publicRepos,
     github,
-    bio,
-    company,
-    type,
   } = author;
 
   const formattedDate = dateFormatter(createdAt, "en-US", {

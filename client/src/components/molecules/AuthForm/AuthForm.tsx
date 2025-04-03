@@ -1,9 +1,9 @@
+import styles from "./AuthForm.module.scss";
 import { FC, useEffect, useState } from "react";
 import Icon from "../../atoms/Icon/Icon";
 import { PrimaryButton } from "../../atoms/PrimaryButton";
 import { PrimaryInput } from "../../atoms/PrimaryInput";
 import { RegistrationPopupProps } from "../../organisms/RegistrationPopup";
-import styles from "./AuthForm.module.scss";
 import useAuthForm from "../../../hooks/useAuthForm";
 import { validationUtils } from "../../../utils/validationUtils";
 
@@ -24,23 +24,21 @@ export const AuthForm: FC<AuthFormProps> = ({ popupHandler, formType }) => {
     name,
     pass,
     user,
-    loading,
     error,
-    status,
     message,
     clearError,
     clearMessage,
   } = useAuthForm();
 
   useEffect(() => {
-    if (error) {
+    if (error || message) {
       const timer = setTimeout(() => {
         clearError();
         clearMessage();
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [error, clearError]);
+  }, [error, clearError, message]);
 
   // validation
   const handleValidation = async () => {
@@ -107,6 +105,7 @@ export const AuthForm: FC<AuthFormProps> = ({ popupHandler, formType }) => {
       ) : null}
 
       {error && <div className={styles.error}>{error}</div>}
+
       {!error &&
         !validationErrors.pass &&
         !validationErrors.name &&

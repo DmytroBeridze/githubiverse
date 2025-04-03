@@ -16,15 +16,7 @@ const useIssueService = () => {
     null
   );
 
-  const {
-    sendRequest,
-    loading,
-    error,
-    status,
-    message,
-    clearError,
-    clearMessage,
-  } = useApi();
+  const { sendRequest, loading, error } = useApi();
 
   // ---------------------------------issues quantity
   const issuesQuantity = async (user: string) => {
@@ -36,11 +28,7 @@ const useIssueService = () => {
       while (true) {
         const issuesUrl = `https://api.github.com/search/issues?q=author:${user}+type:issue&per_page=100&page=${page}`;
 
-        // !------------видалити Authorization: `token ${token}`
-
-        const issues = await sendRequest(issuesUrl, "GET", null, {
-          Authorization: `token ${token}`,
-        });
+        const issues = await sendRequest(issuesUrl);
         if (!issues || !issues.items || issues.items.length === 0) break;
 
         const transform = Array.isArray(issues.items)
@@ -66,10 +54,7 @@ const useIssueService = () => {
     try {
       while (true) {
         const pullRequestsUrl = `https://api.github.com/search/issues?q=author:${user}+type:pr&per_page=100&page=${page}`;
-        // !------------видалити Authorization: `token ${token}`
-        const pullRequests = await sendRequest(pullRequestsUrl, "GET", null, {
-          Authorization: `token ${token}`,
-        });
+        const pullRequests = await sendRequest(pullRequestsUrl);
         if (
           !pullRequests ||
           !pullRequests.items ||
@@ -94,21 +79,22 @@ const useIssueService = () => {
 
   // ----------all issues from repo
   const issuesByRepo = async (url: string) => {
-    // !------------видалити Authorization: `token ${token}`
-    const response = await sendRequest(url, "GET", null, {
-      Authorization: `token ${token}`,
-    });
+    try {
+      const response = await sendRequest(url);
 
-    if (response.length === 0) {
-      setrepoIssuesErrorError("No such issues");
+      if (response.length === 0) {
+        setrepoIssuesErrorError("No such issues");
+      }
+
+      const transform = Array.isArray(response)
+        ? response.map((elem: GitIssues) => {
+            return transformGitIssue(elem);
+          })
+        : [];
+      setRepoIssues(transform);
+    } catch (error) {
+      console.error(error);
     }
-
-    const transform = Array.isArray(response)
-      ? response.map((elem: GitIssues) => {
-          return transformGitIssue(elem);
-        })
-      : [];
-    setRepoIssues(transform);
   };
 
   return {

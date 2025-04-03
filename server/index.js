@@ -27,7 +27,6 @@ const connect = async () => {
     );
 
     console.log("BD connected!");
-    // await User.syncIndexes();
     app.listen(PORT, () => {
       console.log(`Example app listening on port ${PORT}`);
     });

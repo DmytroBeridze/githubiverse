@@ -1,6 +1,4 @@
-import { FC, useEffect, useState } from "react";
-import Icon from "../../atoms/Icon/Icon";
-import { PrimaryButton } from "../../atoms/PrimaryButton";
+import { FC, useEffect } from "react";
 import { AuthForm } from "../../molecules/AuthForm/AuthForm";
 import styles from "./RegistrationPopup.module.scss";
 
@@ -30,7 +28,9 @@ export const RegistrationPopup: FC<RegistrationPopupProps> = ({
   return (
     <div
       className={`${styles.popup} ${isOpenBurger ? styles.open : ""}`}
-      onClick={popupHandler}
+      onClick={() => {
+        popupHandler();
+      }}
     >
       <AuthForm
         isOpenBurger={isOpenBurger}

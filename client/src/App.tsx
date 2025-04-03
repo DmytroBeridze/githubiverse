@@ -1,9 +1,4 @@
 import "overlayscrollbars/overlayscrollbars.css";
-import { Route, Routes } from "react-router-dom";
-import { Homepage } from "./pages/Homepage";
-import { DevFinder } from "./pages/DevFinder";
-import { RepoFinder } from "./pages/RepoFinder";
-import { IssueFinder } from "./pages/IssueFinder";
 import { ComponentContainer } from "./components/organisms/ComponentContainer";
 import { Header } from "./components/organisms/Header";
 import { DecorationPannel } from "./components/molecules/DecorationPannel";
@@ -33,7 +28,6 @@ function App() {
   const {
     getRandomUsers,
     authors,
-    error,
     clearError,
     loading,
     randomIssuesError,

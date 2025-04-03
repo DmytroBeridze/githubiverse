@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 .header {
   background-color: $light-background-color;
-  padding: 100px 0 0;
+  padding: clamp(1.25rem, -0.568rem + 9.09vw, 6.25rem) 0 0;
 
   & h1 {
     font-family: $font-heading;

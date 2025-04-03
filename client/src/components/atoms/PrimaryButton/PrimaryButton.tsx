@@ -3,7 +3,6 @@ import styles from "./PrimaryButton.module.scss";
 
 interface PrimaryButtonProps {
   children: ReactNode;
-  // onClick?: () => void;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   name?: string;

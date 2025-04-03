@@ -40,9 +40,6 @@
     margin: 0;
     font-size: clamp(0.875rem, 0.739rem + 0.68vw, 1.25rem);
     caret-color: var(--primary-text-color);
-    // @media (max-width: 600px) {
-    //   height: 40px;
-    // }
 
     &::placeholder {
       color: $primary-white-text-color;
@@ -62,8 +59,6 @@
     }
   }
   & .loader {
-    // justify-content: start;
-    // margin-left: 24px;
     @media (max-width: 600px) {
       justify-content: center;
     }

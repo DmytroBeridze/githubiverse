@@ -45,7 +45,6 @@
   max-height: 0px;
   transition: max-height 0.3s;
   &.active {
-    // max-height: 2000px;
     max-height: 500px;
     overflow: auto;
   }

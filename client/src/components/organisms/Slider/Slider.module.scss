@@ -4,10 +4,6 @@
   & svg {
     width: clamp(0.875rem, 0.648rem + 1.14vw, 1.5rem);
     height: clamp(0.875rem, 0.648rem + 1.14vw, 1.5rem);
-    // @media (max-width: 600px) {
-    //   width: 16px;
-    //   height: 16px;
-    // }
   }
 }
 

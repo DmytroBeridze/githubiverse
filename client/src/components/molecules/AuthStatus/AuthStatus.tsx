@@ -14,12 +14,6 @@ export const AuthStatus = () => {
   const formTypeContext = useContext(FormTypeContext);
   const nickNameContext = useContext(NickNameContext);
 
-  // if (!popupContext) {
-  //   console.error(
-  //     "ThemeContext is undefined. Make sure to wrap your app in ThemeProvider."
-  //   );
-  //   return null;
-  // }
   const { removeData } = localStorageUtils;
   const { popupHandler } = popupContext;
   const { setFormType } = formTypeContext;

@@ -23,23 +23,31 @@ export const useAuthService = () => {
 
   // registration
   const registerUser = async (data: UserDataType) => {
-    const url = `${URL}/auth/register`;
-    const response = await sendRequest(url, "POST", data);
+    try {
+      const url = `${URL}/auth/register`;
+      const response = await sendRequest(url, "POST", data);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // login
   const loginUser = async (data: UserDataType) => {
-    const url = `${URL}/auth/login`;
-    const response = await sendRequest(url, "POST", data);
+    try {
+      const url = `${URL}/auth/login`;
+      const response = await sendRequest(url, "POST", data);
 
-    if (response) {
-      setData("token", response.token);
-      setData("user", response.userName);
-      setNickName(response.userName);
+      if (response) {
+        setData("token", response.token);
+        setData("user", response.userName);
+        setNickName(response.userName);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
     }
-    return response;
   };
 
   return {

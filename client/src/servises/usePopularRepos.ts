@@ -4,33 +4,20 @@ import { GitRepoType, RepoType } from "../types/repoTypes";
 import { transformRepo } from "../utils/dataTransformers";
 
 // ------------getPopularRepos
-
 const usePopularRepo = () => {
-  const token = process.env.REACT_APP_TOKEN;
   const [popularRepos, setPopularRepos] = useState<RepoType[]>([]);
   const [popularReposError, setPopularReposRepoError] = useState<string | null>(
     null
   );
 
-  const {
-    sendRequest,
-    loading,
-    error,
-    status,
-    message,
-    clearError,
-    clearMessage,
-  } = useApi();
+  const { sendRequest, loading } = useApi();
 
   const getPopularRepos = async () => {
     const URL =
       "https://api.github.com/search/repositories?q=stars:>10000&sort=stars&order=desc";
-    // !------------видалити Authorization: `token ${token}`
 
     try {
-      const response = await sendRequest(URL, "GET", null, {
-        Authorization: `token ${token}`,
-      });
+      const response = await sendRequest(URL);
 
       if (!response || !response.items || response.items === 0) {
         setPopularReposRepoError("No such repository");
@@ -44,7 +31,7 @@ const usePopularRepo = () => {
       if (error instanceof Error) {
         setPopularReposRepoError(error.message);
       }
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -8,29 +8,21 @@ const useRepositoriesService = () => {
   const [repos, setRepos] = useState<RepoType[]>([]);
   const [repoError, setRepoError] = useState<string | null>(null);
 
-  const {
-    sendRequest,
-    loading,
-    error,
-    status,
-    message,
-    clearError,
-    clearMessage,
-  } = useApi();
+  const { sendRequest, loading } = useApi();
+
   // -----------------------------------get repositories
   const getRepositories = async (user: string) => {
     let page = 1;
     let allRepositories: RepoType[] = [];
     setRepos([]);
     setRepoError(null);
+
     try {
       while (true) {
         const repoUrl = `https://api.github.com/users/${user}/repos?per_page=10&page=${page}`;
 
         // !------------видалити Authorization: `token ${token}`
-        const repositories = await sendRequest(repoUrl, "GET", null, {
-          Authorization: `token ${token}`,
-        });
+        const repositories = await sendRequest(repoUrl);
 
         if (!repositories || repositories.length === 0) break;
 

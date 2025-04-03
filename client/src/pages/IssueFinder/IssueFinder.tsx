@@ -17,7 +17,6 @@ export const IssueFinder = () => {
   } = useOpenSourceRepo();
 
   useEffect(() => {
-    // getOpenSourceRepo("TypeScript");
     setExtendedRepoError(null);
   }, []);
 
