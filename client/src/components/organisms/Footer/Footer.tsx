@@ -6,7 +6,7 @@ import Logo from "../../atoms/Logo/Logo";
 import FooterNavigation from "../../molecules/FooterNavigation/FooterNavigation";
 import SocialLinks from "../../molecules/SocialLinks/SocialLinks";
 
-const Footer = () => {
+export const Footer = () => {
   const date = new Date("2025-03-18");
 
   return (
@@ -33,5 +33,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

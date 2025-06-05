@@ -13,11 +13,11 @@ import {
   decorElements,
   footerDecorElements,
 } from "./components/atoms/constants";
-import Footer from "./components/organisms/Footer/Footer";
 import ScrollUp from "./components/molecules/ScrollUp/ScrollUp";
 import AppRoutes from "./Routes/Routes";
 import useSearchService from "./servises/useSearchService";
 import { RandomAuthorsContext } from "./context/RandomAuthorsContext";
+import { Footer } from "./components/organisms/Footer";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(true);
